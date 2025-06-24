@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 definePageMeta({
   layout: 'sidebar',
-});
+})
 </script>
 
 <template>
-  <div>cards</div>
+  <div>examples</div>
 </template>

@@ -1,19 +1,20 @@
 <!-- layouts/sidebar.vue -->
 <script lang="ts" setup>
-const sidebarText = useState<string>('sidebar-text', () => 'Components');
-const sidebarItems = useState<{ text: string; path: string }[]>(
-  'sidebar-items',
-  () => [],
-);
+import type { Item } from '~/types'
+
+const sidebarText = useState<string>('sidebar-text', () => 'Components')
+const sidebarItems = useState<Item[]>('sidebar-items', () => [])
 </script>
 
 <template>
   <NuxtLayout name="default">
-    <div class="flex">
+    <div class="grid grid-cols-[15rem_1fr] h-full">
       <Sidebar :items="sidebarItems" :text="sidebarText" />
-      <div class="ml-[18rem] p-8">
-        <slot />
-      </div>
+      <main class="flex  justify-center p-8">
+        <div class="w-full max-w-4xl">
+          <slot />
+        </div>
+      </main>
     </div>
   </NuxtLayout>
 </template>

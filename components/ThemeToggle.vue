@@ -1,13 +1,12 @@
 <template>
   <div>
     <button @click="toggleTheme" class="">
-      <Icon name="line-md:light-dark-loop" size="23" />
+      <Icon name="material-symbols-light:partly-cloudy-day-outline-rounded" size="28" />
     </button>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
 const colorMode = useColorMode()
 
 // Список доступных тем

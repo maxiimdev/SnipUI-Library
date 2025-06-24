@@ -9,18 +9,62 @@ button {
   --main-bg: #f3f4f6;
   --main-text: #202020;
   --btn-color: #c7c7c7;
-  --bg-div: #e5e5e5;
-  --text-p: #313131;
+  --bg-div: #eaeaea;
+  --main-dark-gray: #313131;
+  --main-white-gray: #e2e0e0;
+  --main-dark: #0d1117;
+  --tag: #e02e55;
+  --class: #6161f9;
+  --class-text: #189157;
+  --text: #000000;
 
   /* Цвета для темной темы */
   --dark-bg: #191919;
   --dark-text: #e5e7eb;
   --dark-bg-div: #232323;
   --text-p: #797979;
+  --dark-active-link: #cacaca;
+  --main-gray: #efefef;
+  --dark-tag: #f30035;
+  --dark-class: #8181f9;
+  --dark-class-text: #189157;
 
+  --dark-text: #fff;
 }
 
 @layer base {
+  .code-class-text {
+    @apply text-[var(--class-text)];
+  }
+
+  .dark-mode .code-class-text {
+    @apply text-[var(--dark-class-text)];
+  }
+
+  .code-text {
+    @apply text-[var(--text)];
+  }
+
+  .dark-mode .code-text {
+    @apply text-[var(--dark-text)];
+  }
+
+  .tag-class {
+    @apply text-[var(--class)];
+  }
+
+  .dark-mode .tag-class {
+    @apply text-[var(--dark-class)];
+  }
+
+  .tag {
+    @apply text-[var(--dark-tag)];
+  }
+
+  .dark-mode .tag {
+    @apply text-[var(--tag)];
+  }
+
   .main-bg {
     @apply bg-[var(--main-bg)] transition-colors duration-300;
   }
@@ -44,11 +88,51 @@ button {
   }
 
   .text-p {
-    @apply text-[var(--text-p)]
+    @apply text-[var(--text-p)];
   }
 
   .dark-mode .text-p {
-    @apply text-[var(--text-p)]
+    @apply text-[var(--text-p)];
+  }
+
+  .active-link {
+    @apply scale-105;
+  }
+
+  .dark-mode .active-link {
+    @apply scale-105;
+  }
+
+  .active-component {
+    @apply bg-[var(--main-white-gray)];
+  }
+
+  .dark-mode .active-component {
+    @apply bg-[var(--main-dark-gray)];
+  }
+
+  .active-component-hover {
+    @apply hover:bg-[var(--main-white-gray)];
+  }
+
+  .dark-mode .active-component-hover {
+    @apply hover:bg-[var(--main-dark-gray)];
+  }
+
+  .main-border {
+    @apply border-[var(--main-white-gray)];
+  }
+
+  .dark-mode .main-border {
+    @apply border-[var(--main-dark-gray)];
+  }
+
+  .code-bg {
+    @apply bg-[var(--bg-div)];
+  }
+
+  .dark-mode .code-bg {
+    @apply bg-[var(--main-dark)];
   }
 
   /* Плавный переход для html */

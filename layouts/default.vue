@@ -1,10 +1,10 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div class="">
+  <div class="min-h-screen grid grid-rows-[auto_1fr]">
     <Header />
-    <div>
+    <main class="">
       <slot />
-    </div>
+    </main>
   </div>
 </template>
