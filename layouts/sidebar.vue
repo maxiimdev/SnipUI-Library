@@ -9,7 +9,7 @@ const sidebarItems = useState<Item[]>('sidebar-items', () => [])
 <template>
   <NuxtLayout name="default">
     <div class="grid grid-cols-[15rem_1fr] h-full">
-      <Sidebar :items="sidebarItems" :text="sidebarText" />
+      <Sidebar :items="sidebarItems" :text="sidebarText"/>
       <main class="flex  justify-center p-8">
         <div class="w-full max-w-4xl">
           <slot />

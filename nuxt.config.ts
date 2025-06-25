@@ -3,9 +3,9 @@ export default defineNuxtConfig({
   components: true,
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', '@vueuse/nuxt', '@nuxtjs/color-mode', '@nuxt/icon'],
+  modules: ['@nuxtjs/tailwindcss', '@vueuse/nuxt', '@nuxtjs/color-mode', '@nuxt/icon', '@nuxt/content'],
   colorMode: {
     classSuffix: '-mode', // Соответствует вашим классам .dark-mode, .sepia-mode
   },
-  css: ['~/assets/css/tailwind.css'],
+  css: ['~/assets/css/tailwind.css', 'prismjs/themes/prism-dark.css'],
 })

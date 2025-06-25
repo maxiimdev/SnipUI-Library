@@ -1,7 +1,7 @@
 <script lang="ts" setup></script>
 
 <template>
-  <header class="sticky top-0 main-bg">
+  <header class="sticky z-100 top-0 main-bg">
     <div class="flex items-center justify-between gap-10 h-20 p-2 w-2/3 mx-auto ">
       <ul class="flex items-center gap-3">
         <RouterLink to="/">

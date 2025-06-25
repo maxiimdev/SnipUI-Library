@@ -10,7 +10,7 @@ export default defineNuxtPlugin(() => {
           items: [
             {
               name: 'Gradient',
-              path: '/components/text/typography',
+              path: '/components/text/gradient',
             },
             {
               name: 'Highlight',

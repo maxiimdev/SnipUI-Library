@@ -11,7 +11,7 @@ useState('sidebar-items').value = [
     items: [
       {
         name: 'Gradient',
-        path: '/components/text/typography',
+        path: '/components/text/gradient',
       },
       {
         name: 'Highlight',
