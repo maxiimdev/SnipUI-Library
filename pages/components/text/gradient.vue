@@ -5,6 +5,23 @@ definePageMeta({
   layout: 'sidebar',
 })
 
+useState('right-sidebar-text').value = 'On This Page'
+
+useState('right-sidebar-items').value = [
+  {
+    items: [
+      { name: 'Static Gradient', path: '#static-gradient' },
+      { name: 'Sunset Gradient', path: '#sunset-gradient' },
+      { name: 'Animated Gradient', path: '#animated-gradient' },
+      { name: 'Neon Glow', path: '#neon-glow' },
+      { name: 'Rainbow Shimmer', path: '#rainbow-shimmer' },
+      { name: 'Gold Luxury', path: '#gold-luxury' },
+      { name: 'Ocean Wave', path: '#ocean-wave' },
+      { name: 'Fire Gradient', path: '#fire-gradient' },
+    ],
+  },
+]
+
 const gradient: Card = {
   title: 'Gradient',
   text: 'Normal static gradient',
@@ -17,15 +34,14 @@ const gradient: Card = {
   content: {
     type: 'text',
     props: {
-      class:
-        'text-6xl bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500 text-transparent bg-clip-text font-bold',
+      class: 'text-6xl bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500 text-transparent bg-clip-text font-bold',
     },
     children: 'Static Gradient',
   },
 }
 
 const gradientAnimated: Card = {
-  title: 'Animated gradient',
+  title: 'Animated Gradient',
   text: 'Сyclic animated gradient',
   codeTitle: 'animated-gradient.vue',
   code: `<template>
@@ -49,8 +65,7 @@ const gradientAnimated: Card = {
   content: {
     type: 'text',
     props: {
-      class:
-        'text-6xl font-bold bg-gradient-to-l from-blue-400 via-indigo-500 via-pink-500 to-yellow-500 bg-clip-text text-transparent animate-gradient w-96',
+      class: 'text-6xl font-bold bg-gradient-to-l from-blue-400 via-indigo-500 via-pink-500 to-yellow-500 bg-clip-text text-transparent animate-gradient w-96',
     },
     children: 'Animated Gradient Text',
   },
@@ -68,8 +83,7 @@ const sunsetGradient: Card = {
   content: {
     type: 'text',
     props: {
-      class:
-        'text-6xl bg-gradient-to-r from-orange-400 via-red-500 to-pink-600 text-transparent bg-clip-text font-bold',
+      class: 'text-6xl bg-gradient-to-r from-orange-400 via-red-500 to-pink-600 text-transparent bg-clip-text font-bold',
     },
     children: 'Sunset Dreams',
   },
@@ -264,32 +278,26 @@ const fireGradient: Card = {
 
 <template>
   <div class="flex flex-col gap-20">
-    <CodeCard :card="gradient" />
-    <CodeCard :card="sunsetGradient" />
-    <CodeCard :card="gradientAnimated" />
-    <CodeCard :card="neonGlow" />
-    <CodeCard :card="rainbowShimmer" />
-    <CodeCard :card="goldLuxury" />
-    <CodeCard :card="oceanWave" />
-    <CodeCard :card="fireGradient" />
-
+    <div :id="'static-gradient'"><CodeCard :card="gradient" /></div>
+    <div :id="'sunset-gradient'"><CodeCard :card="sunsetGradient" /></div>
+    <div :id="'animated-gradient'"><CodeCard :card="gradientAnimated" /></div>
+    <div :id="'neon-glow'"><CodeCard :card="neonGlow" /></div>
+    <div :id="'rainbow-shimmer'"><CodeCard :card="rainbowShimmer" /></div>
+    <div :id="'gold-luxury'"><CodeCard :card="goldLuxury" /></div>
+    <div :id="'ocean-wave'"><CodeCard :card="oceanWave" /></div>
+    <div :id="'fire-gradient'"><CodeCard :card="fireGradient" /></div>
   </div>
 </template>
 
 <style>
 @layer utilities {
-  /* Циклический градиент */
   .animate-gradient {
     background-size: 200%;
     animation: gradientFlow 3s linear infinite;
   }
   @keyframes gradientFlow {
-    0% {
-      background-position: 200%;
-    }
-    100% {
-      background-position: 0%;
-    }
+    0% { background-position: 200%; }
+    100% { background-position: 0%; }
   }
 
   .neon-glow {
@@ -302,8 +310,7 @@ const fireGradient: Card = {
       filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.5));
     }
     to {
-      filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.8))
-        drop-shadow(0 0 30px rgba(147, 51, 234, 0.6));
+      filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.8)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.6));
     }
   }
 
@@ -313,79 +320,58 @@ const fireGradient: Card = {
   }
 
   @keyframes rainbowShimmer {
-    0%,
-    100% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
   }
 
   .gold-luxury {
-    background-image: linear-gradient(
-      45deg,
-      #fbbf24,
-      #f59e0b,
-      #d97706,
-      #92400e,
-      #f59e0b,
-      #fbbf24
-    );
+    background-image: linear-gradient(45deg, #fbbf24, #f59e0b, #d97706, #92400e, #f59e0b, #fbbf24);
     background-size: 300% 100%;
     animation: goldFlow 4s linear infinite;
     filter: drop-shadow(0 2px 4px rgba(217, 119, 6, 0.3));
   }
 
   @keyframes goldFlow {
-    0% {
-      background-position: 0% 50%;
-    }
-    100% {
-      background-position: 300% 50%;
-    }
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
   }
 
   .ocean-wave {
-  background-size: 300% 100%;
-  animation: oceanFlow 8s ease-in-out infinite;
-}
+    background-size: 300% 100%;
+    animation: oceanFlow 8s ease-in-out infinite;
+  }
 
-@keyframes oceanFlow {
-  0%, 100% {
-    background-position: 0% 50%;
+  @keyframes oceanFlow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
   }
-  50% {
-    background-position: 100% 50%;
-  }
-}
 
   .animate-fire-flicker {
-  background-size: 300% 100%;
-  animation: fireFlicker 2s ease-in-out infinite alternate;
-}
+    background-size: 300% 100%;
+    animation: fireFlicker 2s ease-in-out infinite alternate;
+  }
 
-@keyframes fireFlicker {
-  0% {
-    background-position: 0% 50%;
-    filter: drop-shadow(0 0 8px rgba(234, 88, 12, 0.4)) brightness(1);
+  @keyframes fireFlicker {
+    0% {
+      background-position: 0% 50%;
+      filter: drop-shadow(0 0 8px rgba(234, 88, 12, 0.4)) brightness(1);
+    }
+    25% {
+      background-position: 50% 50%;
+      filter: drop-shadow(0 0 12px rgba(234, 88, 12, 0.6)) brightness(1.1);
+    }
+    50% {
+      background-position: 100% 50%;
+      filter: drop-shadow(0 0 8px rgba(234, 88, 12, 0.4)) brightness(0.9);
+    }
+    75% {
+      background-position: 75% 50%;
+      filter: drop-shadow(0 0 15px rgba(234, 88, 12, 0.7)) brightness(1.2);
+    }
+    100% {
+      background-position: 0% 50%;
+      filter: drop-shadow(0 0 10px rgba(234, 88, 12, 0.5)) brightness(1);
+    }
   }
-  25% {
-    background-position: 50% 50%;
-    filter: drop-shadow(0 0 12px rgba(234, 88, 12, 0.6)) brightness(1.1);
-  }
-  50% {
-    background-position: 100% 50%;
-    filter: drop-shadow(0 0 8px rgba(234, 88, 12, 0.4)) brightness(0.9);
-  }
-  75% {
-    background-position: 75% 50%;
-    filter: drop-shadow(0 0 15px rgba(234, 88, 12, 0.7)) brightness(1.2);
-  }
-  100% {
-    background-position: 0% 50%;
-    filter: drop-shadow(0 0 10px rgba(234, 88, 12, 0.5)) brightness(1);
-  }
-}
 }
 </style>

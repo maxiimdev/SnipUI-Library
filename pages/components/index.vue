@@ -14,6 +14,10 @@ useState('sidebar-items').value = [
         path: '/components/text/gradient',
       },
       {
+        name: 'Typing',
+        path: '/components/text/typing',
+      },
+      {
         name: 'Highlight',
         path: '/components/text/highlight',
       },
@@ -26,10 +30,7 @@ useState('sidebar-items').value = [
         name: 'Text With Badge',
         path: '/components/text/badge',
       },
-      {
-        name: 'Typing',
-        path: '/components/text/typing',
-      },
+      
     ],
   },
 ]

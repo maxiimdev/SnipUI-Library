@@ -76,7 +76,7 @@ const isActiveLink = (path: string) => {
               :to="subItem.path"
               v-for="(subItem, subIndex) in item.items"
               :key="subIndex"
-              class="px-4 py-3 my-1 text-p transition-colors rounded flex"
+              class="px-4 py-3 my-1 text-p rounded flex"
               :class="{
                 'active-component': isActiveLink(subItem.path),
                 'active-component-hover': !isActiveLink(subItem.path),

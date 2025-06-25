@@ -13,6 +13,10 @@ export default defineNuxtPlugin(() => {
               path: '/components/text/gradient',
             },
             {
+              name: 'Typing',
+              path: '/components/text/typing',
+            },
+            {
               name: 'Highlight',
               path: '/components/text/highlight',
             },
@@ -24,10 +28,7 @@ export default defineNuxtPlugin(() => {
               name: 'Text With Badge',
               path: '/components/text/badge',
             },
-            {
-              name: 'Typing',
-              path: '/components/text/typing',
-            },
+            
           ],
         },
       ]

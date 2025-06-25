@@ -26,6 +26,7 @@ const copyCode = async () => {
   }
 }
 
+
 const highlightedCode = computed(() => {
   return Prism.highlight(props.card.code, Prism.languages.html, 'html')
 })
@@ -59,14 +60,14 @@ onMounted(() => {
       <!-- Кнопки переключения -->
       <div class="flex gap-2 px-5">
         <button
-          class="main-div py-2 px-5 cursor-pointer rounded-xl transition-all duration-200"
+          class="main-div py-2 px-5 cursor-pointer rounded-xl "
           :class="{ 'active-link': isPreview }"
           @click="isPreview = true"
         >
           Preview
         </button>
         <button
-          class="main-div py-2 px-5 cursor-pointer rounded-xl transition-all duration-200"
+          class="main-div py-2 px-5 cursor-pointer rounded-xl "
           :class="{ 'active-link': !isPreview }"
           @click="isPreview = false"
         >
