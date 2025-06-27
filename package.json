@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
+    "start": "node .output/server/index.mjs",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
@@ -16,6 +17,8 @@
     "better-sqlite3": "^11.10.0",
     "nuxt": "^3.17.5",
     "prismjs": "^1.30.0",
+    "shiki": "^3.7.0",
+    "shiki-themes": "^0.2.7",
     "vue": "^3.5.16",
     "vue-router": "^4.5.1"
   },

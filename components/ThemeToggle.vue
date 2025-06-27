@@ -18,19 +18,4 @@ const toggleTheme = () => {
   const nextIndex = (currentIndex + 1) % themes.length
   colorMode.preference = themes[nextIndex]
 }
-
-const buttonText = computed(() => {
-  switch (colorMode.value) {
-    case 'light':
-      return true
-    case 'dark':
-      return false
-    default:
-      return false
-  }
-})
 </script>
-
-<style scoped>
-/* Пустой scoped стиль, чтобы избежать ошибки с обработкой стилей */
-</style>

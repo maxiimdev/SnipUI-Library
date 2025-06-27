@@ -70,7 +70,7 @@ const isActiveLink = (path: string) => {
         </span>
 
         <!-- Выпадающее меню -->
-        <Transition name="slide-fade">
+        
           <ul v-if="item.items?.length && openStates[index]" class="mt-2">
             <RouterLink
               :to="subItem.path"
@@ -86,7 +86,7 @@ const isActiveLink = (path: string) => {
               {{ subItem.name }}
             </RouterLink>
           </ul>
-        </Transition>
+       
       </div>
     </div>
   </aside>

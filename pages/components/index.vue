@@ -27,8 +27,8 @@ useState('sidebar-items').value = [
       },
 
       {
-        name: 'Text With Badge',
-        path: '/components/text/badge',
+        name: 'Effect Showcase',
+        path: '/components/text/background',
       },
       
     ],
