@@ -17,23 +17,29 @@ const getAllSectionElements = (): HTMLElement[] => {
 
 // Устанавливаем активную ссылку при загрузке
 const setInitialActiveLink = () => {
-  if (props.text !== 'On This Page' || !props.items.length || !props.items[0].items.length) {
+  if (
+    props.text !== 'On This Page' ||
+    !props.items.length ||
+    !props.items[0].items.length
+  ) {
     return
   }
 
   const currentHash = window.location.hash
   const firstItem = props.items[0].items[0]
-  
+
   // Проверяем есть ли текущий хеш среди наших элементов
-  const hasCurrentHash = props.items[0].items.some(item => item.path === currentHash)
-  
+  const hasCurrentHash = props.items[0].items.some(
+    item => item.path === currentHash
+  )
+
   activeLink.value = hasCurrentHash ? currentHash : firstItem.path
 }
 
 // Настраиваем наблюдателей для всех секций
 const setupIntersectionObservers = () => {
   const elements = getAllSectionElements()
-  
+
   elements.forEach(element => {
     useIntersectionObserver(
       element,
@@ -45,8 +51,8 @@ const setupIntersectionObservers = () => {
         }
       },
       {
-        rootMargin: '-100px 0px -60% 0px',
-        threshold: 0
+        rootMargin: '-300px 0px -60% 0px',
+        threshold: 0,
       }
     )
   })
@@ -65,7 +71,7 @@ const initializeSidebar = async () => {
     const offsetTop = element.offsetTop - 120
     window.scrollTo({
       top: offsetTop,
-      behavior: 'smooth'
+      behavior: 'smooth',
     })
     window.history.pushState(history.state, '', activeLink.value) // Сохраняем history.state
   }
@@ -75,14 +81,14 @@ const initializeSidebar = async () => {
 const handleLinkClick = (path: string) => {
   const targetId = path.replace('#', '')
   const element = document.getElementById(targetId)
-  
+
   if (element) {
     const offsetTop = element.offsetTop - 120
     window.scrollTo({
       top: offsetTop,
-      behavior: 'smooth'
+      behavior: 'smooth',
     })
-    
+
     activeLink.value = path
     window.history.pushState(history.state, '', path) // Сохраняем history.state
   }
@@ -94,11 +100,13 @@ watch(() => router.currentRoute.value.fullPath, initializeSidebar)
 </script>
 
 <template>
-  <aside class="flex sticky top-0 z-100 flex-col gap-3 px-8 pt-5 h-screen overflow-y-auto text-[14px] main-bg">
+  <aside
+    class="flex sticky top-0 z-100 flex-col gap-3 px-8 pt-5 h-screen overflow-y-auto text-[14px] main-bg"
+  >
     <p class="text-p border main-border rounded-xl p-3 text-center mb-2">
       {{ props.text }}
     </p>
-    
+
     <div class="flex flex-col gap-5">
       <div
         v-for="(item, index) in props.items"

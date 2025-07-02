@@ -7,7 +7,7 @@ useState('sidebar-text').value = 'Components'
 
 useState('sidebar-items').value = [
   {
-    text: 'Text',
+    text: 'Text Effects',
     items: [
       {
         name: 'Gradient',
@@ -18,19 +18,52 @@ useState('sidebar-items').value = [
         path: '/components/text/typing',
       },
       {
-        name: 'Highlight',
-        path: '/components/text/highlight',
+        name: 'Article Highlights',
+        path: '/components/text/article',
       },
-      {
-        name: 'Truncate',
-        path: '/components/text/truncate',
-      },
-
       {
         name: 'Effect Showcase',
-        path: '/components/text/background',
+        path: '/components/text/showcase',
       },
-      
+    ],
+  },
+  {
+    text: 'Action Toggles',
+    items: [
+      {
+        name: 'Buttons',
+        path: '/components/action/buttons',
+      },
+      {
+        name: 'Checkbox',
+        path: '/components/action/checkbox',
+      },
+    ],
+  },
+  {
+    text: 'Form Inputs',
+    items: [
+      {
+        name: 'Input',
+        path: '/components/form/input',
+      },
+      {
+        name: 'Textarea',
+        path: '/components/form/textarea',
+      },
+    ],
+  },
+  {
+    text: 'Dialog Triggers',
+    items: [
+      {
+        name: 'Modal',
+        path: '/components/dialog/modal',
+      },
+      {
+        name: 'Triggers',
+        path: '/components/dialog/triggers',
+      },
     ],
   },
 ]

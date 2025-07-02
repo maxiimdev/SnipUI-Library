@@ -58,7 +58,7 @@ const restartAnimation = () => {
     </div>
 
     <div class="flex flex-col gap-3">
-      <div class="flex gap-2 px-5">
+      <div class="flex gap-2 px-3">
         <button
           class="main-div py-2 px-5 cursor-pointer rounded-xl"
           :class="{ 'active-link': isPreview }"

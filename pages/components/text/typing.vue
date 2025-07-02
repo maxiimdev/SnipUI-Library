@@ -4,7 +4,7 @@ import {
   blinkingCursorTypingCode,
   cyclingTypingCode,
   simpleTypingCode,
-} from '~/assets/css/code-examples/typing-codes'
+} from '~/assets/css/code-examples/text/typing-codes'
 import Typewriter from '~/components/text/typing/Typewriter.vue'
 import BlinkingCursorTypewriter from '~/components/text/typing/BlinkingCursorTypewriter.vue'
 import CycleTypewriter from '~/components/text/typing/CycleTypewriter.vue'

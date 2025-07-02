@@ -6,7 +6,7 @@ import {
   parallaxBackgroundTextCode,
   staticBgTextCode,
   threeDRotateTextCode,
-} from '~/assets/css/code-examples/background-text-codes'
+} from '~/assets/css/code-examples/text/background-text-codes'
 import ParallaxBackgroundText from '~/components/text/background/ParallaxBackgroundText.vue'
 import StaticBgText from '~/components/text/background/StaticBgText.vue'
 import ThreeDRotateText from '~/components/text/background/ThreeDRotateText.vue'

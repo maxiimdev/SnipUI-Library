@@ -6,7 +6,7 @@ export default defineNuxtPlugin(() => {
       text: 'Components',
       items: [
         {
-          text: 'Text',
+          text: 'Text Effects',
           items: [
             {
               name: 'Gradient',
@@ -17,12 +17,8 @@ export default defineNuxtPlugin(() => {
               path: '/components/text/typing',
             },
             {
-              name: 'Highlight',
-              path: '/components/text/highlight',
-            },
-            {
-              name: 'Truncate',
-              path: '/components/text/truncate',
+              name: 'Article Highlights',
+              path: '/components/text/article',
             },
             {
               name: 'Effect Showcase',
@@ -30,6 +26,46 @@ export default defineNuxtPlugin(() => {
             },
           ],
         },
+        {
+          text: 'Action Toggles',
+          items: [
+            {
+              name: 'Buttons',
+              path: '/components/action/buttons',
+            },
+            {
+              name: 'Checkbox',
+              path: '/components/action/checkbox',
+            },
+          ],
+        },
+        {
+          text: 'Form Inputs',
+          items: [
+            {
+              name: 'Input',
+              path: '/components/form/input',
+            },
+            {
+              name: 'Textarea',
+              path: '/components/form/textarea',
+            },
+          ],
+        },
+        {
+          text: 'Dialog Triggers',
+          items: [
+            {
+              name: 'Modal',
+              path: '/components/dialog/modal',
+            },
+            {
+              name: 'Triggers',
+              path: '/components/dialog/triggers',
+            },
+          ],
+        },
+        
       ],
     },
     '/docs': {
