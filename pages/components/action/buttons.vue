@@ -7,13 +7,17 @@ import DropdownBtn from '~/components/action/buttons/DropdownBtn.vue'
 import IconBtn from '~/components/action/buttons/IconBtn.vue'
 import {
   asyncBtnCode,
+  burgerBtnCode,
   dropdownBtnCode,
   iconBtnCode,
   loaderBtnCode,
+  themeToggleCode,
   toggleBtnCode,
   tooltipsBtnCode,
-} from '~/assets/css/code-examples/action/buttons-codes'
+} from '~/assets/code-examples/action/buttons-codes'
 import TooltipsBtn from '~/components/action/buttons/TooltipsBtn.vue'
+import BurgerBtn from '~/components/action/buttons/BurgerBtn.vue'
+import ThemeToggleBtn from '~/components/action/buttons/ThemeToggleBtn.vue'
 
 definePageMeta({
   layout: 'sidebar',
@@ -24,6 +28,8 @@ useState('right-sidebar-text').value = 'On This Page'
 useState('right-sidebar-items').value = [
   {
     items: [
+      { name: 'Burger Button', path: '#burger-btn' },
+      { name: 'Theme Toggle', path: '#theme-toggle-btn' },
       { name: 'Loader Button', path: '#loader-btn' },
       { name: 'Async Button', path: '#async-btn' },
       { name: 'Toggle Button', path: '#toggle-btn' },
@@ -36,7 +42,7 @@ useState('right-sidebar-items').value = [
 
 const Loader: Card = {
   title: 'Loader Button',
-  text: 'A simple loader button',
+  text: 'A simple loader button.',
   codeTitle: 'LoaderBtn.vue',
   code: loaderBtnCode,
   content: {
@@ -117,10 +123,48 @@ const Tooltips: Card = {
     children: '',
   },
 }
+
+const Burger: Card = {
+  title: 'Burger Button',
+  text: 'A button with a hamburger icon that toggles into a cross for mobile menus.',
+  codeTitle: 'BurgerBtn.vue',
+  code: burgerBtnCode,
+  content: {
+    type: 'text',
+    props: {
+      class: '',
+    },
+    children: '',
+  },
+}
+
+const Theme: Card = {
+  title: 'Theme Toggle Button',
+  text: 'A button with sun and moon icons to toggle between light and dark themes, using two SVGs for animation.',
+  codeTitle: 'ThemeToggleBtn.vue',
+  code: themeToggleCode,
+  content: {
+    type: 'text',
+    props: {
+      class: '',
+    },
+    children: '',
+  },
+}
 </script>
 
 <template>
   <div class="flex flex-col gap-20">
+    <div id="burger-btn">
+      <CodeCard :card="Burger" :component="BurgerBtn" :is-code-preview="true" />
+    </div>
+    <div id="theme-toggle-btn">
+      <CodeCard
+        :card="Theme"
+        :component="ThemeToggleBtn"
+        :is-code-preview="true"
+      />
+    </div>
     <div id="loader-btn">
       <CodeCard :card="Loader" :component="LoaderBtn" :is-code-preview="true" />
     </div>

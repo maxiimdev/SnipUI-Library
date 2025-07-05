@@ -18,7 +18,7 @@ const triggerAsync = async () => {
 
 <template>
   <button
-    class="px-4 py-2 active-component main-text rounded flex items-center gap-2 transition-colors duration-200"
+    class="px-4 py-2 w-30 active-component main-text rounded flex items-center justify-center gap-2 transition-colors duration-200"
     :class="{
       'bg-green-600 hover:bg-green-700': asyncStatus === 'success',
       'bg-red-600 hover:bg-red-700': asyncStatus === 'error',

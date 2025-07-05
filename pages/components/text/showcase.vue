@@ -6,14 +6,13 @@ import {
   parallaxBackgroundTextCode,
   staticBgTextCode,
   threeDRotateTextCode,
-} from '~/assets/css/code-examples/text/background-text-codes'
+} from '~/assets/code-examples/text/background-text-codes'
 import ParallaxBackgroundText from '~/components/text/background/ParallaxBackgroundText.vue'
 import StaticBgText from '~/components/text/background/StaticBgText.vue'
 import ThreeDRotateText from '~/components/text/background/ThreeDRotateText.vue'
 import FillAnimationText from '~/components/text/background/FillAnimationText.vue'
 
 // Новые импорты для компонентов
-
 
 // Код для новых компонентов
 
@@ -25,16 +24,16 @@ useState('right-sidebar-text').value = 'On This Page'
 useState('right-sidebar-items').value = [
   {
     items: [
-      { name: 'Static Background Text', path: '#static-background-text' },
-      { name: 'Parallax Background Text', path: '#parallax-background-text' },
-      { name: '3D Rotate Text', path: '#three-d-rotate-text' },
-      { name: 'Fill Animation Text', path: '#fill-animation-text' },
+      { name: 'Background Text', path: '#static-background-text' },
+      { name: 'Parallax Text', path: '#parallax-background-text' },
+      { name: '3D Rotate', path: '#three-d-rotate-text' },
+      { name: 'Fill Animation', path: '#fill-animation-text' },
     ],
   },
 ]
 
 const staticBackgroundText: Card = {
-  title: 'Static Background Text',
+  title: 'Background Text',
   text: 'Text with a static image clipped to the text shape for a bold visual effect.',
   codeTitle: 'StaticBackgroundText.vue',
   code: staticBgTextCode,

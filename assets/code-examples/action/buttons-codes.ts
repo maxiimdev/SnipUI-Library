@@ -113,7 +113,7 @@ const toggleDropdown = () => {
 }
 
 const selectOption = (option: string) => {
-  text.value = option
+  console.log(\`Option: \${option}\`)
   isOpen.value = false
 }
 </script>
@@ -121,20 +121,20 @@ const selectOption = (option: string) => {
 <template>
   <div class="relative">
     <button
-      class="px-4 py-2 active-component main-text rounded transition-colors duration-200"
+      class="px-4 py-2 rounded active-component transition-colors duration-200"
       @click="toggleDropdown"
     >
       {{ text }}
     </button>
     <div
       v-if="isOpen"
-      class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10"
+      class="absolute right-0 mt-2 w-48 border-1 main-border rounded-md shadow-lg z-10"
     >
-      <ul class="py-1">
+      <ul>
         <li
           v-for="(option, index) in options"
           :key="index"
-          class="px-4 py-2 text-gray-700 hover:bg-indigo-100 cursor-pointer"
+          class="px-4 py-2 main-text active-component-hover cursor-pointer border-b-1 main-border last-of-type:border-0"
           @click="selectOption(option)"
         >
           {{ option }}
@@ -384,5 +384,95 @@ const toggleAdd = () => {
       </div>
     </div>
   </div>
+</template>
+`
+export const burgerBtnCode = `<script lang="ts" setup>
+import { ref } from 'vue'
+
+const isOpen = ref(false)
+
+const toggleMenu = () => {
+  isOpen.value = !isOpen.value
+}
+</script>
+
+<template>
+  <button
+    class="w-10 h-10 flex items-center justify-center"
+    @click="toggleMenu"
+    aria-label="Toggle menu"
+  >
+    <svg
+      class="w-10 h-10 main-text absolute transition-all duration-200"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      :class="{ 'opacity-0': isOpen, 'opacity-100': !isOpen }"
+    >
+      <path
+        d="M4 6h16M4 12h16M4 18h16"
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+    </svg>
+    <svg
+      class="w-10 h-10 main-text absolute transition-all duration-200"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      :class="{ 'opacity-100': isOpen, 'opacity-0': !isOpen }"
+    >
+      <path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round" />
+    </svg>
+  </button>
+</template>
+`
+export const themeToggleCode = `<script lang="ts" setup>
+import { ref } from 'vue'
+
+const isDark = ref(false)
+
+const toggleTheme = () => {
+  isDark.value = !isDark.value
+}
+</script>
+
+<template>
+  <button
+    class="w-10 h-10 flex items-center justify-center"
+    @click="toggleTheme"
+    aria-label="Toggle theme"
+  >
+    <svg
+      class="w-10 h-10 main-text absolute transition-all duration-200"
+      :class="{ 'opacity-0': isDark, 'opacity-100': !isDark }"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+      />
+    </svg>
+    <svg
+      class="w-10 h-10 main-text absolute transition-all duration-300"
+      :class="{ 'opacity-100': isDark, 'opacity-0': !isDark }"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"
+      />
+    </svg>
+  </button>
 </template>
 `

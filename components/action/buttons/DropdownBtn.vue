@@ -10,7 +10,7 @@ const toggleDropdown = () => {
 }
 
 const selectOption = (option: string) => {
-  text.value = option
+  console.log(`Option: ${option}`)
   isOpen.value = false
 }
 </script>
@@ -18,7 +18,7 @@ const selectOption = (option: string) => {
 <template>
   <div class="relative">
     <button
-      class="px-4 py-2 active-component main-text rounded transition-colors duration-200"
+      class="px-4 py-2 rounded active-component transition-colors duration-200"
       @click="toggleDropdown"
     >
       {{ text }}

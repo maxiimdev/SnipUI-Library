@@ -35,8 +35,8 @@ useState('sidebar-items').value = [
         path: '/components/action/buttons',
       },
       {
-        name: 'Checkbox',
-        path: '/components/action/checkbox',
+        name: 'Input Toggles',
+        path: '/components/action/toggles',
       },
     ],
   },
@@ -63,6 +63,19 @@ useState('sidebar-items').value = [
       {
         name: 'Triggers',
         path: '/components/dialog/triggers',
+      },
+    ],
+  },
+  {
+    text: 'Cards',
+    items: [
+      {
+        name: 'Basic Cards',
+        path: '/components/cards/basic',
+      },
+      {
+        name: 'Another Cards',
+        path: '/components/cards/another',
       },
     ],
   },

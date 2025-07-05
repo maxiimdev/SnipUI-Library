@@ -34,8 +34,8 @@ export default defineNuxtPlugin(() => {
               path: '/components/action/buttons',
             },
             {
-              name: 'Checkbox',
-              path: '/components/action/checkbox',
+              name: 'Input Toggles',
+              path: '/components/action/toggles',
             },
           ],
         },
@@ -65,7 +65,19 @@ export default defineNuxtPlugin(() => {
             },
           ],
         },
-        
+        {
+          text: 'Cards',
+          items: [
+            {
+              name: 'Basic Cards',
+              path: '/components/cards/basic',
+            },
+            {
+              name: 'Another Cards',
+              path: '/components/cards/another',
+            },
+          ],
+        },
       ],
     },
     '/docs': {
@@ -132,6 +144,4 @@ export default defineNuxtPlugin(() => {
       initializeSidebarData()
     })
   }
-  
 })
-

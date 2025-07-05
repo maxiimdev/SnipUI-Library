@@ -6,7 +6,7 @@ import {
   interactiveCollapsibleCode,
   readAloundCode,
   truncatedQuoteSnippetCode,
-} from '~/assets/css/code-examples/text/articles-snippets'
+} from '~/assets/code-examples/text/articles-snippets'
 import Annotation from '~/components/text/articles/Annotation.vue'
 import CollapsibleArticle from '~/components/text/articles/CollapsibleArticle.vue'
 import Copied from '~/components/text/articles/Copied.vue'
@@ -170,6 +170,5 @@ const annotationSnippet: Card = {
         :component="Voice"
       />
     </div>
-    
   </div>
 </template>
