@@ -51,15 +51,15 @@ const updateParent = () => {
         aria-label="Toggle all items"
       />
       <div
-        class="w-5 h-5 border-2 border-indigo-600 rounded flex items-center justify-center transition-all duration-300"
+        class="w-5 h-5 border-2 main-border rounded flex items-center justify-center transition-all duration-300"
         :class="{
-          'bg-indigo-600': parentChecked || isIndeterminate,
+          'active-component': parentChecked || isIndeterminate,
           'bg-transparent': !parentChecked && !isIndeterminate,
         }"
       >
         <svg
           v-if="parentChecked"
-          class="w-4 h-4 text-white"
+          class="w-4 h-4 main-text"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -74,7 +74,7 @@ const updateParent = () => {
         </svg>
         <svg
           v-if="isIndeterminate && !parentChecked"
-          class="w-4 h-4 text-white"
+          class="w-4 h-4 main-text"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -104,15 +104,15 @@ const updateParent = () => {
           :aria-label="`Toggle item ${item.name}`"
         />
         <div
-          class="w-5 h-5 border-2 border-indigo-600 rounded flex items-center justify-center transition-all duration-300"
+          class="w-5 h-5 border-2 main-border rounded flex items-center justify-center transition-all duration-300"
           :class="{
-            'bg-indigo-600': item.checked,
+            'active-component': item.checked,
             'bg-transparent': !item.checked,
           }"
         >
           <svg
             v-if="item.checked"
-            class="w-4 h-4 text-white"
+            class="w-4 h-4 main-text"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

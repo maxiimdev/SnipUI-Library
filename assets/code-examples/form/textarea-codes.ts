@@ -23,7 +23,7 @@ const isFocused = ref(false)
   </div>
 </template>
 `
-const autoResizeTextareaCode = `<script lang="ts" setup>
+export const autoResizeTextareaCode = `<script lang="ts" setup>
 import { ref, onMounted, watch } from 'vue'
 
 const value = ref('')

@@ -15,7 +15,7 @@ const handleFileChange = (event: Event) => {
     <div
       class="flex items-center border-2 rounded-md transition-all duration-300"
       :class="{
-        'border-indigo-600': isFocused || fileName,
+        'border-component': isFocused || fileName,
         'main-border': !isFocused && !fileName,
       }"
     >

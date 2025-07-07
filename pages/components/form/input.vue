@@ -3,7 +3,9 @@ import {
   autoCompleteInputCode,
   fileInputCode,
   floatingLabelInputCode,
+  formWithValidationCodes,
   iconInputCode,
+  inputWithButtonCodes,
   numberInputCode,
   passwordInputCode,
   standartInputCode,
@@ -12,7 +14,9 @@ import AutoCompleteInput from '~/components/form/input/AutoCompleteInput.vue'
 import FileInput from '~/components/form/input/FileInput.vue'
 
 import FloatingLabelInput from '~/components/form/input/FloatingLabelInput.vue'
+import FormWithValidation from '~/components/form/input/FormWithValidation.vue'
 import IconInput from '~/components/form/input/IconInput.vue'
+import InputWithButton from '~/components/form/input/InputWithButton.vue'
 import NumberInput from '~/components/form/input/NumberInput.vue'
 import PasswordInput from '~/components/form/input/PasswordInput.vue'
 import StandardInput from '~/components/form/input/StandardInput.vue'
@@ -30,6 +34,8 @@ useState('right-sidebar-items').value = [
       { name: 'Standard Input', path: '#standard-input' },
       { name: 'Icon Input', path: '#icon-input' },
       { name: 'Password Input', path: '#password-input' },
+      { name: 'Input with Button', path: '#input-with-button' },
+      { name: 'Form with Validation', path: '#form-with-validation' },
       { name: 'Floating Label Input', path: '#floating-label-input' },
       { name: 'Autocomplete Input', path: '#autocomplete-input' },
       { name: 'File Input', path: '#file-input' },
@@ -127,6 +133,21 @@ const FileInputCard: Card = {
   code: fileInputCode,
   content: { type: 'text', props: { class: '' }, children: '' },
 }
+const InputWithButtonCard: Card = {
+  title: 'Input with Button',
+  text: 'A simple input field with a submit button next to it.',
+  codeTitle: 'InputWithButton.vue',
+  code: inputWithButtonCodes,
+  content: { type: 'text', props: { class: '' }, children: '' },
+}
+
+const FormWithValidationCard: Card = {
+  title: 'Form with Validation',
+  text: 'A form with a labeled input, description, and validation on submit.',
+  codeTitle: 'FormWithValidation.vue',
+  code: formWithValidationCodes,
+  content: { type: 'text', props: { class: '' }, children: '' },
+}
 </script>
 
 <template>
@@ -153,6 +174,20 @@ const FileInputCard: Card = {
       />
     </div>
 
+    <div id="input-with-button">
+      <CodeCard
+        :card="InputWithButtonCard"
+        :component="InputWithButton"
+        :is-code-preview="true"
+      />
+    </div>
+    <div id="form-with-validation">
+      <CodeCard
+        :card="FormWithValidationCard"
+        :component="FormWithValidation"
+        :is-code-preview="true"
+      />
+    </div>
     <div id="floating-label-input">
       <CodeCard
         :card="FloatingLabelInputCard"
@@ -167,7 +202,7 @@ const FileInputCard: Card = {
         :is-code-preview="true"
       />
     </div>
-     <div id="file-input">
+    <div id="file-input">
       <CodeCard
         :card="FileInputCard"
         :component="FileInput"

@@ -60,15 +60,13 @@ const restartAnimation = () => {
     <div class="flex flex-col gap-3">
       <div class="flex gap-2 px-3">
         <button
-          class="main-div py-2 px-5 cursor-pointer rounded-xl"
-          :class="{ 'active-link': isPreview }"
+          class="active-component-hover py-2 px-3 cursor-pointer rounded-xl"
           @click="isPreview = true"
         >
           Preview
         </button>
         <button
-          class="main-div py-2 px-5 cursor-pointer rounded-xl"
-          :class="{ 'active-link': !isPreview }"
+          class="active-component-hover py-2 px-3 cursor-pointer rounded-xl"
           @click="isPreview = false"
         >
           Code
@@ -79,9 +77,10 @@ const restartAnimation = () => {
         v-if="isPreview"
         class="border-1 main-border relative rounded-xl w-[40rem] h-[31rem] max-h-full flex justify-center items-center"
       >
-        <button v-if="isReload"
+        <button
+          v-if="isReload"
           @click="restartAnimation"
-          class="py-2 px-3 absolute top-3 right-3 cursor-pointer hover:opacity-80 transition-opacity"
+          class="py-2 px-3 absolute top-3 right-3 cursor-pointer hover:opacity-80 transition-opacity z-50"
           title="Restart animation"
         >
           <Icon name="mdi:refresh" size="20" />

@@ -23,16 +23,12 @@ const selectedOption = ref('light')
       <div
         class="w-10 h-10 flex items-center justify-center rounded-full border-2 transition-all duration-300"
         :class="{
-          'border-indigo-600 bg-indigo-600': selectedOption === option.value,
-          'border-gray-300 bg-transparent': selectedOption !== option.value,
+          'main-border active-component': selectedOption === option.value,
+          'main-border main-bg': selectedOption !== option.value,
         }"
       >
         <svg
-          class="w-6 h-6"
-          :class="{
-            'text-white': selectedOption === option.value,
-            'main-text': selectedOption !== option.value,
-          }"
+          class="w-6 h-6 main-text"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

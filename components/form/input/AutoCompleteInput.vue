@@ -3,11 +3,7 @@
     <div class="relative">
       <div class="absolute inset-y-0 left-0 flex items-center pl-3">
         <svg
-          class="w-5 h-5 transition-all duration-300"
-          :class="{
-            'text-indigo-600': isFocused || value,
-            'text-gray-400': !isFocused && !value,
-          }"
+          class="w-5 h-5 transition-all duration-300 main-text"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -27,7 +23,7 @@
         placeholder="Search..."
         class="w-full pl-10 pr-4 py-2 main-text main-div border-2 rounded-md focus:outline-none transition-all duration-300"
         :class="{
-          'border-indigo-600': isFocused || value,
+          'border-component': isFocused || value,
           'main-border': !isFocused && !value,
         }"
         @focus="isFocused = true"

@@ -1,14 +1,13 @@
 <script lang="ts" setup>
 import AutoResizeTextarea from '~/components/form/textarea/AutoResizeTextarea.vue'
 import CharacterCountTextarea from '~/components/form/textarea/CharacterCountTextarea.vue'
-import FileInput from '~/components/form/input/FileInput.vue'
 import Textarea from '~/components/form/textarea/Textarea.vue'
 import type { Card } from '~/types'
 import {
+  autoResizeTextareaCode,
   countTextareaCode,
   textareaCode,
 } from '~/assets/code-examples/form/textarea-codes'
-import { autoCompleteInputCode } from '~/assets/code-examples/form/input-codes'
 
 definePageMeta({
   layout: 'sidebar',
@@ -38,7 +37,7 @@ const AutoResizeTextareaCard: Card = {
   title: 'Auto Resize Textarea',
   text: 'A textarea that automatically adjusts its height based on content.',
   codeTitle: 'AutoResizeTextarea.vue',
-  code: autoCompleteInputCode,
+  code: autoResizeTextareaCode,
   content: { type: 'text', props: { class: '' }, children: '' },
 }
 const CharacterCountTextareaCard: Card = {

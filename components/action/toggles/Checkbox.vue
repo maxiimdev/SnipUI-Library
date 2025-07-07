@@ -13,11 +13,11 @@ const isChecked = ref(false)
       aria-label="Toggle checkbox"
     />
     <div
-      class="w-5 h-5 border-2 border-indigo-600 rounded flex items-center justify-center transition-all duration-300"
-      :class="{ 'bg-indigo-600': isChecked, 'bg-transparent': !isChecked }"
+      class="w-5 h-5 border-2 main-border rounded flex items-center justify-center transition-all duration-300"
+      :class="{ 'main-div': isChecked, 'bg-transparent': !isChecked }"
     >
       <svg
-        class="w-4 h-4 text-white"
+        class="w-4 h-4 main-text"
         :class="{ 'opacity-100': isChecked, 'opacity-0': !isChecked }"
         fill="none"
         stroke="currentColor"

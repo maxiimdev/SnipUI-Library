@@ -254,6 +254,7 @@ const isFocused = ref(false)
 <template>
   <div class="relative w-64">
     <input
+      id="text-input"
       type="text"
       v-model="value"
       class="w-full px-4 py-3 text-gray-700 bg-white border-2 rounded-md focus:outline-none transition-all duration-300 peer"
@@ -266,6 +267,7 @@ const isFocused = ref(false)
       aria-label="Text input with floating label"
     />
     <label
+      for="text-input"
       class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 transition-all duration-300 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-white"
       :class="{
         '-top-2 text-sm text-white': isFocused || value,
@@ -417,3 +419,89 @@ const handleFileChange = (event: Event) => {
   </div>
 </template>
 `
+export const inputWithButtonCodes = `<script lang="ts" setup>
+import { ref } from 'vue'
+
+const inputValue = ref<string>('')
+
+const handleSubmit = (): void => {
+  alert(\`Submitted: \${inputValue.value || 'Nothing entered'}\`)
+}
+</script>
+
+<template>
+  <div>
+    <div class="main-div rounded-lg shadow-xl w-full max-w-md p-6">
+      <div class="flex items-center gap-3">
+        <input
+          v-model="inputValue"
+          type="text"
+          placeholder="Enter text..."
+          class="flex-1 px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-p"
+        />
+        <button
+          class="px-4 py-2 main-text active-component rounded-md bg-indigo-700 text-white"
+          @click="handleSubmit"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</template>`
+
+export const formWithValidationCodes = `<script lang="ts" setup>
+import { ref, watch } from 'vue'
+
+const username = ref<string>('')
+const error = ref<string>('')
+const wasSubmitted = ref(false)
+
+const validateUsername = (): boolean => {
+  if (username.value.length < 2) {
+    error.value = 'Username must be at least 2 characters'
+    return false
+  }
+  error.value = ''
+  return true
+}
+
+const handleSubmit = (): void => {
+  wasSubmitted.value = true
+  if (validateUsername()) {
+    alert(\`Submitted: \${username.value}\`)
+    username.value = ''
+  }
+}
+
+watch(username, () => {
+  if (wasSubmitted.value) validate()
+})
+</script>
+
+<template>
+  <div>
+    <div class="main-div rounded-lg shadow-xl w-full max-w-md p-6">
+      <form @submit.prevent="handleSubmit">
+        <div class="mb-4">
+          <label for="username" class="block text-sm font-semibold main-text mb-1">Username</label>
+          <input
+            id="username"
+            v-model="username"
+            type="text"
+            placeholder="Enter your username"
+            class="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-p"
+          />
+          <p class="text-sm text-p mt-1">Your username should be unique and at least 2 characters long.</p>
+          <p v-if="error" class="text-sm text-red-500 mt-1">\${error}</p>
+        </div>
+        <button
+          type="submit"
+          class="w-full px-4 py-2 main-text active-component rounded-md bg-indigo-700 text-white"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</template>`

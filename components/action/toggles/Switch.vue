@@ -25,7 +25,7 @@ const selectOption = (option: string) => {
     />
     <div
       class="w-10 h-5 bg-gray-300 rounded-full relative transition-all duration-300"
-      :class="{ 'bg-indigo-600': isSwitched }"
+      :class="{ 'bg-green-600': isSwitched }"
     >
       <div
         class="w-4 h-4 bg-white rounded-full absolute top-0.5 transition-all duration-300"

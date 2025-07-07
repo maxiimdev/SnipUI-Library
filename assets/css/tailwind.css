@@ -33,15 +33,37 @@ button {
 }
 
 @layer base {
+  .hover-text {
+    @apply hover:text-[var(--text-p)];
+  }
+
+  .dark-mode .hover-text {
+    @apply hover:text-[var(--text-p)];
+  }
+
+  .border-component {
+    @apply border-[var(--text-p)];
+  }
+
+  .dark-mode .border-component {
+    @apply border-[var(--text-p)];
+  }
+
+  .component-bg {
+    @apply bg-[var(--main-dark-gray)];
+  }
+
+  .dark-mode .component-bg {
+    @apply bg-[var(--dark-text)];
+  }
 
   .acive-link-sidebar {
-    @apply text-[var(--dark-text)]
+    @apply text-[var(--dark-text)];
   }
 
   .dark-mode .acive-link-sidebar {
-    @apply text-[var(--text)]
+    @apply text-[var(--text)];
   }
-
 
   .code-class-text {
     @apply text-[var(--class-text)];
@@ -149,4 +171,8 @@ button {
   html {
     @apply transition-colors duration-300;
   }
+}
+
+body:has(fixed.inset-0) {
+  overflow: hidden;
 }

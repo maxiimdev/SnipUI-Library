@@ -6,7 +6,7 @@ definePageMeta({
 useState('sidebar-text').value = 'Documentation'
 useState('sidebar-items').value = [
         {
-          text: 'Getting Started',
+          text: 'Get Started',
           items: [
             {
               name: 'Installation',

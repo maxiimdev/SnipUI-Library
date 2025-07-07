@@ -14,7 +14,7 @@ const showPassword = ref(false)
       placeholder="Enter the password"
       class="w-full pr-10 pl-4 py-2 main-text main-div border-2 rounded-md focus:outline-none transition-all duration-300"
       :class="{
-        'border-indigo-600': isFocused || password,
+        'border-component': isFocused || password,
         'main-border': !isFocused && !password,
       }"
       @focus="isFocused = true"
@@ -29,11 +29,7 @@ const showPassword = ref(false)
       aria-label="Toggle password visibility"
     >
       <svg
-        class="w-5 h-5 transition-all duration-300"
-        :class="{
-          'text-indigo-600': isFocused || password,
-          'main-text': !isFocused && !password,
-        }"
+        class="w-5 h-5 transition-all duration-300 main-text"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
