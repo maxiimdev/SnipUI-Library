@@ -27,7 +27,7 @@ const copySelectedText = () => {
     @mouseup="handleTextSelection"
     class="relative max-w-2xl mx-auto my-6 p-4 active-component rounded-lg shadow-sm border main-border hover:shadow-md transition-shadow duration-200"
   >
-    <span class="text-lg font-semibold main-text">Key Insight</span>
+    <span class="text-lg main-text">Key Insight</span>
     <div class="w-28 h-1 bg-[#191919] mt-1 mb-3 rounded-full"></div>
 
     <p class="text-p text-base leading-relaxed">
@@ -40,7 +40,7 @@ const copySelectedText = () => {
     <button
       v-if="selectedText"
       @click.stop="copySelectedText"
-      class="mt-3 flex items-center gap-2 px-3 py-1.5 main-text rounded-md transition-colors duration-200 text-sm font-medium"
+      class="mt-3 main-div flex items-center gap-2 px-3 py-1.5 main-text rounded-md transition-colors duration-200 text-sm font-medium"
     >
       <svg
         v-if="!copied"

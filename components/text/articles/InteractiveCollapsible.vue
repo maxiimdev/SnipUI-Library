@@ -8,7 +8,7 @@ const isExpanded = ref(false)
   <div
     class="relative max-w-2xl mx-auto my-6 p-4 active-component rounded-lg shadow-sm border main-border hover:shadow-md transition-all duration-300 ease-in-out"
   >
-    <span class="text-lg main-text font-bold">Inspiration</span>
+    <span class="text-lg main-text">Inspiration</span>
     <div class="relative w-28 h-1 bg-[#191919] mt-1 mb-3 rounded-full"></div>
     <div
       class="transition-all duration-300 ease-in-out"

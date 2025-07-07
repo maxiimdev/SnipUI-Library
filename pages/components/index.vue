@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
 
 definePageMeta({
   layout: 'sidebar',
@@ -49,7 +48,7 @@ useState('sidebar-items').value = [
 </script>
 
 <template>
-  <div class="w-2/3">
+  <div class="w-3/4">
     <h1 class="main-text text-4xl mb-4 font-light tracking-tight">
       Components
     </h1>

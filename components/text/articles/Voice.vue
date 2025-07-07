@@ -30,7 +30,7 @@ const toggleReadAloud = () => {
   <div
     class="relative max-w-2xl mx-auto my-6 p-4 active-component rounded-lg shadow-sm border main-border hover:shadow-md transition-all duration-300"
   >
-    <span class="text-lg font-semibold main-text">Read Aloud</span>
+    <span class="text-lg main-text">Read Aloud</span>
     <div class="relative w-24 h-1 bg-[#191919] mt-1 mb-3 rounded-full"></div>
     <p class="text-p text-base" ref="textContent">
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque, itaque

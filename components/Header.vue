@@ -65,7 +65,7 @@ const closeModal = () => {
       </ul>
       <div class="flex items-center gap-5">
         <div
-          class="main-div rounded-xl w-[16rem] h-10 px-2 py-1 flex items-center justify-between cursor-pointer"
+          class="main-div rounded-xl w-[16rem] h-10 px-3 py-1 flex items-center justify-between cursor-pointer select-none"
           @click="isSearchModalOpen = true"
         >
           <span class="text-[14px] text-[#929292]"

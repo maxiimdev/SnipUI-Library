@@ -48,43 +48,52 @@ export const sidebarConfig = {
       {
         text: 'Get Started',
         items: [
-          { name: 'Installation', path: '/docs/getting-started/installation' },
-          { name: 'Quick Start', path: '/docs/getting-started/quick-start' },
-          { name: 'Configuration', path: '/docs/getting-started/configuration' },
+          { name: 'About', path: '/docs/started/about' },
+          { name: 'Quick Start', path: '/docs/started/quickStart' },
+          {
+            name: 'Configuration',
+            path: '/docs/started/configuration',
+          },
         ],
       },
       {
-        text: 'API Reference',
+        text: 'Usage',
         items: [
-          { name: 'Props', path: '/docs/api/props' },
-          { name: 'Methods', path: '/docs/api/methods' },
-          { name: 'Events', path: '/docs/api/events' },
+          { name: 'Examples', path: '/docs/usage/examples' },
+          { name: 'How It Works', path: '/docs/usage/howItWorks' },
+        ],
+      },
+      {
+        text: 'Support',
+        items: [
+          { name: 'FAQ', path: '/docs/support/faq' },
+          { name: 'Troubleshooting', path: '/docs/support/troubleshooting' },
         ],
       },
     ],
   },
-};
+}
 
 export default defineNuxtPlugin(() => {
   const initializeSidebarData = () => {
-    const route = useRoute();
+    const route = useRoute()
     for (const [pathPrefix, config] of Object.entries(sidebarConfig)) {
       if (route.path.startsWith(pathPrefix)) {
-        useState('sidebar-text').value = config.text;
-        useState('sidebar-items').value = config.items;
-        return;
+        useState('sidebar-text').value = config.text
+        useState('sidebar-items').value = config.items
+        return
       }
     }
-    useState('sidebar-text').value = '';
-    useState('sidebar-items').value = [];
-  };
+    useState('sidebar-text').value = ''
+    useState('sidebar-items').value = []
+  }
 
-  initializeSidebarData();
+  initializeSidebarData()
 
   if (process.client) {
-    const router = useRouter();
+    const router = useRouter()
     router.afterEach(() => {
-      initializeSidebarData();
-    });
+      initializeSidebarData()
+    })
   }
-});
+})
