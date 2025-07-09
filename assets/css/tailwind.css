@@ -33,6 +33,14 @@ button {
 }
 
 @layer base {
+  .hover-obr {
+    @apply hover:text-[var(--text)];
+  }
+
+  .dark-mode .hover-obr {
+    @apply hover:text-[var(--dark-text)];
+  }
+
   .hover-text {
     @apply hover:text-[var(--text-p)];
   }
@@ -160,7 +168,7 @@ button {
   }
 
   .code-bg {
-    @apply bg-[var(--bg-div)];
+    @apply bg-[#fff6f6];
   }
 
   .dark-mode .code-bg {

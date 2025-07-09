@@ -16,6 +16,7 @@ const handleMouseMove = (event: MouseEvent) => {
 </script>
 
 <template>
+  <ClientOnly>
   <div
     class="relative w-full h-full flex items-center justify-center"
     @mousemove="handleMouseMove"
@@ -34,4 +35,5 @@ const handleMouseMove = (event: MouseEvent) => {
       {{ text }}
     </h1>
   </div>
+  </ClientOnly>
 </template>

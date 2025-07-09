@@ -39,7 +39,7 @@ const startService = (): void => {
         <div class="p-4 h-full flex flex-col">
           <div class="flex items-center gap-3 mb-4">
             <div
-              class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center"
+              class="w-12 h-12 active-component rounded-full flex items-center justify-center"
             >
               <span class="text-2xl">🚀</span>
             </div>

@@ -23,12 +23,12 @@ const copySelectedText = () => {
 </script>
 
 <template>
+  <ClientOnly>
   <div
     @mouseup="handleTextSelection"
     class="relative max-w-2xl mx-auto my-6 p-4 active-component rounded-lg shadow-sm border main-border hover:shadow-md transition-shadow duration-200"
   >
     <span class="text-lg main-text">Key Insight</span>
-    <div class="w-28 h-1 bg-[#191919] mt-1 mb-3 rounded-full"></div>
 
     <p class="text-p text-base leading-relaxed">
       Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio animi
@@ -73,6 +73,7 @@ const copySelectedText = () => {
       {{ copied ? 'Copied!' : 'Copy' }}
     </button>
   </div>
+  </ClientOnly>
 </template>
 
 <style scoped>

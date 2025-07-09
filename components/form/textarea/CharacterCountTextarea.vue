@@ -7,6 +7,7 @@ const maxLength = ref(280)
 </script>
 
 <template>
+  <ClientOnly>
   <div class="relative w-64">
     <textarea
       v-model="value"
@@ -33,4 +34,5 @@ const maxLength = ref(280)
       {{ value.length }} / {{ maxLength }}
     </div>
   </div>
+  </ClientOnly>
 </template>

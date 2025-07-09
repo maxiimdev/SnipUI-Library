@@ -15,6 +15,7 @@ const triggerLoader = () => {
 </script>
 
 <template>
+  <ClientOnly>
   <button
     class="px-4 py-2 active-component main-text rounded flex justify-center items-center gap-2 transition-colors duration-200 w-30"
     :class="{ 'opacity-50 pointer-events-none': isLoading }"
@@ -38,4 +39,5 @@ const triggerLoader = () => {
     </svg>
     {{ isLoading ? 'Loader...' : 'Click' }}
   </button>
+  </ClientOnly>
 </template>

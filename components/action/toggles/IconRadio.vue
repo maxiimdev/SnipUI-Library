@@ -11,6 +11,7 @@ const selectedOption = ref('light')
 </script>
 
 <template>
+  <ClientOnly>
   <div class="flex gap-4">
     <label v-for="option in options" :key="option.value" class="cursor-pointer">
       <input
@@ -59,4 +60,5 @@ const selectedOption = ref('light')
       </div>
     </label>
   </div>
+  </ClientOnly>
 </template>

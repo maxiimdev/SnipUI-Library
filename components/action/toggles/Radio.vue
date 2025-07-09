@@ -5,6 +5,7 @@ const selectedOption = ref('option1')
 </script>
 
 <template>
+  <ClientOnly>
   <div class="flex flex-col gap-2">
     <label class="flex items-center gap-2 cursor-pointer">
       <input
@@ -57,4 +58,5 @@ const selectedOption = ref('option1')
       <span class="main-text">Option 2</span>
     </label>
   </div>
+  </ClientOnly>
 </template>

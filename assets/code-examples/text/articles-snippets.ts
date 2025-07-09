@@ -1,9 +1,16 @@
-export const truncatedQuoteSnippetCode = `<template>
+export const truncatedQuoteSnippetCode = `<script lang="ts" setup>
+const props = defineProps<{
+  quote?: string
+  author?: string
+}>()
+</script>
+
+<template>
   <figure
-    class="relative max-w-2xl mx-auto my-8 p-6 active-component rounded-lg shadow-md border-l-4 border-indigo-500"
+    class="relative max-w-2xl mx-auto my-8 p-6 bg-[#232323] rounded-lg shadow-md border-l-4 border-[#8181f9]"
   >
     <svg
-      class="absolute top-4 left-4 h-8 w-8 text-indigo-300 opacity-50"
+      class="absolute top-4 left-4 h-8 w-8 text-[#8181f9] opacity-50"
       fill="currentColor"
       viewBox="0 0 32 32"
     >
@@ -11,61 +18,83 @@ export const truncatedQuoteSnippetCode = `<template>
         d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.896 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"
       />
     </svg>
-    <blockquote class="mt-2 pl-8 main-text text-lg italic whitespace-normal">
-      The only way to do great work is to love what you do.
+    <blockquote class="mt-2 pl-8 text-[#fff] text-lg italic whitespace-normal">
+      {{ props.quote ?? 'The only way to do great work is to love what you do.' }}
     </blockquote>
-    <figcaption class="mt-4 text-right text-sm font-semibold main-text italic">
-      — Steve Jobs
+    <figcaption class="mt-4 text-right text-sm font-semibold text-[#fff] italic">
+      — {{ props.author ?? 'Steve Jobs' }}
     </figcaption>
   </figure>
-</template>
-`
+</template>`
 
-export const collapsibleArticleSnippetCode = `<template>
-  <div class="relative max-w-2xl mx-auto my-6 p-4 active-component rounded-lg shadow-sm border main-border hover:shadow-md transition-all duration-300 ease-in-out group">
+export const collapsibleArticleSnippetCode = `<script lang="ts" setup>
+const props = defineProps<{
+  title?: string
+  content?: string
+}>()
+</script>
+
+<template>
+  <div class="relative max-w-2xl mx-auto my-6 p-4 bg-[#232323] rounded-lg shadow-sm border border-[#313131] hover:shadow-md transition-all duration-300 ease-in-out group">
     <div class="max-h-6 overflow-hidden transition-all duration-300 ease-in-out group-hover:max-h-96">
-      <span class="text-lg font-semibold main-text">Inspiration</span>
-      <p class="mt-2 text-p text-base">
-        Success is not the absence of obstacles, but the courage to push through them.
+      <span class="text-lg font-semibold text-[#fff]">{{ props.title ?? 'Inspiration' }}</span>
+      <p class="mt-2 text-[#797979] text-base">
+        {{ props.content ?? 'Success is not the absence of obstacles, but the courage to push through them.' }}
       </p>
     </div>
   </div>
-</template>
-
-
-`
+</template>`
 
 export const interactiveCollapsibleCode = `<script lang="ts" setup>
 import { ref } from 'vue'
 
+const props = defineProps<{
+  title?: string
+  content?: string
+}>()
+
+const emits = defineEmits<{
+  (e: 'toggle', isExpanded: boolean): void
+}>()
+
 const isExpanded = ref(false)
+
+const toggleExpand = () => {
+  isExpanded.value = !isExpanded.value
+  emits('toggle', isExpanded.value)
+}
 </script>
 
 <template>
   <div
-    class="relative max-w-2xl mx-auto my-6 p-4 active-component rounded-lg shadow-sm border main-border hover:shadow-md transition-all duration-300 ease-in-out"
+    class="relative max-w-2xl mx-auto my-6 p-4 bg-[#232323] rounded-lg shadow-sm border border-[#313131] hover:shadow-md transition-all duration-300 ease-in-out"
   >
-    <span class="text-lg main-text font-bold">Inspiration</span>
-    <div class="relative w-28 h-1 bg-[#191919] mt-1 mb-3 rounded-full"></div>
+    <span class="text-lg text-[#fff] font-bold">{{ props.title ?? 'Inspiration' }}</span>
     <div
       class="transition-all duration-300 ease-in-out"
       :class="{ 'max-h-12 line-clamp-2': !isExpanded, 'max-h-96': isExpanded }"
     >
       <p
-        class="text-p text-base cursor-pointer"
-        @click="isExpanded = !isExpanded"
+        class="text-[#797979] text-base cursor-pointer"
+        @click="toggleExpand"
       >
-        Success is not the absence of obstacles, but the courage to push through
-        them. It's about finding the strength to keep moving forward, even when
-        the path seems daunting. Every challenge is an opportunity to grow and
-        learn.
+        {{ props.content ?? 'Success is not the absence of obstacles, but the courage to push through them. It\\'s about finding the strength to keep moving forward, even when the path seems daunting. Every challenge is an opportunity to grow and learn.' }}
       </p>
     </div>
   </div>
-</template>
-`
+</template>`
+
 export const copiedArticle = `<script lang="ts" setup>
 import { ref } from 'vue'
+
+const props = defineProps<{
+  title?: string
+  content?: string
+}>()
+
+const emits = defineEmits<{
+  (e: 'copy', text: string): void
+}>()
 
 const selectedText = ref('')
 const copied = ref(false)
@@ -80,6 +109,7 @@ const copySelectedText = () => {
   if (selectedText.value) {
     navigator.clipboard.writeText(selectedText.value)
     copied.value = true
+    emits('copy', selectedText.value)
     setTimeout(() => {
       copied.value = false
       selectedText.value = ''
@@ -91,22 +121,18 @@ const copySelectedText = () => {
 <template>
   <div
     @mouseup="handleTextSelection"
-    class="relative max-w-2xl mx-auto my-6 p-4 active-component rounded-lg shadow-sm border main-border hover:shadow-md transition-shadow duration-200"
+    class="relative max-w-2xl mx-auto my-6 p-4 bg-[#232323] rounded-lg shadow-sm border border-[#313131] hover:shadow-md transition-shadow duration-200"
   >
-    <span class="text-lg font-semibold main-text">Key Insight</span>
-    <div class="w-28 h-1 bg-[#191919] mt-1 mb-3 rounded-full"></div>
+    <span class="text-lg font-semibold text-[#fff]">{{ props.title ?? 'Key Insight' }}</span>
 
-    <p class="text-p text-base leading-relaxed">
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio animi
-      cum nisi odit perspiciatis sit laboriosam voluptatibus illum corporis
-      quidem. Iste natus error aliquam! Aliquam, autem. Assumenda culpa veniam
-      alias.
+    <p class="text-[#797979] text-base leading-relaxed">
+      {{ props.content ?? 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio animi cum nisi odit perspiciatis sit laboriosam voluptatibus illum corporis quidem. Iste natus error aliquam! Aliquam, autem. Assumenda culpa veniam alias.' }}
     </p>
 
     <button
       v-if="selectedText"
       @click.stop="copySelectedText"
-      class="mt-3 flex items-center gap-2 px-3 py-1.5 main-text rounded-md transition-colors duration-200 text-sm font-medium"
+      class="mt-3 flex items-center gap-2 px-3 py-1.5 text-[#fff] rounded-md transition-colors duration-200 text-sm font-medium hover:bg-[#313131]"
     >
       <svg
         v-if="!copied"
@@ -143,16 +169,22 @@ const copySelectedText = () => {
 
 <style scoped>
 ::selection {
-  background-color: rgb(79, 79, 79);
-  color: rgb(222, 222, 222);
+  background-color: #4f4f4f;
+  color: #dedede;
 }
-</style>
-`
+</style>`
+
 export const readAloundCode = `<script lang="ts" setup>
 import { ref } from 'vue'
 
-defineProps<{
-  text: string
+const props = defineProps<{
+  title?: string
+  content?: string
+  lang?: string
+}>()
+
+const emits = defineEmits<{
+  (e: 'toggle-read', isReading: boolean): void
 }>()
 
 const isReading = ref(false)
@@ -162,15 +194,18 @@ const toggleReadAloud = () => {
   if (isReading.value) {
     window.speechSynthesis.cancel()
     isReading.value = false
+    emits('toggle-read', false)
   } else {
     const utterance = new SpeechSynthesisUtterance(
-      textContent.value?.innerText || ''
+      textContent.value?.innerText || props.content || ''
     )
-    utterance.lang = 'ru-RU'
+    utterance.lang = props.lang ?? 'en-EN'
     window.speechSynthesis.speak(utterance)
     isReading.value = true
+    emits('toggle-read', true)
     utterance.onend = () => {
       isReading.value = false
+      emits('toggle-read', false)
     }
   }
 }
@@ -178,15 +213,13 @@ const toggleReadAloud = () => {
 
 <template>
   <div
-    class="relative max-w-2xl mx-auto my-6 p-4 active-component rounded-lg shadow-sm border main-border hover:shadow-md transition-all duration-300"
+    class="relative max-w-2xl mx-auto my-6 p-4 bg-[#232323] rounded-lg shadow-sm border border-[#313131] hover:shadow-md transition-all duration-300"
   >
-    <span class="text-lg font-semibold main-text">Read Aloud</span>
-    <div class="relative w-24 h-1 bg-[#191919] mt-1 mb-3 rounded-full"></div>
-    <p class="text-p text-base" ref="textContent">
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque, itaque
-      ipsa facilis ducimus a enim?
+    <span class="text-lg font-semibold text-[#fff]">{{ props.title ?? 'Read Aloud' }}</span>
+    <p class="text-[#797979] text-base" ref="textContent">
+      {{ props.content ?? 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque, itaque ipsa facilis ducimus a enim?' }}
     </p>
-    <button class="mt-4 main-text focus:outline-none" @click="toggleReadAloud">
+    <button class="mt-4 text-[#fff] focus:outline-none hover:text-[#8181f9]" @click="toggleReadAloud">
       <svg
         v-if="!isReading"
         class="w-5 h-5 inline-block mr-1"
@@ -208,17 +241,29 @@ const toggleReadAloud = () => {
       {{ isReading ? 'Stop' : 'Voice' }}
     </button>
   </div>
-</template>
-`
+</template>`
 
 export const annotationCode = `<script lang="ts" setup>
 import { ref, onUnmounted } from 'vue'
+
+const props = defineProps<{
+  title?: string
+  content?: string
+  annotatedWord?: string
+  annotationText?: string
+  autoCloseDelay?: number
+}>()
+
+const emits = defineEmits<{
+  (e: 'toggle-annotation', isVisible: boolean): void
+}>()
 
 const showAnnotation = ref(false)
 let autoCloseTimer: NodeJS.Timeout | null = null
 
 const toggleAnnotation = () => {
   showAnnotation.value = !showAnnotation.value
+  emits('toggle-annotation', showAnnotation.value)
   if (showAnnotation.value) {
     clearTimeout(autoCloseTimer!)
   }
@@ -228,7 +273,8 @@ const startAutoClose = () => {
   if (showAnnotation.value) {
     autoCloseTimer = setTimeout(() => {
       showAnnotation.value = false
-    }, 2500)
+      emits('toggle-annotation', false)
+    }, props.autoCloseDelay ?? 2500)
   }
 }
 
@@ -241,27 +287,24 @@ onUnmounted(() => {
 
 <template>
   <div
-    class="relative max-w-2xl mx-auto my-6 p-4 active-component rounded-lg shadow-sm border main-border hover:shadow-md transition-all duration-300"
+    class="relative max-w-2xl mx-auto my-6 p-4 bg-[#232323] rounded-lg shadow-sm border border-[#313131] hover:shadow-md transition-all duration-300"
   >
-    <span class="text-lg font-semibold main-text">Annotated Text</span>
-    <div
-      class="relative w-34 bg-[#191919] h-1 bg- mt-1 mb-3 rounded-full"
-    ></div>
-    <p class="text-p text-base">
+    <span class="text-lg font-semibold text-[#fff]">{{ props.title ?? 'Annotated Text' }}</span>
+    <p class="text-[#797979] text-base">
       The
       <span
-        class="relative underline main-text cursor-pointer"
+        class="relative underline text-[#fff] cursor-pointer"
         @click="toggleAnnotation"
       >
-        paradigm
+        {{ props.annotatedWord ?? 'paradigm' }}
         <span
           v-if="showAnnotation"
-          class="absolute left-0 mt-6 min-w-[20rem] main-bg main-text text-sm p-2 rounded shadow-lg z-10 animate-fade-in"
+          class="absolute left-0 mt-6 min-w-[20rem] bg-[#191919] text-[#fff] text-sm p-2 rounded shadow-lg z-10 animate-fade-in"
           @animationend="startAutoClose"
         >
-          Paradigm: A typical example or pattern of something.
+          {{ props.annotationText ?? 'Paradigm: A typical example or pattern of something.' }}
           <button
-            class="absolute top-1 right-1 main-text focus:outline-none"
+            class="absolute top-1 right-1 text-[#fff] focus:outline-none hover:text-[#f30035]"
             @click.stop="showAnnotation = false"
           >
             <svg
@@ -280,10 +323,7 @@ onUnmounted(() => {
           </button>
         </span>
       </span>
-      shift in technology is remarkable. Lorem ipsum dolor sit amet consectetur
-      adipisicing elit. Excepturi ipsam ullam dolor dolores porro saepe eum
-      laborum tenetur mollitia, blanditiis earum ad. Obcaecati nihil delectus
-      nesciunt. Amet a officiis aliquam?
+      shift in technology is remarkable. {{ props.content ?? 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi ipsam ullam dolor dolores porro saepe eum laborum tenetur mollitia, blanditiis earum ad. Obcaecati nihil delectus nesciunt. Amet a officiis aliquam?' }}
     </p>
   </div>
 </template>
@@ -315,5 +355,4 @@ onUnmounted(() => {
 .animate-fade-out {
   animation: fade-out 0.3s ease-out forwards;
 }
-</style>
-`
+</style>`

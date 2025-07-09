@@ -104,3 +104,91 @@ const handleSubmit = (): void => {
     </div>
   </div>
 </template>`
+
+export const createCode = `<script lang="ts" setup>
+interface Props {
+  text: string
+  speed?: number
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  speed: 100
+})
+
+const displayText = ref('')
+const currentIndex = ref(0)
+
+const typeWriter = () => {
+  if (currentIndex.value < props.text.length) {
+    displayText.value += props.text.charAt(currentIndex.value)
+    currentIndex.value++
+    setTimeout(typeWriter, props.speed)
+  }
+}
+
+onMounted(() => {
+  typeWriter()
+})
+</script>
+
+<template>
+  <span>{{ displayText }}</span>
+</template>`
+
+export const typicalCode = `<script lang="ts" setup>
+import { ref, onMounted } from 'vue'
+
+// Props interface
+interface Props {
+  variant?: 'primary' | 'secondary'
+  disabled?: boolean
+}
+
+// Define props with defaults
+const props = withDefaults(defineProps<Props>(), {
+  variant: 'primary',
+  disabled: false,
+})
+
+// Reactive state
+const isLoading = ref(false)
+const isActive = ref(false)
+
+// Methods
+const handleClick = () => {
+  isActive.value = !isActive.value
+}
+
+// Lifecycle
+onMounted(() => {
+  // Component initialization
+})
+</script>
+
+<template>
+  <button
+    :class="[
+      'px-4 py-2 rounded-lg transition-all duration-300',
+      variant === 'primary' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-800',
+      { 'opacity-50 cursor-not-allowed': disabled }
+    ]"
+    :disabled="disabled"
+    @click="handleClick"
+  >
+    <slot />
+  </button>
+</template>`
+
+export const exampleBtnCode = `<script lang="ts" setup>
+const props = defineProps({
+  label: String,
+})
+</script>
+
+<template>
+  <button
+    class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300"
+  >
+    {{ label }}
+  </button>
+</template>`

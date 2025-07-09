@@ -27,13 +27,11 @@ onUnmounted(() => {
 </script>
 
 <template>
+  <ClientOnly>
   <div
     class="relative max-w-2xl mx-auto my-6 p-4 active-component rounded-lg shadow-sm border main-border hover:shadow-md transition-all duration-300"
   >
     <span class="text-lg main-text">Annotated Text</span>
-    <div
-      class="relative w-34 bg-[#191919] h-1 bg- mt-1 mb-3 rounded-full"
-    ></div>
     <p class="text-p text-base">
       The
       <span
@@ -73,6 +71,7 @@ onUnmounted(() => {
       nesciunt. Amet a officiis aliquam?
     </p>
   </div>
+  </ClientOnly>
 </template>
 
 <style scoped>

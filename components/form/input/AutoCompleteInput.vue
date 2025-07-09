@@ -1,4 +1,5 @@
 <template>
+  <ClientOnly>
   <div class="relative w-64">
     <div class="relative">
       <div class="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -48,6 +49,7 @@
       </ul>
     </div>
   </div>
+  </ClientOnly>
 </template>
 
 <script lang="ts" setup>

@@ -1,9 +1,19 @@
 <script lang="ts" setup>
+import {
+  asyncBtnCode,
+  dropdownBtnCode,
+} from '~/assets/code-examples/action/buttons-codes'
+import { hoverExpandCardCodes } from '~/assets/code-examples/cards/card-codes'
+import { slideInModalCodes } from '~/assets/code-examples/dialog/modal-codes'
+import { autoResizeTextareaCode } from '~/assets/code-examples/form/textarea-codes'
+import { simpleTypingCode } from '~/assets/code-examples/text/typing-codes'
+
 definePageMeta({
   layout: 'sidebar',
 })
 
-useState('right-sidebar-text').value = 'On this Page'
+useState('sidebar-text').value = 'Documentation'
+useState('right-sidebar-text').value = 'On This Page'
 useState('right-sidebar-items').value = [
   {
     items: [
@@ -11,260 +21,142 @@ useState('right-sidebar-items').value = [
       { name: 'Button Components', path: '#button-components' },
       { name: 'Card Components', path: '#card-components' },
       { name: 'Form Components', path: '#form-components' },
-      { name: 'Animation Components', path: '#animation-components' },
+      { name: 'Modal Components', path: '#modal-components' },
     ],
+  },
+]
+
+const codeCards = [
+  {
+    title: 'Simple Typing Component',
+    codeTitle: 'components/text/typing/Typewriter.vue',
+    code: simpleTypingCode,
+  },
+
+  {
+    title: 'Dropdown Button',
+    text: 'A button that opens a dropdown menu with options.',
+    codeTitle: 'DropdownBtn.vue',
+    code: dropdownBtnCode,
+  },
+
+  {
+    title: 'Hover Expand Card Component',
+    codeTitle: 'components/cards/interactive/HoverExpandCard.vue',
+    code: hoverExpandCardCodes,
+  },
+  {
+    title: 'Auto Resize Textarea Component',
+    codeTitle: 'components/form/textarea/AutoResizeTextarea.vue',
+    code: autoResizeTextareaCode,
+  },
+  {
+    title: 'Slide-In Modal',
+    text: 'A modal that slides in from the right, suitable for sidebars or settings.',
+    codeTitle: 'SlideInModal.vue',
+    code: slideInModalCodes,
+    content: { type: 'text', props: { class: '' }, children: '' },
   },
 ]
 </script>
 
 <template>
   <ClientOnly>
-    <div class="flex flex-col gap-20">
-      
-      <!-- Text Components -->
-      <div id="text-components">
-        <div class="main-div rounded-lg shadow-xl p-6">
-          <h2 class="main-text text-2xl font-medium mb-4">
-            Text Components
-          </h2>
-          <p class="text-p mb-6">
-            Interactive text components with typewriter effects and animations.
+    <div
+      class="w-full max-w-7xl mx-auto py- flex flex-col lg:flex-row gap-12"
+    >
+      <div>
+        <!-- Hero Section -->
+        <div class="mb-18">
+          <h1 class="main-text text-4xl mb-4 font-light tracking-tight">
+            Examples
+          </h1>
+          <p class="text-p text-lg leading-relaxed opacity-80">
+            Explore real-world examples of My UI Library components with code
+            snippets you can copy and use in your projects.
           </p>
+        </div>
+
+        <!-- Text Components -->
+        <div id="text-components" class="group">
+          <div class="main-div rounded-lg shadow-xl p-6">
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="w-8 h-px bg-gray-300 transition-all duration-500 group-hover:bg-gray-500"
+              ></div>
+              <h2 class="main-text text-2xl font-medium tracking-wide mb-6">
+                Text Components
+              </h2>
+            </div>
+            
+            <CodeCard :card="codeCards[0]" isCompact />
+          </div>
+        </div>
+
+        <!-- Button Components -->
+        <div id="button-components" class="group mt-12">
+          <div class="main-div rounded-lg shadow-xl p-6">
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="w-8 h-px bg-gray-300 transition-all duration-500 group-hover:bg-gray-500"
+              ></div>
+              <h2 class="main-text text-2xl font-medium tracking-wide mb-6">
+                Button Components
+              </h2>
+            </div>
+           
+            <CodeCard :card="codeCards[1]" isCompact />
+          </div>
+        </div>
+
+        <!-- Card Components -->
+        <div id="card-components" class="group mt-12">
+          <div class="main-div rounded-lg shadow-xl p-6">
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="w-8 h-px bg-gray-300 transition-all duration-500 group-hover:bg-gray-500"
+              ></div>
+              <h2 class="main-text text-2xl font-medium tracking-wide mb-6">
+                Card Components
+              </h2>
+            </div>
           
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="active-component rounded-lg p-4">
-              <h3 class="main-text text-lg font-medium mb-2">Simple Typing</h3>
-              <p class="text-p text-sm mb-3">Text appears character by character with a typewriter effect.</p>
-              <RouterLink to="/components/text/typing" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                View Component →
-              </RouterLink>
+            <CodeCard :card="codeCards[2]" isCompact />
+          </div>
+        </div>
+
+        <!-- Form Components -->
+        <div id="form-components" class="group mt-12">
+          <div class="main-div rounded-lg shadow-xl p-6">
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="w-8 h-px bg-gray-300 transition-all duration-500 group-hover:bg-gray-500"
+              ></div>
+              <h2 class="main-text text-2xl font-medium tracking-wide mb-6">
+                Form Components
+              </h2>
             </div>
-            
-            <div class="active-component rounded-lg p-4">
-              <h3 class="main-text text-lg font-medium mb-2">Blinking Cursor</h3>
-              <p class="text-p text-sm mb-3">Typewriter effect with an animated blinking cursor.</p>
-              <RouterLink to="/components/text/typing" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                View Component →
-              </RouterLink>
+           
+            <CodeCard :card="codeCards[3]" isCompact />
+          </div>
+        </div>
+
+        <!-- Animation Components -->
+        <div id="modal-components" class="group mt-12">
+          <div class="main-div rounded-lg shadow-xl p-6">
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="w-8 h-px bg-gray-300 transition-all duration-500 group-hover:bg-gray-500"
+              ></div>
+              <h2 class="main-text text-2xl font-medium tracking-wide mb-6">
+                Modal Components
+              </h2>
             </div>
-            
-            <div class="active-component rounded-lg p-4">
-              <h3 class="main-text text-lg font-medium mb-2">Cycle Typing</h3>
-              <p class="text-p text-sm mb-3">Text types and deletes in a continuous loop.</p>
-              <RouterLink to="/components/text/typing" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                View Component →
-              </RouterLink>
-            </div>
+           
+            <CodeCard :card="codeCards[4]" isCompact />
           </div>
         </div>
       </div>
-
-      <!-- Button Components -->
-      <div id="button-components">
-        <div class="main-div rounded-lg shadow-xl p-6">
-          <h2 class="main-text text-2xl font-medium mb-4">
-            Button Components
-          </h2>
-          <p class="text-p mb-6">
-            Interactive buttons with various states and animations.
-          </p>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="active-component rounded-lg p-4">
-              <h3 class="main-text text-lg font-medium mb-2">Burger Button</h3>
-              <p class="text-p text-sm mb-3">Hamburger menu toggle with smooth animation.</p>
-              <RouterLink to="/components/action/buttons" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                View Component →
-              </RouterLink>
-            </div>
-            
-            <div class="active-component rounded-lg p-4">
-              <h3 class="main-text text-lg font-medium mb-2">Theme Toggle</h3>
-              <p class="text-p text-sm mb-3">Sun/moon icon toggle for theme switching.</p>
-              <RouterLink to="/components/action/buttons" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                View Component →
-              </RouterLink>
-            </div>
-            
-            <div class="active-component rounded-lg p-4">
-              <h3 class="main-text text-lg font-medium mb-2">Async Button</h3>
-              <p class="text-p text-sm mb-3">Button with loading, success, and error states.</p>
-              <RouterLink to="/components/action/buttons" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                View Component →
-              </RouterLink>
-            </div>
-            
-            <div class="active-component rounded-lg p-4">
-              <h3 class="main-text text-lg font-medium mb-2">Dropdown Button</h3>
-              <p class="text-p text-sm mb-3">Button that opens a dropdown menu.</p>
-              <RouterLink to="/components/action/buttons" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                View Component →
-              </RouterLink>
-            </div>
-            
-            <div class="active-component rounded-lg p-4">
-              <h3 class="main-text text-lg font-medium mb-2">Icon Button</h3>
-              <p class="text-p text-sm mb-3">Compact button with icon and state toggle.</p>
-              <RouterLink to="/components/action/buttons" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                View Component →
-              </RouterLink>
-            </div>
-            
-            <div class="active-component rounded-lg p-4">
-              <h3 class="main-text text-lg font-medium mb-2">Tooltips Button</h3>
-              <p class="text-p text-sm mb-3">Icon buttons with dynamic tooltips.</p>
-              <RouterLink to="/components/action/buttons" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                View Component →
-              </RouterLink>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card Components -->
-      <div id="card-components">
-        <div class="main-div rounded-lg shadow-xl p-6">
-          <h2 class="main-text text-2xl font-medium mb-4">
-            Card Components
-          </h2>
-          <p class="text-p mb-6">
-            Interactive cards with hover effects and animations.
-          </p>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="active-component rounded-lg p-4">
-              <h3 class="main-text text-lg font-medium mb-2">Hover Expand Card</h3>
-              <p class="text-p text-sm mb-3">Card that expands on hover to show additional content.</p>
-              <RouterLink to="/components/cards/interactive" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                View Component →
-              </RouterLink>
-            </div>
-            
-            <div class="active-component rounded-lg p-4">
-              <h3 class="main-text text-lg font-medium mb-2">Image Switch Card</h3>
-              <p class="text-p text-sm mb-3">Card that switches images on hover interaction.</p>
-              <RouterLink to="/components/cards/interactive" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                View Component →
-              </RouterLink>
-            </div>
-            
-            <div class="active-component rounded-lg p-4">
-              <h3 class="main-text text-lg font-medium mb-2">Flip Card</h3>
-              <p class="text-p text-sm mb-3">Card that flips to reveal additional details.</p>
-              <RouterLink to="/components/cards/interactive" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                View Component →
-              </RouterLink>
-            </div>
-            
-            <div class="active-component rounded-lg p-4">
-              <h3 class="main-text text-lg font-medium mb-2">Click Transform Card</h3>
-              <p class="text-p text-sm mb-3">Card that transforms on click to show animated stats.</p>
-              <RouterLink to="/components/cards/interactive" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                View Component →
-              </RouterLink>
-            </div>
-            
-            <div class="active-component rounded-lg p-4">
-              <h3 class="main-text text-lg font-medium mb-2">Notification Card</h3>
-              <p class="text-p text-sm mb-3">Card that manages and displays notifications.</p>
-              <RouterLink to="/components/cards/interactive" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                View Component →
-              </RouterLink>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Form Components -->
-      <div id="form-components">
-        <div class="main-div rounded-lg shadow-xl p-6">
-          <h2 class="main-text text-2xl font-medium mb-4">
-            Form Components
-          </h2>
-          <p class="text-p mb-6">
-            Form elements with modern styling and interactive features.
-          </p>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="active-component rounded-lg p-4">
-              <h3 class="main-text text-lg font-medium mb-2">Textarea</h3>
-              <p class="text-p text-sm mb-3">Multi-line text input with animated border.</p>
-              <RouterLink to="/components/form/textarea" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                View Component →
-              </RouterLink>
-            </div>
-            
-            <div class="active-component rounded-lg p-4">
-              <h3 class="main-text text-lg font-medium mb-2">Auto Resize Textarea</h3>
-              <p class="text-p text-sm mb-3">Textarea that automatically adjusts height.</p>
-              <RouterLink to="/components/form/textarea" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                View Component →
-              </RouterLink>
-            </div>
-            
-            <div class="active-component rounded-lg p-4">
-              <h3 class="main-text text-lg font-medium mb-2">Character Count Textarea</h3>
-              <p class="text-p text-sm mb-3">Textarea with character counter and limit.</p>
-              <RouterLink to="/components/form/textarea" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                View Component →
-              </RouterLink>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Animation Components -->
-      <div id="animation-components">
-        <div class="main-div rounded-lg shadow-xl p-6">
-          <h2 class="main-text text-2xl font-medium mb-4">
-            Animation Components
-          </h2>
-          <p class="text-p mb-6">
-            Components focused on smooth animations and micro-interactions.
-          </p>
-          
-          <div class="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-6">
-            <div class="flex items-center mb-4">
-              <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <div>
-                <h3 class="main-text text-lg font-medium">Modern Animations</h3>
-                <p class="text-p text-sm">All components feature smooth CSS transitions and micro-interactions</p>
-              </div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-              <div class="text-center">
-                <div class="main-text font-medium mb-1">Hover Effects</div>
-                <div class="text-p">Smooth transform animations</div>
-              </div>
-              <div class="text-center">
-                <div class="main-text font-medium mb-1">State Transitions</div>
-                <div class="text-p">Animated state changes</div>
-              </div>
-              <div class="text-center">
-                <div class="main-text font-medium mb-1">Loading States</div>
-                <div class="text-p">Spinner and progress animations</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </ClientOnly>
 </template>
-
-<style scoped>
-/* Isolate styles for documentation */
-.absolute {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-</style>

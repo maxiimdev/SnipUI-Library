@@ -14,7 +14,7 @@
       @click.self="isOpen = false"
     >
       <div
-        class="absolute right-0 top-0 h-full w-64 main-div rounded-xl shadow-xl transform transition-all duration-300"
+        class="absolute left-0 top-0 h-full w-64 main-div rounded-xl shadow-xl transform transition-all duration-300"
         :class="{ 'translate-x-0': isOpen, 'translate-x-full': !isOpen }"
       >
         <div class="p-4">

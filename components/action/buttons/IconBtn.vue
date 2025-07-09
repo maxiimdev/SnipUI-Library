@@ -19,6 +19,7 @@ const toggleHide = () => {
 </script>
 
 <template>
+  <ClientOnly>
   <!-- Like button -->
   <button
     class="p-2 rounded-full transition-colors duration-200 mr-2"
@@ -75,4 +76,5 @@ const toggleHide = () => {
       />
     </svg>
   </button>
+  </ClientOnly>
 </template>

@@ -117,7 +117,7 @@ watch(() => router.currentRoute.value.fullPath, initializeSidebar)
           <li
             v-for="(subItem, subIndex) in item.items"
             :key="subIndex"
-            class="px-4 py-3 my-1 text-p rounded flex transition-colors duration-200 cursor-pointer"
+            class="px-4 py-3 my-1 text-p rounded flex transition-colors duration-200 cursor-pointer hover-obr"
             :class="{ 'active-link-sidebar': activeLink === subItem.path }"
             @click="handleLinkClick(subItem.path)"
           >

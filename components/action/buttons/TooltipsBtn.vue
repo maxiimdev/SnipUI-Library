@@ -19,6 +19,7 @@ const toggleAdd = () => {
 </script>
 
 <template>
+  <ClientOnly>
   <div class="flex items-center gap-3">
     <!-- Like Button -->
     <div class="relative group">
@@ -111,4 +112,5 @@ const toggleAdd = () => {
       </div>
     </div>
   </div>
+  </ClientOnly>
 </template>

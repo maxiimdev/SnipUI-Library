@@ -11,6 +11,7 @@ const handleFileChange = (event: Event) => {
 </script>
 
 <template>
+  <ClientOnly>
   <div class="relative w-64">
     <div
       class="flex items-center border-2 rounded-md transition-all duration-300"
@@ -41,4 +42,5 @@ const handleFileChange = (event: Event) => {
       </span>
     </div>
   </div>
+  </ClientOnly>
 </template>

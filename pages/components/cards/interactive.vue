@@ -3,13 +3,11 @@ import type { Card } from '~/types'
 import HoverExpandCard from '~/components/cards/interactive/HoverCard.vue'
 import ImageSwitchCard from '~/components/cards/interactive/ImageSwitchCard.vue'
 import ClickTransformCard from '~/components/cards/interactive/ClickTransformCard.vue'
-import NotificationCard from '~/components/cards/interactive/NotificationCard.vue'
 import {
   hoverExpandCardCodes,
   imageSwitchCardCodes,
   flipCardCodes,
   clickTransformCardCodes,
-  notificationCardCodes,
 } from '~/assets/code-examples/cards/card-codes'
 import FlipCard from '~/components/cards/interactive/FlipCard.vue'
 
@@ -26,7 +24,6 @@ useState('right-sidebar-items').value = [
       { name: 'Image Switch Card', path: '#image-switch-card' },
       { name: 'Flip Card', path: '#flip-card' },
       { name: 'Click Transform Card', path: '#click-transform-card' },
-      { name: 'Notification Card', path: '#notification-card' },
     ],
   },
 ]
@@ -62,14 +59,6 @@ const ClickTransformCardCard: Card = {
   code: clickTransformCardCodes,
   content: { type: 'text', props: { class: '' }, children: '' },
 }
-
-const NotificationCardCard: Card = {
-  title: 'Notification Card',
-  text: 'A card that manages and displays notifications.',
-  codeTitle: 'NotificationCard.vue',
-  code: notificationCardCodes,
-  content: { type: 'text', props: { class: '' }, children: '' },
-}
 </script>
 
 <template>
@@ -99,13 +88,6 @@ const NotificationCardCard: Card = {
       <CodeCard
         :card="ClickTransformCardCard"
         :component="ClickTransformCard"
-        :is-code-preview="true"
-      />
-    </div>
-    <div id="notification-card">
-      <CodeCard
-        :card="NotificationCardCard"
-        :component="NotificationCard"
         :is-code-preview="true"
       />
     </div>

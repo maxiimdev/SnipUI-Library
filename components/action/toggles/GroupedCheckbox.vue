@@ -40,6 +40,7 @@ const updateParent = () => {
 </script>
 
 <template>
+  <ClientOnly>
   <div class="flex flex-col gap-4">
     <label class="flex items-center gap-2 cursor-pointer">
       <input
@@ -130,4 +131,5 @@ const updateParent = () => {
       </label>
     </div>
   </div>
+  </ClientOnly>
 </template>

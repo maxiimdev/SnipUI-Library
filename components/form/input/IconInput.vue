@@ -6,6 +6,7 @@ const isFocused = ref(false)
 </script>
 
 <template>
+  <ClientOnly>
   <div
     class="relative w-64 transition-all duration-300"
     :class="{ 'w-72': isFocused }"
@@ -40,4 +41,5 @@ const isFocused = ref(false)
       aria-label="Search input with icon"
     />
   </div>
+  </ClientOnly>
 </template>

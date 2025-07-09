@@ -16,6 +16,7 @@ const selectOption = (option: string) => {
 </script>
 
 <template>
+  <ClientOnly>
   <div class="relative">
     <button
       class="px-4 py-2 rounded active-component transition-colors duration-200"
@@ -39,4 +40,5 @@ const selectOption = (option: string) => {
       </ul>
     </div>
   </div>
+  </ClientOnly>
 </template>

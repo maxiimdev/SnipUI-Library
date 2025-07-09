@@ -23,6 +23,7 @@ watch(value, newValue => {
 </script>
 
 <template>
+  <ClientOnly>
   <div class="relative w-64 flex items-center">
     <input
       type="number"
@@ -86,6 +87,7 @@ watch(value, newValue => {
       </button>
     </div>
   </div>
+  </ClientOnly>
 </template>
 
 <style scoped>

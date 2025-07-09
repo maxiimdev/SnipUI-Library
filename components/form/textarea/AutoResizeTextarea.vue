@@ -23,6 +23,7 @@ onMounted(() => {
 </script>
 
 <template>
+  <ClientOnly>
   <div class="relative w-64">
     <textarea
       ref="textareaRef"
@@ -40,6 +41,7 @@ onMounted(() => {
       aria-label="Auto-resize textarea"
     ></textarea>
   </div>
+  </ClientOnly>
 </template>
 
 <style scoped>

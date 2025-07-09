@@ -1,14 +1,19 @@
-export const staticBgTextCode = `<template>
-  <div class="relative flex items-center justify-center min-h-[300px] bg-gray-900">
+export const staticBgTextCode = `<script lang="ts" setup>
+const props = defineProps<{
+  text?: string
+  bgImage?: string
+}>()
+</script>
+
+<template>
+  <div class="relative flex items-center justify-center">
     <!-- Text with static image background -->
     <h1
       class="text-4xl md:text-6xl font-bold tracking-wider text-transparent bg-clip-text bg-cover bg-center"
-      style="background-image: url('/bg2.jpg')"
+      :style="{ backgroundImage: \`url(\${props.bgImage ?? 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'})\` }"
     >
-      Background Text
+      {{ props.text ?? 'Background Text' }}
     </h1>
-    <!-- Overlay for better readability -->
-    <div class="absolute inset-0 bg-black opacity-30"></div>
   </div>
 </template>
 
@@ -18,11 +23,20 @@ h1 {
 }
 </style>`
 
-export const parallaxBackgroundTextCode = `<script setup lang="ts">
+export const parallaxBackgroundTextCode = `<script lang="ts" setup>
 import { ref } from 'vue'
 
-const text = ref('Parallax Text')
-const bgImage = ref('/bg2.jpg')
+const props = defineProps<{
+  text?: string
+  bgImage?: string
+}>()
+
+const emits = defineEmits<{
+  (e: 'mousemove', x: number, y: number): void
+}>()
+
+const text = ref(props.text ?? 'Parallax Text')
+const bgImage = ref(props.bgImage ?? 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')
 const parallaxX = ref(50)
 const parallaxY = ref(50)
 
@@ -32,6 +46,7 @@ const handleMouseMove = (event: MouseEvent) => {
   const { innerWidth, innerHeight } = window
   parallaxX.value = 50 + (clientX / innerWidth - 0.5) * 20
   parallaxY.value = 50 + (clientY / innerHeight - 0.5) * 20
+  emits('mousemove', parallaxX.value, parallaxY.value)
 }
 </script>
 
@@ -54,11 +69,19 @@ const handleMouseMove = (event: MouseEvent) => {
       {{ text }}
     </h1>
   </div>
-</template>
-`
+</template>`
 
 export const threeDRotateTextCode = `<script lang="ts" setup>
 import { ref } from 'vue'
+
+const props = defineProps<{
+  text?: string
+}>()
+
+const emits = defineEmits<{
+  (e: 'mousemove', rotateX: number, rotateY: number): void
+  (e: 'mouseleave'): void
+}>()
 
 const textStyle = ref({
   transform: 'rotateX(0deg) rotateY(0deg)',
@@ -77,6 +100,7 @@ const handleMouseMove = (event: MouseEvent) => {
     transform: \`rotateX(\${rotateX}deg) rotateY(\${rotateY}deg)\`,
     transition: 'transform 0.1s ease',
   }
+  emits('mousemove', rotateX, rotateY)
 }
 
 const resetRotation = () => {
@@ -84,6 +108,7 @@ const resetRotation = () => {
     transform: 'rotateX(0deg) rotateY(0deg)',
     transition: 'transform 0.5s ease',
   }
+  emits('mouseleave')
 }
 </script>
 
@@ -95,9 +120,9 @@ const resetRotation = () => {
   >
     <span
       :style="textStyle"
-      class="inline-block text-6xl p-30 font-bold bg-gradient-to-r from-red-400 to-teal-400 bg-clip-text text-transparent"
+      class="inline-block text-6xl p-10 font-bold bg-gradient-to-r from-[#f30035] to-[#189157] bg-clip-text text-transparent"
     >
-      3D Text
+      {{ props.text ?? '3D Text' }}
     </span>
   </div>
 </template>
@@ -109,11 +134,18 @@ const resetRotation = () => {
 }
 </style>`
 
+export const fillAnimationTextCode = `<script lang="ts" setup>
+const props = defineProps<{
+  text?: string
+}>()
+</script>
 
-export const fillAnimationTextCode = `<template>
+<template>
   <div class="inline-block">
-    <span class="text-6xl font-bold p-10 bg-gradient-to-r from-red-400 from-50% to-gray-800 to-50% bg-[length:200%_100%] bg-[100%] bg-clip-text text-transparent transition-all duration-500 hover:bg-[0%]">
-      Fill Text
+    <span
+      class="text-6xl font-bold p-10 bg-gradient-to-r from-[#f30035] from-50% to-[#313131] to-50% bg-[length:200%_100%] bg-[100%] bg-clip-text text-transparent transition-all duration-500 hover:bg-[0%]"
+    >
+      {{ props.text ?? 'Fill Text' }}
     </span>
   </div>
 </template>
@@ -121,7 +153,6 @@ export const fillAnimationTextCode = `<template>
 <style scoped>
 .bg-clip-text {
   -webkit-background-clip: text;
+  background-clip: text;
 }
-</style>
-`
-
+</style>`

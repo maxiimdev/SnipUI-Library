@@ -16,6 +16,7 @@ const selectOption = (option: string) => {
 </script>
 
 <template>
+  <ClientOnly>
   <div class="relative">
     <button
       class="w-48 px-4 py-2 main-div border-2 main-border rounded flex items-center justify-between main-text"
@@ -58,5 +59,5 @@ const selectOption = (option: string) => {
         </li>
       </ul>
     </div>
-  </div>
+  </div></ClientOnly>
 </template>

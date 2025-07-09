@@ -6,6 +6,7 @@ const isFocused = ref(false)
 </script>
 
 <template>
+  <ClientOnly>
   <div class="relative w-64">
     <input
       type="text"
@@ -31,4 +32,5 @@ const isFocused = ref(false)
       Enter the text
     </label>
   </div>
+  </ClientOnly>
 </template>

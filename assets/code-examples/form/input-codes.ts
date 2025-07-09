@@ -1,34 +1,66 @@
 export const standartInputCode = `<script lang="ts" setup>
 import { ref } from 'vue'
 
+const props = defineProps<{
+  placeholder?: string
+}>()
+
+const emits = defineEmits<{
+  (e: 'update:modelValue', value: string): void
+  (e: 'focus'): void
+  (e: 'blur'): void
+}>()
+
 const value = ref('')
 const isFocused = ref(false)
+
+const updateValue = (event: Event) => {
+  const input = event.target as HTMLInputElement
+  value.value = input.value
+  emits('update:modelValue', value.value)
+}
 </script>
 
 <template>
   <div class="relative w-64">
     <input
       type="text"
-      v-model="value"
-      placeholder="Enter the text"
-      class="w-full px-4 py-2 text-gray-700 bg-white border-2 rounded-md focus:outline-none transition-all duration-300"
+      :value="value"
+      :placeholder="props.placeholder ?? 'Enter the text'"
+      class="w-full px-4 py-2 text-[#fff] bg-[#232323] border-2 rounded-md focus:outline-none transition-all duration-300"
       :class="{
-        'border-indigo-600': isFocused || value,
-        'border-gray-300': !isFocused && !value,
+        'border-[#8181f9]': isFocused || value,
+        'border-[#313131]': !isFocused && !value,
       }"
-      @focus="isFocused = true"
-      @blur="isFocused = false"
+      @input="updateValue"
+      @focus="isFocused = true; emits('focus')"
+      @blur="isFocused = false; emits('blur')"
       aria-label="Standard text input"
     />
   </div>
-</template>
-`
+</template>`
 
 export const iconInputCode = `<script lang="ts" setup>
 import { ref } from 'vue'
 
+const props = defineProps<{
+  placeholder?: string
+}>()
+
+const emits = defineEmits<{
+  (e: 'update:modelValue', value: string): void
+  (e: 'focus'): void
+  (e: 'blur'): void
+}>()
+
 const value = ref('')
 const isFocused = ref(false)
+
+const updateValue = (event: Event) => {
+  const input = event.target as HTMLInputElement
+  value.value = input.value
+  emits('update:modelValue', value.value)
+}
 </script>
 
 <template>
@@ -40,8 +72,8 @@ const isFocused = ref(false)
       <svg
         class="w-5 h-5 transition-all duration-300"
         :class="{
-          'text-indigo-600': isFocused || value,
-          'text-gray-400': !isFocused && !value,
+          'text-[#8181f9]': isFocused || value,
+          'text-[#797979]': !isFocused && !value,
         }"
         fill="none"
         stroke="currentColor"
@@ -58,56 +90,79 @@ const isFocused = ref(false)
     </div>
     <input
       type="text"
-      v-model="value"
-      placeholder="Search..."
-      class="w-full pl-10 pr-4 py-2 text-gray-700 bg-white border-2 rounded-md focus:outline-none transition-all duration-300"
+      :value="value"
+      :placeholder="props.placeholder ?? 'Search...'"
+      class="w-full pl-10 pr-4 py-2 text-[#fff] bg-[#232323] border-2 rounded-md focus:outline-none transition-all duration-300"
       :class="{
-        'border-indigo-600': isFocused || value,
-        'border-gray-300': !isFocused && !value,
+        'border-[#8181f9]': isFocused || value,
+        'border-[#313131]': !isFocused && !value,
       }"
-      @focus="isFocused = true"
-      @blur="isFocused = false"
+      @input="updateValue"
+      @focus="isFocused = true; emits('focus')"
+      @blur="isFocused = false; emits('blur')"
       aria-label="Search input with icon"
     />
   </div>
-</template>
-`
+</template>`
 
 export const passwordInputCode = `<script lang="ts" setup>
 import { ref } from 'vue'
 
+const props = defineProps<{
+  placeholder?: string
+}>()
+
+const emits = defineEmits<{
+  (e: 'update:modelValue', value: string): void
+  (e: 'focus'): void
+  (e: 'blur'): void
+  (e: 'toggle-visibility'): void
+}>()
+
 const password = ref('')
 const isFocused = ref(false)
 const showPassword = ref(false)
+
+const updatePassword = (event: Event) => {
+  const input = event.target as HTMLInputElement
+  password.value = input.value
+  emits('update:modelValue', password.value)
+}
+
+const togglePassword = () => {
+  showPassword.value = !showPassword.value
+  emits('toggle-visibility')
+}
 </script>
 
 <template>
   <div class="relative w-64">
     <input
       :type="showPassword ? 'text' : 'password'"
-      v-model="password"
-      placeholder="Enter the password"
-      class="w-full pr-10 pl-4 py-2 text-gray-700 bg-white border-2 rounded-md focus:outline-none transition-all duration-300"
+      :value="password"
+      :placeholder="props.placeholder ?? 'Enter the password'"
+      class="w-full pr-10 pl-4 py-2 text-[#fff] bg-[#232323] border-2 rounded-md focus:outline-none transition-all duration-300"
       :class="{
-        'border-indigo-600': isFocused || password,
-        'border-gray-300': !isFocused && !password,
+        'border-[#8181f9]': isFocused || password,
+        'border-[#313131]': !isFocused && !password,
       }"
-      @focus="isFocused = true"
-      @blur="isFocused = false"
+      @input="updatePassword"
+      @focus="isFocused = true; emits('focus')"
+      @blur="isFocused = false; emits('blur')"
       aria-label="Password input"
     />
     <button
       type="button"
       class="absolute inset-y-0 right-0 flex items-center pr-3 focus:outline-none"
-      @click="showPassword = !showPassword"
+      @click="togglePassword"
       @mousedown.prevent
       aria-label="Toggle password visibility"
     >
       <svg
         class="w-5 h-5 transition-all duration-300"
         :class="{
-          'text-indigo-600': isFocused || password,
-          'text-gray-400': !isFocused && !password,
+          'text-[#8181f9]': isFocused || password,
+          'text-[#797979]': !isFocused && !password,
         }"
         fill="none"
         stroke="currentColor"
@@ -138,29 +193,50 @@ const showPassword = ref(false)
       </svg>
     </button>
   </div>
-</template>
-`
+</template>`
 
 export const numberInputCode = `<script lang="ts" setup>
 import { ref, watch } from 'vue'
 
+const props = defineProps<{
+  min?: number
+}>()
+
+const emits = defineEmits<{
+  (e: 'update:modelValue', value: number): void
+  (e: 'focus'): void
+  (e: 'blur'): void
+  (e: 'increment'): void
+  (e: 'decrement'): void
+}>()
+
 const value = ref(0)
 const isFocused = ref(false)
 
+const updateValue = (event: Event) => {
+  const input = event.target as HTMLInputElement
+  value.value = Number(input.value)
+  emits('update:modelValue', value.value)
+}
+
 const increment = () => {
   value.value++
+  emits('increment')
+  emits('update:modelValue', value.value)
 }
 
 const decrement = () => {
-  if (value.value > 0) {
+  if (value.value > (props.min ?? 0)) {
     value.value--
+    emits('decrement')
+    emits('update:modelValue', value.value)
   }
 }
 
-// Ensure value is never negative
 watch(value, newValue => {
-  if (newValue < 0) {
-    value.value = 0
+  if (newValue < (props.min ?? 0)) {
+    value.value = props.min ?? 0
+    emits('update:modelValue', value.value)
   }
 })
 </script>
@@ -169,28 +245,29 @@ watch(value, newValue => {
   <div class="relative w-64 flex items-center">
     <input
       type="number"
-      v-model="value"
+      :value="value"
       placeholder="0"
-      class="w-full pr-20 pl-4 py-2 text-gray-700 bg-white border-2 rounded-md focus:outline-none transition-all duration-300 appearance-none"
+      class="w-full pr-20 pl-4 py-2 text-[#fff] bg-[#232323] border-2 rounded-md focus:outline-none transition-all duration-300 appearance-none"
       :class="{
-        'border-indigo-600': isFocused || value,
-        'border-gray-300': !isFocused && !value,
+        'border-[#8181f9]': isFocused || value,
+        'border-[#313131]': !isFocused && !value,
       }"
-      @focus="isFocused = true"
-      @blur="isFocused = false"
-      min="0"
+      @input="updateValue"
+      @focus="isFocused = true; emits('focus')"
+      @blur="isFocused = false; emits('blur')"
+      :min="props.min ?? 0"
       step="1"
       aria-label="Number input"
     />
     <div class="absolute inset-y-0 right-0 flex items-center pr-2 space-x-1">
       <button
         type="button"
-        class="w-6 h-6 flex items-center justify-center bg-indigo-100 rounded hover:bg-indigo-200 transition-all duration-300"
+        class="w-6 h-6 flex items-center justify-center bg-[#313131] rounded transition-all duration-300"
         @click="increment"
         aria-label="Increase value"
       >
         <svg
-          class="w-4 h-4 text-indigo-600"
+          class="w-4 h-4 text-[#8181f9]"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -206,14 +283,14 @@ watch(value, newValue => {
       </button>
       <button
         type="button"
-        class="w-6 h-6 flex items-center justify-center bg-indigo-100 rounded hover:bg-indigo-200 transition-all duration-300"
+        class="w-6 h-6 flex items-center justify-center bg-[#313131] rounded transition-all duration-300"
         @click="decrement"
-        :disabled="value <= 0"
+        :disabled="value <= (props.min ?? 0)"
         aria-label="Decrease value"
       >
         <svg
           class="w-4 h-4"
-          :class="{ 'text-indigo-600': value > 0, 'text-gray-400': value <= 0 }"
+          :class="{ 'text-[#8181f9]': value > (props.min ?? 0), 'text-[#797979]': value <= (props.min ?? 0) }"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -232,7 +309,6 @@ watch(value, newValue => {
 </template>
 
 <style scoped>
-/* Hide default number input spinners */
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -241,14 +317,29 @@ input[type='number']::-webkit-outer-spin-button {
 input[type='number'] {
   -moz-appearance: textfield;
 }
-</style>
-`
+</style>`
 
 export const floatingLabelInputCode = `<script lang="ts" setup>
 import { ref } from 'vue'
 
+const props = defineProps<{
+  placeholder?: string
+}>()
+
+const emits = defineEmits<{
+  (e: 'update:modelValue', value: string): void
+  (e: 'focus'): void
+  (e: 'blur'): void
+}>()
+
 const value = ref('')
 const isFocused = ref(false)
+
+const updateValue = (event: Event) => {
+  const input = event.target as HTMLInputElement
+  value.value = input.value
+  emits('update:modelValue', value.value)
+}
 </script>
 
 <template>
@@ -256,36 +347,49 @@ const isFocused = ref(false)
     <input
       id="text-input"
       type="text"
-      v-model="value"
-      class="w-full px-4 py-3 text-gray-700 bg-white border-2 rounded-md focus:outline-none transition-all duration-300 peer"
+      :value="value"
+      class="w-full px-4 py-3 text-[#fff] bg-[#232323] border-2 rounded-md focus:outline-none transition-all duration-300 peer"
       :class="{
-        'border-indigo-600': isFocused || value,
-        'border-gray-300': !isFocused && !value,
+        'border-[#8181f9]': isFocused || value,
+        'border-[#313131]': !isFocused && !value,
       }"
-      @focus="isFocused = true"
-      @blur="isFocused = false"
+      @input="updateValue"
+      @focus="isFocused = true; emits('focus')"
+      @blur="isFocused = false; emits('blur')"
       aria-label="Text input with floating label"
     />
     <label
       for="text-input"
-      class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 transition-all duration-300 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-white"
+      class="absolute left-4 top-1/2 -translate-y-1/2 text-[#797979] transition-all duration-300 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-[#8181f9]"
       :class="{
-        '-top-2 text-sm text-white': isFocused || value,
-        'top-1/2 text-base text-gray-500': !isFocused && !value,
+        '-top-2 text-sm text-[#8181f9]': isFocused || value,
+        'top-1/2 text-base text-[#797979]': !isFocused && !value,
       }"
     >
-      Enter the text
+      {{ props.placeholder ?? 'Enter the text' }}
     </label>
   </div>
-</template>
-`
+</template>`
 
 export const autoCompleteInputCode = `<script lang="ts" setup>
 import { ref, computed } from 'vue'
 
+const props = defineProps<{
+  placeholder?: string
+  suggestions?: string[]
+}>()
+
+const emits = defineEmits<{
+  (e: 'update:modelValue', value: string): void
+  (e: 'focus'): void
+  (e: 'blur'): void
+  (e: 'select-suggestion', suggestion: string): void
+}>()
+
 const value = ref('')
 const isFocused = ref(false)
-const suggestions = ref([
+
+const defaultSuggestions = ref([
   'Apple',
   'Banana',
   'Cherry',
@@ -297,24 +401,30 @@ const suggestions = ref([
 
 const filteredSuggestions = computed(() => {
   const query = value.value.toLowerCase()
-  return suggestions.value.filter(suggestion =>
+  const suggestionsList = props.suggestions ?? defaultSuggestions.value
+  return suggestionsList.filter(suggestion =>
     suggestion.toLowerCase().includes(query)
   )
 })
 
-const filterSuggestions = () => {
-  // Filtering is handled by computed property
+const updateValue = (event: Event) => {
+  const input = event.target as HTMLInputElement
+  value.value = input.value
+  emits('update:modelValue', value.value)
 }
 
 const selectSuggestion = (suggestion: string) => {
   value.value = suggestion
+  emits('update:modelValue', value.value)
+  emits('select-suggestion', suggestion)
   isFocused.value = false
 }
 
 const handleBlur = () => {
   setTimeout(() => {
     isFocused.value = false
-  }, 100) // Delay to allow click on suggestion
+    emits('blur')
+  }, 100)
 }
 </script>
 
@@ -325,8 +435,8 @@ const handleBlur = () => {
         <svg
           class="w-5 h-5 transition-all duration-300"
           :class="{
-            'text-indigo-600': isFocused || value,
-            'text-gray-400': !isFocused && !value,
+            'text-[#8181f9]': isFocused || value,
+            'text-[#797979]': !isFocused && !value,
           }"
           fill="none"
           stroke="currentColor"
@@ -343,28 +453,28 @@ const handleBlur = () => {
       </div>
       <input
         type="text"
-        v-model="value"
-        placeholder="Search..."
-        class="w-full pl-10 pr-4 py-2 text-gray-700 bg-white border-2 rounded-md focus:outline-none transition-all duration-300"
+        :value="value"
+        :placeholder="props.placeholder ?? 'Search...'"
+        class="w-full pl-10 pr-4 py-2 text-[#fff] bg-[#232323] border-2 rounded-md focus:outline-none transition-all duration-300"
         :class="{
-          'border-indigo-600': isFocused || value,
-          'border-gray-300': !isFocused && !value,
+          'border-[#8181f9]': isFocused || value,
+          'border-[#313131]': !isFocused && !value,
         }"
-        @focus="isFocused = true"
+        @input="updateValue"
+        @focus="isFocused = true; emits('focus')"
         @blur="handleBlur"
-        @input="filterSuggestions"
         aria-label="Autocomplete input"
       />
     </div>
     <div
       v-if="isFocused && filteredSuggestions.length"
-      class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto transition-all duration-300"
+      class="absolute z-10 w-full mt-1 bg-[#232323] border border-[#313131] rounded-md shadow-lg max-h-60 overflow-auto transition-all duration-300"
     >
       <ul class="py-1">
         <li
           v-for="(suggestion, index) in filteredSuggestions"
           :key="index"
-          class="px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 cursor-pointer transition-all duration-300"
+          class="px-4 py-2 text-[#fff] hover:bg-[#313131] hover:text-[#8181f9] cursor-pointer transition-all duration-300"
           @click="selectSuggestion(suggestion)"
         >
           {{ suggestion }}
@@ -372,17 +482,29 @@ const handleBlur = () => {
       </ul>
     </div>
   </div>
-</template>
-`
+</template>`
+
 export const fileInputCode = `<script lang="ts" setup>
 import { ref } from 'vue'
+
+const props = defineProps<{
+  buttonLabel?: string
+}>()
+
+const emits = defineEmits<{
+  (e: 'update:modelValue', file: File | null): void
+  (e: 'focus'): void
+  (e: 'blur'): void
+}>()
 
 const fileName = ref('')
 const isFocused = ref(false)
 
 const handleFileChange = (event: Event) => {
   const input = event.target as HTMLInputElement
-  fileName.value = input.files?.[0]?.name || ''
+  const file = input.files?.[0] || null
+  fileName.value = file?.name || ''
+  emits('update:modelValue', file)
 }
 </script>
 
@@ -391,59 +513,76 @@ const handleFileChange = (event: Event) => {
     <div
       class="flex items-center border-2 rounded-md transition-all duration-300"
       :class="{
-        'border-indigo-600': isFocused || fileName,
-        'border-gray-300': !isFocused && !fileName,
+        'border-[#8181f9]': isFocused || fileName,
+        'border-[#313131]': !isFocused && !fileName,
       }"
     >
       <label
-        class="flex-shrink-0 px-4 py-2 bg-indigo-100 text-indigo-600 rounded-l-md hover:bg-indigo-200 cursor-pointer transition-all duration-300"
-        :class="{ 'bg-indigo-200': isFocused }"
+        class="flex-shrink-0 px-4 py-2 bg-[#313131] text-[#8181f9] rounded-l-md cursor-pointer transition-all duration-300"
+        :class="{ 'bg-[#f30035]': isFocused }"
       >
-        Select a file
+        {{ props.buttonLabel ?? 'Select a file' }}
         <input
           type="file"
           class="hidden"
           @change="handleFileChange"
-          @focus="isFocused = true"
-          @blur="isFocused = false"
+          @focus="isFocused = true; emits('focus')"
+          @blur="isFocused = false; emits('blur')"
           aria-label="File input"
         />
       </label>
       <span
-        class="flex-1 px-4 py-2 text-gray-700 truncate"
-        :class="{ 'text-gray-400': !fileName }"
+        class="flex-1 px-4 py-2 text-[#fff] truncate"
+        :class="{ 'text-[#797979]': !fileName }"
       >
         {{ fileName || 'Not selected' }}
       </span>
     </div>
   </div>
-</template>
-`
+</template>`
+
 export const inputWithButtonCodes = `<script lang="ts" setup>
 import { ref } from 'vue'
 
-const inputValue = ref<string>('')
+const props = defineProps<{
+  placeholder?: string
+  buttonLabel?: string
+}>()
 
-const handleSubmit = (): void => {
-  alert(\`Submitted: \${inputValue.value || 'Nothing entered'}\`)
+const emits = defineEmits<{
+  (e: 'update:modelValue', value: string): void
+  (e: 'submit', value: string): void
+}>()
+
+const inputValue = ref('')
+
+const updateValue = (event: Event) => {
+  const input = event.target as HTMLInputElement
+  inputValue.value = input.value
+  emits('update:modelValue', inputValue.value)
+}
+
+const handleSubmit = () => {
+  emits('submit', inputValue.value)
 }
 </script>
 
 <template>
   <div>
-    <div class="main-div rounded-lg shadow-xl w-full max-w-md p-6">
+    <div class="bg-[#232323] rounded-lg shadow-xl w-full max-w-md p-6">
       <div class="flex items-center gap-3">
         <input
-          v-model="inputValue"
+          :value="inputValue"
           type="text"
-          placeholder="Enter text..."
-          class="flex-1 px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-p"
+          :placeholder="props.placeholder ?? 'Enter text...'"
+          class="flex-1 px-3 py-2 rounded-md bg-[#313131] border border-[#313131] focus:outline-none focus:ring-2 focus:ring-[#8181f9]"
+          @input="updateValue"
         />
         <button
-          class="px-4 py-2 main-text active-component rounded-md bg-indigo-700 text-white"
+          class="px-4 py-2 text-[#fff] bg-[#313131] hover:bg-[#444444] rounded-md"
           @click="handleSubmit"
         >
-          Submit
+          {{ props.buttonLabel ?? 'Submit' }}
         </button>
       </div>
     </div>
@@ -453,51 +592,67 @@ const handleSubmit = (): void => {
 export const formWithValidationCodes = `<script lang="ts" setup>
 import { ref, watch } from 'vue'
 
-const username = ref<string>('')
-const error = ref<string>('')
+const props = defineProps<{
+  minLength?: number
+}>()
+
+const emits = defineEmits<{
+  (e: 'update:modelValue', value: string): void
+  (e: 'submit', value: string): void
+  (e: 'error', error: string): void
+}>()
+
+const username = ref('')
+const error = ref('')
 const wasSubmitted = ref(false)
 
-const validateUsername = (): boolean => {
-  if (username.value.length < 2) {
-    error.value = 'Username must be at least 2 characters'
+const validateUsername = () => {
+  if (username.value.length < (props.minLength ?? 2)) {
+    error.value = \`Username must be at least \${props.minLength ?? 2} characters\`
+    emits('error', error.value)
     return false
   }
   error.value = ''
+  emits('error', '')
   return true
 }
 
-const handleSubmit = (): void => {
+const handleSubmit = () => {
   wasSubmitted.value = true
   if (validateUsername()) {
-    alert(\`Submitted: \${username.value}\`)
+    emits('submit', username.value)
     username.value = ''
   }
 }
 
-watch(username, () => {
-  if (wasSubmitted.value) validate()
-})
+const updateUsername = (event: Event) => {
+  const input = event.target as HTMLInputElement
+  username.value = input.value
+  emits('update:modelValue', username.value)
+  if (wasSubmitted.value) validateUsername()
+}
 </script>
 
 <template>
   <div>
-    <div class="main-div rounded-lg shadow-xl w-full max-w-md p-6">
+    <div class="bg-[#232323] rounded-lg shadow-xl w-full max-w-md p-6">
       <form @submit.prevent="handleSubmit">
         <div class="mb-4">
-          <label for="username" class="block text-sm font-semibold main-text mb-1">Username</label>
+          <label for="username" class="block text-sm font-semibold text-[#fff] mb-1">Username</label>
           <input
             id="username"
-            v-model="username"
+            :value="username"
             type="text"
             placeholder="Enter your username"
-            class="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-p"
+            class="w-full px-3 py-2 rounded-md border bg-[#313131] border-[#313131] focus:outline-none focus:ring-2 focus:ring-[#8181f9]"
+            @input="updateUsername"
           />
-          <p class="text-sm text-p mt-1">Your username should be unique and at least 2 characters long.</p>
-          <p v-if="error" class="text-sm text-red-500 mt-1">\${error}</p>
+          <p class="text-sm text-[#797979] mt-1">Your username should be unique and at least {{ props.minLength ?? 2 }} characters long.</p>
+          <p v-if="error" class="text-sm text-[#f30035] mt-1">{{ error }}</p>
         </div>
         <button
           type="submit"
-          class="w-full px-4 py-2 main-text active-component rounded-md bg-indigo-700 text-white"
+          class="w-full px-4 py-2 bg-[#313131] hover:bg-[#444444] rounded-md"
         >
           Submit
         </button>

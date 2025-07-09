@@ -9,6 +9,7 @@ const toggleTheme = () => {
 </script>
 
 <template>
+  <ClientOnly>
   <button
     class="w-10 h-10 flex items-center justify-center"
     @click="toggleTheme"
@@ -45,4 +46,5 @@ const toggleTheme = () => {
       />
     </svg>
   </button>
+  </ClientOnly>
 </template>

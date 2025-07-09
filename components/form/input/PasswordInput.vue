@@ -7,6 +7,7 @@ const showPassword = ref(false)
 </script>
 
 <template>
+  <ClientOnly>
   <div class="relative w-64">
     <input
       :type="showPassword ? 'text' : 'password'"
@@ -59,4 +60,5 @@ const showPassword = ref(false)
       </svg>
     </button>
   </div>
+  </ClientOnly>
 </template>

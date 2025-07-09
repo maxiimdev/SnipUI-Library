@@ -9,6 +9,7 @@ const toggle = () => {
 </script>
 
 <template>
+  <ClientOnly>
   <button
     class="px-4 py-2 rounded transition-colors duration-200 flex justify-between items-center gap-4"
     :class="
@@ -41,4 +42,5 @@ const toggle = () => {
       />
     </svg>
   </button>
+  </ClientOnly>
 </template>

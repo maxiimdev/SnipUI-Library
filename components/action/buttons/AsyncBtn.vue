@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { ClientOnly } from '#components'
 import { ref } from 'vue'
 
 const isLoading = ref(false)
@@ -17,6 +18,7 @@ const triggerAsync = async () => {
 </script>
 
 <template>
+  <ClientOnly>
   <button
     class="px-4 py-2 w-30 active-component main-text rounded flex items-center justify-center gap-2 transition-colors duration-200"
     :class="{
@@ -58,4 +60,6 @@ const triggerAsync = async () => {
           : 'Click'
     }}
   </button>
+  </ClientOnly>
 </template>
+

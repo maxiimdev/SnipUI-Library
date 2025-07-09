@@ -6,6 +6,7 @@ const isFocused = ref(false)
 </script>
 
 <template>
+  <ClientOnly>
   <div class="relative w-64">
     <input
       type="text"
@@ -21,4 +22,5 @@ const isFocused = ref(false)
       aria-label="Standard text input"
     />
   </div>
+  </ClientOnly>
 </template>

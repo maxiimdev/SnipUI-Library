@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import {
   checkboxCode,
+  groupCheckboxCode,
+  iconRadioCode,
   radioCode,
   selectCode,
   switchCode,
@@ -92,7 +94,7 @@ const GroupedCheckboxCard: Card = {
   title: 'Grouped Checkbox',
   text: 'A checkbox with parent-child selection and indeterminate state for group control.',
   codeTitle: 'GroupedCheckbox.vue',
-  code: '',
+  code: groupCheckboxCode,
   content: {
     type: 'text',
     props: {
@@ -106,7 +108,7 @@ const IconRadioCard: Card = {
   title: 'Icon Radio',
   text: 'A radio button group with icons for selecting themes or modes.',
   codeTitle: 'IconRadio.vue',
-  code: '',
+  code: iconRadioCode,
   content: {
     type: 'text',
     props: {

@@ -23,7 +23,9 @@ onMounted(() => {
 </script>
 
 <template>
+  <ClientOnly>
   <span class="text-3xl font-mono main-text w-96">{{
     displayedText
   }}</span>
+  </ClientOnly>
 </template>

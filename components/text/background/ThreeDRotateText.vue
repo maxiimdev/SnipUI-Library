@@ -28,6 +28,7 @@ const resetRotation = () => {
 }
 </script>
 <template>
+  <ClientOnly>
   <div
     class="inline-block perspective-[1000px]"
     @mousemove="handleMouseMove"
@@ -40,6 +41,7 @@ const resetRotation = () => {
       3D Text
     </span>
   </div>
+  </ClientOnly>
 </template>
 
 <style scoped>

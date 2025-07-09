@@ -6,6 +6,7 @@ const isFocused = ref(false)
 </script>
 
 <template>
+  <ClientOnly>
   <div class="relative w-64">
     <textarea
       v-model="value"
@@ -21,4 +22,5 @@ const isFocused = ref(false)
       aria-label="Textarea input"
     ></textarea>
   </div>
+  </ClientOnly>
 </template>

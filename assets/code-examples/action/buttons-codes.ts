@@ -1,19 +1,25 @@
 export const loaderBtnCode = `<script lang="ts" setup>
 import { ref } from 'vue'
 
+const props = defineProps<{
+  buttonText?: string
+  loadingText?: string
+  loadingDuration?: number
+}>()
+
 const isLoading = ref(false)
 
 const triggerLoader = () => {
   isLoading.value = true
   setTimeout(() => {
     isLoading.value = false
-  }, 2000)
+  }, props.loadingDuration ?? 2000)
 }
 </script>
 
 <template>
   <button
-    class="px-4 py-2 active-component main-text rounded flex justify-center items-center gap-2 transition-colors duration-200 w-30"
+    class="px-4 py-2 bg-[#313131] text-[#fff] rounded flex justify-center items-center gap-2 transition-colors duration-200 w-30"
     :class="{ 'opacity-50 pointer-events-none': isLoading }"
     @click="triggerLoader"
   >
@@ -28,18 +34,28 @@ const triggerLoader = () => {
         cx="12"
         cy="12"
         r="10"
-        stroke="currentColor"
+        stroke="#fff"
         stroke-width="4"
       />
-      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+      <path class="opacity-75" fill="#fff" d="M4 12a8 8 0 018-8v8z" />
     </svg>
-    {{ isLoading ? 'Loader...' : 'Click' }}
+    {{ isLoading ? (props.loadingText ?? 'Loading...') : (props.buttonText ?? 'Click') }}
   </button>
-</template>
-`
+</template>`
 
 export const asyncBtnCode = `<script lang="ts" setup>
 import { ref } from 'vue'
+
+const props = defineProps<{
+  buttonText?: string
+  loadingText?: string
+  successText?: string
+  errorText?: string
+}>()
+
+const emits = defineEmits<{
+  (e: 'async-complete', status: 'success' | 'error'): void
+}>()
 
 const isLoading = ref(false)
 const asyncStatus = ref<'success' | 'error' | null>(null)
@@ -50,6 +66,7 @@ const triggerAsync = async () => {
   await new Promise(resolve => setTimeout(resolve, 1000))
   isLoading.value = false
   asyncStatus.value = Math.random() > 0.5 ? 'success' : 'error'
+  emits('async-complete', asyncStatus.value)
   setTimeout(() => {
     asyncStatus.value = null
   }, 3000)
@@ -58,10 +75,10 @@ const triggerAsync = async () => {
 
 <template>
   <button
-    class="px-4 py-2 active-component main-text rounded flex items-center gap-2 transition-colors duration-200"
+    class="px-4 py-2 bg-[#313131] text-[#fff] rounded flex items-center gap-2 transition-colors duration-200"
     :class="{
-      'bg-green-600 hover:bg-green-700': asyncStatus === 'success',
-      'bg-red-600 hover:bg-red-700': asyncStatus === 'error',
+      'bg-[#189157]': asyncStatus === 'success',
+      'bg-[#f30035]': asyncStatus === 'error',
       'opacity-50 pointer-events-none': isLoading,
     }"
     @click="triggerAsync"
@@ -70,7 +87,7 @@ const triggerAsync = async () => {
       v-if="asyncStatus"
       class="w-5 h-5"
       fill="none"
-      stroke="currentColor"
+      stroke="#fff"
       viewBox="0 0 24 24"
     >
       <path
@@ -90,51 +107,58 @@ const triggerAsync = async () => {
     </svg>
     {{
       isLoading
-        ? 'Loader...'
+        ? (props.loadingText ?? 'Loading...')
         : asyncStatus
           ? asyncStatus === 'success'
-            ? 'Success'
-            : 'Error'
-          : 'Click'
+            ? (props.successText ?? 'Success')
+            : (props.errorText ?? 'Error')
+          : (props.buttonText ?? 'Click')
     }}
   </button>
-</template>
-`
+</template>`
 
 export const dropdownBtnCode = `<script lang="ts" setup>
 import { ref } from 'vue'
 
+const props = defineProps<{
+  buttonText?: string
+  options?: string[]
+}>()
+
+const emits = defineEmits<{
+  (e: 'select-option', option: string): void
+}>()
+
 const isOpen = ref(false)
-const text = ref('Menu')
-const options = ['Option 1', 'Option 2', 'Option 3']
+const text = ref(props.buttonText ?? 'Menu')
 
 const toggleDropdown = () => {
   isOpen.value = !isOpen.value
 }
 
 const selectOption = (option: string) => {
-  console.log(\`Option: \${option}\`)
   isOpen.value = false
+  emits('select-option', option)
 }
 </script>
 
 <template>
-  <div class="relative">
+  <div class="relative inline-block">
     <button
-      class="px-4 py-2 rounded active-component transition-colors duration-200"
+      class="px-4 py-2 bg-[#313131] text-[#fff] rounded transition-colors duration-200"
       @click="toggleDropdown"
     >
       {{ text }}
     </button>
     <div
       v-if="isOpen"
-      class="absolute right-0 mt-2 w-48 border-1 main-border rounded-md shadow-lg z-10"
+      class="absolute right-0 mt-2 w-48 border border-[#313131] rounded-md shadow-lg z-10 bg-[#232323]"
     >
       <ul>
         <li
-          v-for="(option, index) in options"
+          v-for="(option, index) in (props.options ?? ['Option 1', 'Option 2', 'Option 3'])"
           :key="index"
-          class="px-4 py-2 main-text active-component-hover cursor-pointer border-b-1 main-border last-of-type:border-0"
+          class="px-4 py-2 text-[#fff] hover:bg-[#313131] cursor-pointer border-b border-[#313131] last:border-0"
           @click="selectOption(option)"
         >
           {{ option }}
@@ -142,11 +166,22 @@ const selectOption = (option: string) => {
       </ul>
     </div>
   </div>
-</template>
-`
+</template>`
 
 export const iconBtnCode = `<script lang="ts" setup>
 import { ref } from 'vue'
+
+const props = defineProps<{
+  likeLabel?: string
+  addLabel?: string
+  hideLabel?: string
+}>()
+
+const emits = defineEmits<{
+  (e: 'toggle-like', value: boolean): void
+  (e: 'toggle-add', value: boolean): void
+  (e: 'toggle-hide', value: boolean): void
+}>()
 
 const isLiked = ref(false)
 const isAdded = ref(false)
@@ -154,84 +189,101 @@ const isHidden = ref(false)
 
 const toggleLike = () => {
   isLiked.value = !isLiked.value
+  emits('toggle-like', isLiked.value)
 }
 
 const toggleAdd = () => {
   isAdded.value = !isAdded.value
+  emits('toggle-add', isAdded.value)
 }
 
 const toggleHide = () => {
   isHidden.value = !isHidden.value
+  emits('toggle-hide', isHidden.value)
 }
 </script>
 
 <template>
-  <!-- Like button -->
-  <button
-    class="p-2 rounded-full transition-colors duration-200 mr-2"
-    @click="toggleLike"
-  >
-    <svg
-      class="w-5 h-5"
-      :class="{
-        'text-red-500 fill-current': isLiked,
-        'text-gray-400 fill-none stroke-current stroke-2': !isLiked,
-      }"
-      viewBox="0 0 24 24"
+  <div class="flex items-center gap-3">
+    <!-- Like Button -->
+    <button
+      class="p-2 rounded-full transition-colors duration-200"
+      @click="toggleLike"
+      :aria-label="props.likeLabel ?? 'Like'"
     >
-      <path
-        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-      />
-    </svg>
-  </button>
+      <svg
+        class="w-5 h-5"
+        :class="{
+          'text-[#f30035] fill-current': isLiked,
+          'text-[#797979] fill-none stroke-current stroke-2': !isLiked,
+        }"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+        />
+      </svg>
+    </button>
 
-  <!-- Add/Remove button -->
-  <button
-    class="p-2 rounded-full transition-colors duration-200 mr-2"
-    @click="toggleAdd"
-  >
-    <svg
-      class="w-5 h-5"
-      :class="{ 'text-green-500': isAdded, 'text-gray-600': !isAdded }"
-      fill="currentColor"
-      viewBox="0 0 24 24"
+    <!-- Add/Remove Button -->
+    <button
+      class="p-2 rounded-full transition-colors duration-200"
+      @click="toggleAdd"
+      :aria-label="props.addLabel ?? 'Add'"
     >
-      <path v-if="isAdded" d="M19 13H5v-2h14v2z" />
-      <path v-else d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-    </svg>
-  </button>
+      <svg
+        class="w-5 h-5"
+        :class="{ 'text-[#189157]': isAdded, 'text-[#797979]': !isAdded }"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path v-if="isAdded" d="M19 13H5v-2h14v2z" />
+        <path v-else d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+      </svg>
+    </button>
 
-  <!-- Hide button -->
-  <button
-    class="p-2 rounded-full transition-colors duration-200"
-    @click="toggleHide"
-  >
-    <svg
-      class="w-5 h-5"
-      :class="{ 'text-blue-500': isHidden, 'text-gray-600': !isHidden }"
-      fill="currentColor"
-      viewBox="0 0 24 24"
+    <!-- Hide Button -->
+    <button
+      class="p-2 rounded-full transition-colors duration-200"
+      @click="toggleHide"
+      :aria-label="props.hideLabel ?? 'Hide'"
     >
-      <path
-        v-if="isHidden"
-        d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
-      />
-      <path
-        v-else
-        d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"
-      />
-    </svg>
-  </button>
-</template>
-`
+      <svg
+        class="w-5 h-5"
+        :class="{ 'text-[#8181f9]': isHidden, 'text-[#797979]': !isHidden }"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          v-if="isHidden"
+          d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
+        />
+        <path
+          v-else
+          d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"
+        />
+      </svg>
+    </button>
+  </div>
+</template>`
 
 export const toggleBtnCode = `<script lang="ts" setup>
 import { ref } from 'vue'
+
+const props = defineProps<{
+  activeText?: string
+  disabledText?: string
+}>()
+
+const emits = defineEmits<{
+  (e: 'toggle', value: boolean): void
+}>()
 
 const isToggled = ref(false)
 
 const toggle = () => {
   isToggled.value = !isToggled.value
+  emits('toggle', isToggled.value)
 }
 </script>
 
@@ -240,39 +292,57 @@ const toggle = () => {
     class="px-4 py-2 rounded transition-colors duration-200 flex justify-between items-center gap-4"
     :class="
       isToggled
-        ? 'bg-green-600 text-white'
-        : 'active-component main-text cursor-not-allowed!'
+        ? 'bg-[#189157] text-[#fff]'
+        : 'bg-[#313131] text-[#fff]'
     "
     @click="toggle"
   >
-    {{ isToggled ? 'Active' : 'Disabled' }}
+    {{ isToggled ? (props.activeText ?? 'Active') : (props.disabledText ?? 'Disabled') }}
     <svg
       v-if="isToggled"
-      xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
-    >
-      <path fill="currentColor" d="m0 11l2-2l5 5L18 3l2 2L7 18z" />
-    </svg>
-    <svg
-      v-else
-      xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
+      class="w-5 h-5"
+      fill="none"
+      stroke="#fff"
       viewBox="0 0 24 24"
     >
       <path
-        fill="currentColor"
-        d="M5 19h14V5H5v14Zm-2 2V3h18v18H3Zm5.4-4l3.6-3.6l3.6 3.6l1.4-1.4l-3.6-3.6L17 8.4L15.6 7L12 10.6L8.4 7L7 8.4l3.6 3.6L7 15.6L8.4 17ZM5 19V5v14Z"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M5 13l4 4L19 7"
+      />
+    </svg>
+    <svg
+      v-else
+      class="w-5 h-5"
+      fill="none"
+      stroke="#fff"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M6 18L18 6M6 6l12 12"
       />
     </svg>
   </button>
-</template>
-`
+</template>`
 
-export const tooltipsBtnCode = `<script setup>
+export const tooltipsBtnCode = `<script lang="ts" setup>
 import { ref } from 'vue'
+
+const props = defineProps<{
+  likeTooltip?: string
+  repostTooltip?: string
+  addTooltip?: string
+}>()
+
+const emits = defineEmits<{
+  (e: 'toggle-like', value: boolean): void
+  (e: 'toggle-repost', value: boolean): void
+  (e: 'toggle-add', value: boolean): void
+}>()
 
 const isLiked = ref(false)
 const isReposted = ref(false)
@@ -280,14 +350,17 @@ const isAdded = ref(false)
 
 const toggleLike = () => {
   isLiked.value = !isLiked.value
+  emits('toggle-like', isLiked.value)
 }
 
 const toggleRepost = () => {
   isReposted.value = !isReposted.value
+  emits('toggle-repost', isReposted.value)
 }
 
 const toggleAdd = () => {
   isAdded.value = !isAdded.value
+  emits('toggle-add', isAdded.value)
 }
 </script>
 
@@ -296,15 +369,15 @@ const toggleAdd = () => {
     <!-- Like Button -->
     <div class="relative group">
       <button
-        @click="toggleLike"
         class="p-2 rounded-full transition-colors duration-200"
-        aria-label="Like"
+        @click="toggleLike"
+        :aria-label="props.likeTooltip ?? 'Like'"
       >
         <svg
           class="w-5 h-5"
           :class="{
-            'text-red-500 fill-current': isLiked,
-            'text-gray-400 fill-none stroke-current stroke-2': !isLiked,
+            'text-[#f30035] fill-current': isLiked,
+            'text-[#797979] fill-none stroke-current stroke-2': !isLiked,
           }"
           viewBox="0 0 24 24"
         >
@@ -314,11 +387,11 @@ const toggleAdd = () => {
         </svg>
       </button>
       <div
-        class="absolute -top-8 left-1/2 transform -translate-x-1/2 py-1 px-2 bg-gray-800 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
+        class="absolute -top-8 left-1/2 transform -translate-x-1/2 py-1 px-2 bg-[#232323] text-[#fff] text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
       >
-        {{ isLiked ? 'Unlike' : 'Like' }}
+        {{ isLiked ? (props.likeTooltip ?? 'Unlike') : (props.likeTooltip ?? 'Like') }}
         <div
-          class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-r-4 border-b-0 border-t-4 border-l-transparent border-r-transparent border-t-gray-800"
+          class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-r-4 border-b-0 border-t-4 border-l-transparent border-r-transparent border-t-[#232323]"
         ></div>
       </div>
     </div>
@@ -326,15 +399,15 @@ const toggleAdd = () => {
     <!-- Repost Button -->
     <div class="relative group">
       <button
-        @click="toggleRepost"
         class="p-2 rounded-full transition-colors duration-200"
-        aria-label="Repost"
+        @click="toggleRepost"
+        :aria-label="props.repostTooltip ?? 'Repost'"
       >
         <svg
           class="w-5 h-5"
           :class="{
-            'text-green-500': isReposted,
-            'text-gray-600': !isReposted,
+            'text-[#189157]': isReposted,
+            'text-[#797979]': !isReposted,
           }"
           fill="currentColor"
           viewBox="0 0 24 24"
@@ -345,11 +418,11 @@ const toggleAdd = () => {
         </svg>
       </button>
       <div
-        class="absolute -top-8 left-1/2 transform -translate-x-1/2 py-1 px-2 bg-gray-800 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
+        class="absolute -top-8 left-1/2 transform -translate-x-1/2 py-1 px-2 bg-[#232323] text-[#fff] text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
       >
-        {{ isReposted ? 'Undo repost' : 'Repost' }}
+        {{ isReposted ? (props.repostTooltip ?? 'Undo repost') : (props.repostTooltip ?? 'Repost') }}
         <div
-          class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-r-4 border-b-0 border-t-4 border-l-transparent border-r-transparent border-t-gray-800"
+          class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-r-4 border-b-0 border-t-4 border-l-transparent border-r-transparent border-t-[#232323]"
         ></div>
       </div>
     </div>
@@ -357,15 +430,15 @@ const toggleAdd = () => {
     <!-- Add Button -->
     <div class="relative group">
       <button
-        @click="toggleAdd"
         class="p-2 rounded-full transition-colors duration-200"
-        aria-label="Add to collection"
+        @click="toggleAdd"
+        :aria-label="props.addTooltip ?? 'Add'"
       >
         <svg
           class="w-5 h-5"
           :class="{
-            'text-blue-500': isAdded,
-            'text-gray-600': !isAdded,
+            'text-[#8181f9]': isAdded,
+            'text-[#797979]': !isAdded,
           }"
           fill="currentColor"
           viewBox="0 0 24 24"
@@ -375,24 +448,29 @@ const toggleAdd = () => {
         </svg>
       </button>
       <div
-        class="absolute -top-8 left-1/2 transform -translate-x-1/2 py-1 px-2 bg-gray-800 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
+        class="absolute -top-8 left-1/2 transform -translate-x-1/2 py-1 px-2 bg-[#232323] text-[#fff] text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
       >
-        {{ isAdded ? 'Remove' : 'Add' }}
+        {{ isAdded ? (props.addTooltip ?? 'Remove') : (props.addTooltip ?? 'Add') }}
         <div
-          class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-r-4 border-b-0 border-t-4 border-l-transparent border-r-transparent border-t-gray-800"
+          class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-r-4 border-b-0 border-t-4 border-l-transparent border-r-transparent border-t-[#232323]"
         ></div>
       </div>
     </div>
   </div>
-</template>
-`
+</template>`
+
 export const burgerBtnCode = `<script lang="ts" setup>
 import { ref } from 'vue'
+
+const emits = defineEmits<{
+  (e: 'toggle-menu', value: boolean): void
+}>()
 
 const isOpen = ref(false)
 
 const toggleMenu = () => {
   isOpen.value = !isOpen.value
+  emits('toggle-menu', isOpen.value)
 }
 </script>
 
@@ -403,7 +481,7 @@ const toggleMenu = () => {
     aria-label="Toggle menu"
   >
     <svg
-      class="w-10 h-10 main-text absolute transition-all duration-200"
+      class="w-10 h-10 text-[#fff] absolute transition-all duration-200"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"
@@ -416,7 +494,7 @@ const toggleMenu = () => {
       />
     </svg>
     <svg
-      class="w-10 h-10 main-text absolute transition-all duration-200"
+      class="w-10 h-10 text-[#fff] absolute transition-all duration-200"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"
@@ -425,15 +503,20 @@ const toggleMenu = () => {
       <path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round" />
     </svg>
   </button>
-</template>
-`
+</template>`
+
 export const themeToggleCode = `<script lang="ts" setup>
 import { ref } from 'vue'
+
+const emits = defineEmits<{
+  (e: 'toggle-theme', value: boolean): void
+}>()
 
 const isDark = ref(false)
 
 const toggleTheme = () => {
   isDark.value = !isDark.value
+  emits('toggle-theme', isDark.value)
 }
 </script>
 
@@ -444,7 +527,7 @@ const toggleTheme = () => {
     aria-label="Toggle theme"
   >
     <svg
-      class="w-10 h-10 main-text absolute transition-all duration-200"
+      class="w-10 h-10 text-[#fff] absolute transition-all duration-200"
       :class="{ 'opacity-0': isDark, 'opacity-100': !isDark }"
       fill="none"
       stroke="currentColor"
@@ -459,7 +542,7 @@ const toggleTheme = () => {
       />
     </svg>
     <svg
-      class="w-10 h-10 main-text absolute transition-all duration-300"
+      class="w-10 h-10 text-[#fff] absolute transition-all duration-300"
       :class="{ 'opacity-100': isDark, 'opacity-0': !isDark }"
       fill="none"
       stroke="currentColor"
@@ -474,5 +557,4 @@ const toggleTheme = () => {
       />
     </svg>
   </button>
-</template>
-`
+</template>`

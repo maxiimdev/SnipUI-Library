@@ -16,6 +16,7 @@ const selectOption = (option: string) => {
 </script>
 
 <template>
+  <ClientOnly>
   <label class="flex items-center gap-2 cursor-pointer">
     <input
       type="checkbox"
@@ -34,4 +35,5 @@ const selectOption = (option: string) => {
     </div>
     <span class="main-text">{{ isSwitched ? 'Active' : 'Disabled' }}</span>
   </label>
+  </ClientOnly>
 </template>

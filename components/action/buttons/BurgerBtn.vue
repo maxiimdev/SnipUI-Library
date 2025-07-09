@@ -9,6 +9,7 @@ const toggleMenu = () => {
 </script>
 
 <template>
+  <ClientOnly>
   <button
     class="w-10 h-10 flex items-center justify-center"
     @click="toggleMenu"
@@ -37,4 +38,5 @@ const toggleMenu = () => {
       <path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round" />
     </svg>
   </button>
+  </ClientOnly>
 </template>

@@ -5,6 +5,7 @@ const isChecked = ref(false)
 </script>
 
 <template>
+  <ClientOnly>
   <label class="flex items-center gap-2 cursor-pointer">
     <input
       type="checkbox"
@@ -34,4 +35,5 @@ const isChecked = ref(false)
     </div>
     <span class="mani-text">Agree</span>
   </label>
+  </ClientOnly>
 </template>
