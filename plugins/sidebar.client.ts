@@ -1,4 +1,3 @@
-// plugins/sidebar.client.ts
 export const sidebarConfig = {
   '/components': {
     text: 'Components',
@@ -50,10 +49,7 @@ export const sidebarConfig = {
         items: [
           { name: 'About', path: '/docs/started/about' },
           { name: 'Quick Start', path: '/docs/started/quickStart' },
-          {
-            name: 'Configuration',
-            path: '/docs/started/configuration',
-          },
+          { name: 'Configuration', path: '/docs/started/configuration' },
         ],
       },
       {
@@ -74,26 +70,43 @@ export const sidebarConfig = {
   },
 }
 
-export default defineNuxtPlugin(() => {
-  const initializeSidebarData = () => {
-    const route = useRoute()
+export default defineNuxtPlugin((nuxtApp) => {
+  const route = useRoute()
+
+  const updateSidebarData = () => {
+    const path = route.path
+    if (path === '/' || path === '') {
+      useState('sidebar-text').value = ''
+      useState('sidebar-items').value = []
+      return
+    }
+
     for (const [pathPrefix, config] of Object.entries(sidebarConfig)) {
-      if (route.path.startsWith(pathPrefix)) {
+      if (path.startsWith(pathPrefix)) {
         useState('sidebar-text').value = config.text
         useState('sidebar-items').value = config.items
         return
       }
     }
+
+    // Если маршрут не соответствует, очищаем сайдбар
     useState('sidebar-text').value = ''
     useState('sidebar-items').value = []
   }
 
-  initializeSidebarData()
+  // Инициализация при загрузке
+  updateSidebarData()
 
-  if (process.client) {
-    const router = useRouter()
-    router.afterEach(() => {
-      initializeSidebarData()
-    })
-  }
+  // Реактивное обновление при изменении маршрута
+  nuxtApp.hook('page:finish', () => {
+    updateSidebarData()
+  })
+
+  // Реактивное наблюдение за маршрутом
+  watch(
+    () => route.path,
+    () => {
+      updateSidebarData()
+    }
+  )
 })

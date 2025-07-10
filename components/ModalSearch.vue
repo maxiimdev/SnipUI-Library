@@ -1,87 +1,145 @@
 <script lang="ts" setup>
 import { ref, onMounted, onUnmounted, computed } from 'vue'
-import { sidebarConfig } from '~/plugins/sidebar'
+import { sidebarConfig } from '~/plugins/sidebar.client'
+import { Icon } from '@iconify/vue'
 
-// Определяем emit для закрытия модалки
 const emit = defineEmits<{
   (e: 'close'): void
 }>()
 
-// Реф для инпута
 const searchInput = ref<HTMLInputElement | null>(null)
 const searchQuery = ref('')
 
-// Плоский список элементов для поиска, разделенный по категориям
+// Плоский список всех элементов для поиска
 const searchItems = computed(() => {
-  const gettingStartedItems: {
+  const items: {
     name: string
     path: string
     category: string
+    section: string
   }[] = []
-  const componentItems: { name: string; path: string; category: string }[] = []
 
-  // Обработка раздела Documentation > Getting Started
+  // Обработка раздела Documentation
   const docsSection = sidebarConfig['/docs']
-  const gettingStartedGroup = docsSection.items.find(
-    group => group.text === 'Get Started'
-  )
-  if (gettingStartedGroup) {
-    gettingStartedGroup.items.forEach(item => {
-      gettingStartedItems.push({
-        name: item.name,
-        path: item.path,
-        category: 'Get Started',
+  if (docsSection) {
+    docsSection.items.forEach(group => {
+      group.items.forEach(item => {
+        items.push({
+          name: item.name,
+          path: item.path,
+          category: group.text,
+          section: 'Documentation',
+        })
       })
     })
   }
 
   // Обработка раздела Components
   const componentsSection = sidebarConfig['/components']
-  componentsSection.items.forEach(group => {
-    group.items.forEach(item => {
-      componentItems.push({
-        name: item.name,
-        path: item.path,
-        category: group.text,
+  if (componentsSection) {
+    componentsSection.items.forEach(group => {
+      group.items.forEach(item => {
+        items.push({
+          name: item.name,
+          path: item.path,
+          category: group.text,
+          section: 'Components',
+        })
       })
     })
+  }
+
+  return items
+})
+
+// Группировка элементов по секциям и категориям
+const groupedItems = computed(() => {
+  const groups: {
+    Documentation: {
+      [category: string]: {
+        name: string
+        path: string
+        category: string
+        section: string
+      }[]
+    }
+    Components: {
+      [category: string]: {
+        name: string
+        path: string
+        category: string
+        section: string
+      }[]
+    }
+  } = { Documentation: {}, Components: {} }
+
+  searchItems.value.forEach(item => {
+    const section = item.section as 'Documentation' | 'Components'
+    if (!groups[section][item.category]) {
+      groups[section][item.category] = []
+    }
+    groups[section][item.category].push(item)
   })
 
-  return { gettingStartedItems, componentItems }
+  return groups
 })
 
 // Фильтрация элементов по поисковому запросу
 const filteredItems = computed(() => {
   const query = searchQuery.value.trim().toLowerCase()
-  const result = {
-    gettingStarted: query
-      ? searchItems.value.gettingStartedItems.filter(item =>
-          item.name.toLowerCase().includes(query)
-        )
-      : searchItems.value.gettingStartedItems,
-    components: query
-      ? searchItems.value.componentItems.filter(item =>
-          item.name.toLowerCase().includes(query)
-        )
-      : searchItems.value.componentItems,
-  }
+  const result: {
+    Documentation: {
+      [category: string]: {
+        name: string
+        path: string
+        category: string
+        section: string
+      }[]
+    }
+    Components: {
+      [category: string]: {
+        name: string
+        path: string
+        category: string
+        section: string
+      }[]
+    }
+  } = { Documentation: {}, Components: {} }
+
+  Object.entries(groupedItems.value).forEach(([section, categories]) => {
+    Object.entries(categories).forEach(([category, items]) => {
+      const filtered = query
+        ? items.filter(item => item.name.toLowerCase().includes(query))
+        : items
+      if (filtered.length > 0) {
+        result[section as 'Documentation' | 'Components'][category] = filtered
+      }
+    })
+  })
+
   return result
 })
 
-// Устанавливаем фокус и запрещаем скролл
+// Закрытие модалки по клавише Esc
+const handleKeydown = (event: KeyboardEvent) => {
+  if (event.key === 'Escape') {
+    emit('close')
+  }
+}
+
 onMounted(() => {
   document.body.classList.add('no-scroll')
   if (searchInput.value) {
     searchInput.value.focus()
   }
+  window.addEventListener('keydown', handleKeydown)
 })
 
-// Удаляем класс при размонтировании
 onUnmounted(() => {
   document.body.classList.remove('no-scroll')
+  window.removeEventListener('keydown', handleKeydown)
 })
 
-// Функция для закрытия модалки
 const closeModal = () => {
   emit('close')
 }
@@ -93,27 +151,40 @@ const closeModal = () => {
       class="fixed inset-0 bg-black/40 flex items-center justify-center z-200"
       @click="closeModal"
     >
-      <div class="main-bg p-5 rounded-xl w-[31rem] h-[29rem]" @click.stop>
+      <div class="main-bg p-6 rounded-xl w-[31rem] h-[29rem]" @click.stop>
         <div
           class="relative flex items-center border main-border gap-2 w-full p-2 rounded-xl main-text main-div"
         >
-          <Icon
-            name="bitcoin-icons:search-outline"
-            class="text-2xl main-text"
-          />
+          <svg
+            class="main-text"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M15.553 15.553a7.06 7.06 0 1 0-9.985-9.985a7.06 7.06 0 0 0 9.985 9.985m0 0L20 20"
+            />
+          </svg>
+
           <input
             ref="searchInput"
             v-model="searchQuery"
             type="text"
-            class="w-full bg-transparent text-[14px] outline-none main-text"
+            class="w-full bg-transparent text-sm outline-none main-text"
             placeholder="Search documentation..."
           />
         </div>
-        <div class="mt-3 overflow-y-auto max-h-[24rem]">
+        <div class="mt-4 overflow-y-auto max-h-[24rem]">
           <div
             v-if="
-              filteredItems.gettingStarted.length === 0 &&
-              filteredItems.components.length === 0 &&
+              Object.keys(filteredItems.Documentation).length === 0 &&
+              Object.keys(filteredItems.Components).length === 0 &&
               searchQuery
             "
             class="text-sm text-p m-3"
@@ -122,57 +193,122 @@ const closeModal = () => {
           </div>
           <div
             v-else-if="
-              filteredItems.gettingStarted.length === 0 &&
-              filteredItems.components.length === 0
+              Object.keys(filteredItems.Documentation).length === 0 &&
+              Object.keys(filteredItems.Components).length === 0
             "
             class="text-sm text-p m-3"
           >
             Start typing to search...
           </div>
           <div v-else>
-            <!-- Getting Started Section -->
-            <div v-if="filteredItems.gettingStarted.length">
-              <p class="text-sm text-p m-3">Get Started</p>
-              <ul>
-                <li
-                  v-for="item in filteredItems.gettingStarted"
-                  :key="item.path"
-                  class="mb-2"
-                >
-                  <RouterLink
-                    :to="item.path"
-                    class="block p-2 rounded-lg main-text active-component-hover text-[14px]"
-                    @click="closeModal"
-                  >
-                    <span class="font-medium">{{ item.name }}</span>
-                    <span class="text-sm text-p ml-2"
-                      >({{ item.category }})</span
+            <!-- Documentation Section -->
+            <div
+              v-if="Object.keys(filteredItems.Documentation).length"
+              class="mb-6"
+            >
+              <div class="flex items-center gap-4 mb-4">
+                <div
+                  class="w-8 h-px component-bg transition-all duration-500"
+                ></div>
+                <p class="main-text text-lg font-medium">Documentation</p>
+              </div>
+              <div
+                v-for="(items, category) in filteredItems.Documentation"
+                :key="category"
+                class="mb-4"
+              >
+                <p class="text-sm text-p m-3 font-medium">{{ category }}</p>
+                <ul>
+                  <li v-for="item in items" :key="item.path" class="mb-2">
+                    <RouterLink
+                      :to="item.path"
+                      class="group/link flex items-center gap-3 py-2 px-3 rounded-lg transition-all duration-300 active-component-hover main-text text-sm"
+                      @click="closeModal"
                     >
-                  </RouterLink>
-                </li>
-              </ul>
+                      <div
+                        class="w-1 h-1 rounded-full bg-gray-400 transition-all duration-300 group-hover/link:w-6 group-hover/link:h-px"
+                      ></div>
+                      <span class="font-medium">{{ item.name }}</span>
+
+                      <div
+                        class="ml-auto opacity-0 transition-all duration-300 group-hover/link:opacity-100 group-hover/link:translate-x-1"
+                      >
+                        <svg
+                          class="w-4 h-4 main-text"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
+                          />
+                        </svg>
+                      </div>
+                    </RouterLink>
+                  </li>
+                </ul>
+              </div>
             </div>
+
+            <!-- Divider -->
+            <div
+              v-if="
+                Object.keys(filteredItems.Documentation).length &&
+                Object.keys(filteredItems.Components).length
+              "
+              class="h-px active-component my-4 w-[95%] mx-auto"
+            ></div>
+
             <!-- Components Section -->
-            <div v-if="filteredItems.components.length">
-              <p class="text-sm text-p m-3">Components</p>
-              <ul>
-                <li
-                  v-for="item in filteredItems.components"
-                  :key="item.path"
-                  class="mb-2"
-                >
-                  <RouterLink
-                    :to="item.path"
-                    class="block p-2 rounded-lg main-text active-component-hover text-[14px]"
-                    @click="closeModal"
-                  >
-                    <span class="font-medium">{{ item.name }}</span>
-                    <span class="text-sm text-p ml-2"
-                      >({{ item.category }})</span
+            <div v-if="Object.keys(filteredItems.Components).length">
+              <div class="flex items-center gap-4 mb-4">
+                <div
+                  class="w-8 h-px component-bg transition-all duration-500"
+                ></div>
+                <p class="main-text text-lg font-medium">Components</p>
+              </div>
+              <div
+                v-for="(items, category) in filteredItems.Components"
+                :key="category"
+                class="mb-4"
+              >
+                <p class="text-sm text-p m-3 font-medium">{{ category }}</p>
+                <ul>
+                  <li v-for="item in items" :key="item.path" class="mb-2">
+                    <RouterLink
+                      :to="item.path"
+                      class="group/link flex items-center gap-3 py-2 px-3 rounded-lg transition-all duration-300 active-component-hover main-text text-sm"
+                      @click="closeModal"
                     >
-                  </RouterLink>
-                </li>
-              </ul>
+                      <div
+                        class="w-1 h-1 rounded-full bg-gray-400 transition-all duration-300 group-hover/link:w-6 group-hover/link:h-px"
+                      ></div>
+                      <span class="font-medium">{{ item.name }}</span>
+
+                      <div
+                        class="ml-auto opacity-0 transition-all duration-300 group-hover/link:opacity-100 group-hover/link:translate-x-1"
+                      >
+                        <svg
+                          class="w-4 h-4 main-text"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
+                          />
+                        </svg>
+                      </div>
+                    </RouterLink>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -180,9 +316,7 @@ const closeModal = () => {
     </div>
   </Teleport>
 </template>
-
 <style>
-/* Глобальный стиль для запрета скролла */
 body.no-scroll {
   overflow: hidden;
 }

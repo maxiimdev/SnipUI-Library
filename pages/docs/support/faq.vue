@@ -127,9 +127,9 @@ const faqSections = [
 
 <template>
   <ClientOnly>
-    <div class="w-full max-w-7xl mx-auto py-6 flex flex-col  gap-12">
+    <div class="flex flex-col gap-16 py-6">
       <!-- Hero Section -->
-      <div class="">
+      <div class="w-full">
         <h1 class="main-text text-4xl mb-4 font-light tracking-tight">
           Frequently Asked Questions
         </h1>
@@ -144,96 +144,117 @@ const faqSections = [
         </p>
       </div>
 
+      <!-- FAQ Sections -->
       <div
         v-for="section in faqSections"
         :key="section.id"
         :id="section.id"
-        class="space-y-6"
+        class="group"
       >
-        <div class="main-div rounded-lg shadow-xl p-6">
-          <div class="flex items-center gap-4 mb-6">
-            <div class="w-8 h-px bg-gray-300"></div>
-            <h2 class="main-text text-xl font-medium tracking-wide">
-              {{ section.title }}
-            </h2>
-          </div>
+        <div class="flex items-center gap-4 mb-6">
+          <div
+            class="w-8 h-px bg-gray-300 transition-all duration-500 group-hover:bg-gray-500"
+          ></div>
+          <h2 class="main-text text-2xl font-medium tracking-wide">
+            {{ section.title }}
+          </h2>
+        </div>
 
-          <div class="space-y-4">
+        <div
+          class="main-div rounded-xl p-8 border main-border transition-all duration-300"
+        >
+          <div class="space-y-6">
             <div
               v-for="(faq, index) in section.questions"
               :key="index"
-              class="border-b border-gray-200 last:border-b-0 pb-4 last:pb-0"
+              class="border-b border-gray-200 last:border-b-0 pb-6 last:pb-0"
             >
-              <h3
-                class="main-text text-lg font-medium mb-3 flex items-start gap-3"
-              >
-                <span class="text-indigo-600 font-bold text-xl leading-none"
-                  >Q:</span
-                >
-                {{ faq.question }}
-              </h3>
-              <div
-                class="ml-6 text-p leading-relaxed opacity-90 flex items-start gap-3"
-              >
-                <span class="text-green-600 font-bold text-xl leading-none"
-                  >A:</span
-                >
-                <span>{{ faq.answer }}</span>
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-2 h-2 rounded-full component-bg mt-2 flex-shrink-0"
+                ></div>
+                <div class="flex-1">
+                  <h3 class="main-text text-lg font-medium mb-3">
+                    {{ faq.question }}
+                  </h3>
+                  <p class="text-p leading-relaxed opacity-90">
+                    {{ faq.answer }}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div
-        class="main-div rounded-lg shadow-xl p-6 active-component"
-      >
-        <h2 class="main-text text-xl font-medium mb-4">
-          Still Have Questions?
-        </h2>
-        <p class="text-p mb-4">
-          If you couldn't find the answer you were looking for, try these
-          resources:
-        </p>
-        <div class="space-y-2">
-          <div class="flex items-center gap-3">
-            <div class="w-2 h-2 bg-indigo-500 rounded-full"></div>
-            <span class="text-p">
-              Check the
-              <RouterLink
-                to="/docs/usage/examples"
-                class="tag-class hover:underline"
-                >examples page</RouterLink
-              >
-              for more usage patterns
-            </span>
-          </div>
-          <div class="flex items-center gap-3">
-            <div class="w-2 h-2 bg-indigo-500 rounded-full"></div>
-            <span class="text-p">
-              Visit the
-              <RouterLink
-                to="/docs/support/troubleshooting"
-                class="tag-class hover:underline"
-                >troubleshooting guide</RouterLink
-              >
-              for common issues
-            </span>
-          </div>
-          <div class="flex items-center gap-3">
-            <div class="w-2 h-2 bg-indigo-500 rounded-full"></div>
-            <span class="text-p">
-              Browse the
-              <RouterLink
-                to="/components"
-                class="tag-class hover:underline"
-                >components page</RouterLink
-              >
-              for detailed examples
-            </span>
+      <!-- Additional Resources Section -->
+      <div class="group">
+        <div class="flex items-center gap-4 mb-6">
+          <div
+            class="w-8 h-px bg-gray-300 transition-all duration-500 group-hover:bg-gray-500"
+          ></div>
+          <h2 class="main-text text-2xl font-medium tracking-wide">
+            Still Have Questions?
+          </h2>
+        </div>
+
+        <div
+          class="main-div rounded-xl p-8 border main-border transition-all duration-300"
+        >
+          <p class="text-p mb-6 leading-relaxed">
+            If you couldn't find the answer you were looking for, try these
+            resources:
+          </p>
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <div
+                class="w-2 h-2 rounded-full component-bg mt-2 flex-shrink-0"
+              ></div>
+              <div>
+                <span class="text-p">
+                  Check the
+                  <RouterLink
+                    to="/docs/usage/examples"
+                    class="tag-class hover:underline"
+                    >examples page</RouterLink
+                  >
+                  for more usage patterns
+                </span>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div
+                class="w-2 h-2 rounded-full component-bg mt-2 flex-shrink-0"
+              ></div>
+              <div>
+                <span class="text-p">
+                  Visit the
+                  <RouterLink
+                    to="/docs/support/troubleshooting"
+                    class="tag-class hover:underline"
+                    >troubleshooting guide</RouterLink
+                  >
+                  for common issues
+                </span>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div
+                class="w-2 h-2 rounded-full component-bg mt-2 flex-shrink-0"
+              ></div>
+              <div>
+                <span class="text-p">
+                  Browse the
+                  <RouterLink to="/components" class="tag-class hover:underline"
+                    >components page</RouterLink
+                  >
+                  for detailed examples
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-   </div>
+    </div>
   </ClientOnly>
 </template>

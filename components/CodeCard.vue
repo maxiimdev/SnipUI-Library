@@ -26,7 +26,7 @@ const props = defineProps({
 })
 
 const colorMode = useColorMode()
-const isPreview = ref(!props.isCompact) // Отключаем превью, если isCompact=true
+const isPreview = ref(!props.isCompact)
 const copied = ref(false)
 const highlightedCode = ref('')
 const componentKey = ref(0)
@@ -64,51 +64,71 @@ const restartAnimation = () => {
 </script>
 
 <template>
-  <div
-    class="mt-3 flex flex-col w-[40rem] mx-auto items-center gap-3"
-    :class="{ 'w-[36rem]': isCompact }"
-  >
-    <div class="w-full px-5" v-if="card.title || card.text">
-      <h1 v-if="card.title" class="text-xl main-text font-medium">
-        {{ card.title }}
-      </h1>
-      <p v-if="card.text" class="text-p text-[14px]">{{ card.text }}</p>
+  <div class="w-[40rem] mx-auto flex flex-col gap-2">
+    <!-- Component Info -->
+    <div v-if="card.title || card.text" class="space-y-2">
+      <div class="flex items-start gap-3 mt-6">
+        <div class="w-2 h-2 rounded-full component-bg mt-2 flex-shrink-0"></div>
+        <div>
+          <h3 v-if="card.title" class="main-text text-lg font-medium">
+            {{ card.title }}
+          </h3>
+          <p v-if="card.text" class="text-p leading-relaxed opacity-90">
+            {{ card.text }}
+          </p>
+        </div>
+      </div>
     </div>
 
-    <div class="flex flex-col gap-3 w-full">
-      <div v-if="!isCompact" class="flex gap-2 px-3">
+    <!-- Component Content -->
+    <div class="space-y-4">
+      <!-- Tab Navigation -->
+      <div v-if="!isCompact" class="flex gap-2">
         <button
-          class="active-component-hover py-2 px-3 cursor-pointer rounded-xl"
           @click="isPreview = true"
+          :class="[
+            'py-2 px-4 rounded-lg transition-all duration-200 text-sm font-medium',
+            isPreview
+              ? 'main-text'
+              : 'active-component-hover text-p'
+          ]"
         >
           Preview
         </button>
         <button
-          class="active-component-hover py-2 px-3 cursor-pointer rounded-xl"
           @click="isPreview = false"
+          :class="[
+            'py-2 px-4 rounded-lg transition-all duration-200 text-sm font-medium',
+            !isPreview
+              ? ' main-text'
+              : 'active-component-hover text-p'
+          ]"
         >
           Code
         </button>
       </div>
 
+      <!-- Component Display -->
       <div
         :class="[
-          'border-1 main-border relative rounded-xl w-full',
+          'border main-border relative rounded-xl w-full transition-all duration-300',
           isCompact ? 'h-auto' : 'h-[31rem]',
         ]"
       >
+        <!-- Reload Button -->
         <button
           v-if="isReload && isPreview"
           @click="restartAnimation"
-          class="py-2 px-3 absolute top-3 right-3 cursor-pointer hover:opacity-80 transition-opacity z-50"
+          class="absolute top-4 right-4 p-2 rounded-lg active-component-hover transition-all duration-200 z-50"
           title="Restart animation"
         >
-          <Icon name="mdi:refresh" size="20" />
+          <Icon name="mdi:refresh" size="18" class="text-p" />
         </button>
 
+        <!-- Preview Mode -->
         <div
           v-if="isPreview && !isCompact"
-          class="h-full flex justify-center items-center"
+          class="h-full flex justify-center items-center p-6"
         >
           <div
             v-if="isCodePreview && component"
@@ -125,36 +145,43 @@ const restartAnimation = () => {
           <span
             v-else
             :class="card.content?.props?.class"
-            class="h-full flex items-center justify-center"
+            class="h-full flex items-center justify-center text-p"
           >
             {{ card.content?.children }}
           </span>
         </div>
 
-        <div v-else class="h-full overflow-hidden">
+        <!-- Code Mode -->
+        <div v-else class="h-full overflow-hidden rounded-xl">
           <div
-            class="flex items-center justify-between px-4 py-2 border-b main-border code-bg rounded-t-xl"
+            class="flex items-center justify-between px-4 py-3 border-b main-border code-bg rounded-t-xl"
           >
             <div class="flex items-center gap-2">
-              <span class="text-sm text-gray-400 ml-2">{{
+              <span class="text-sm text-p font-medium">{{
                 card.codeTitle
               }}</span>
             </div>
             <button
               @click="copyCode"
-              class="flex items-center gap-2 py-1 code-text rounded-md transition-colors duration-200 text-sm"
+              :class="[
+                'flex items-center gap-2 py-1.5 px-3 rounded-lg transition-all duration-200 text-sm font-medium',
+                copied
+                  ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
+                  : 'active-component-hover code-text'
+              ]"
             >
               <Icon
                 :name="copied ? 'mdi:check' : 'mdi:content-copy'"
                 size="16"
               />
+              {{ copied ? 'Copied!' : 'Copy' }}
             </button>
           </div>
-          <div class="flex h-full pl-3 overflow-auto code-bg text-sm rounded-b-xl">
-            <div class="flex-1 p-3 mb-10 overflow-y-auto">
+          <div class="flex h-full overflow-auto code-bg rounded-b-xl">
+            <div class="flex-1 p-4 mb-10 overflow-y-auto">
               <div
                 v-html="highlightedCode"
-                class="shiki break-words whitespace-pre-wrap"
+                class="shiki break-words whitespace-pre-wrap text-sm"
                 :class="colorMode.value"
               ></div>
             </div>

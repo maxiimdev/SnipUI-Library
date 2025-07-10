@@ -78,9 +78,7 @@ const codeCards = [
 
 <template>
   <ClientOnly>
-    <div
-      class="w-full max-w-7xl mx-auto py-6 flex flex-col lg:flex-row gap-12"
-    >
+    <div class="w-full max-w-7xl mx-auto py-6 flex flex-col lg:flex-row gap-12">
       <div>
         <!-- Hero Section -->
         <div class="mb-16">
@@ -141,12 +139,12 @@ const codeCards = [
                 </div>
               </div>
 
-              <div class="border-t border-gray-200 pt-6">
+              <div class="border-t border-gray-200 pt-6 flex flex-col gap-3">
                 <CodeCard :card="codeCards[0]" isCompact />
                 <CodeCard :card="codeCards[1]" isCompact />
               </div>
 
-              <div class="border-t border-gray-200 pt-6">
+              <div class="border-t border-gray-200 pt-6 flex flex-col gap-3">
                 <CodeCard :card="codeCards[2]" isCompact />
                 <CodeCard :card="codeCards[3]" isCompact />
               </div>

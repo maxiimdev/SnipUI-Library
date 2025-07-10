@@ -21,7 +21,7 @@ useState('right-sidebar-items').value = [
     <div class="flex flex-col gap-16 py-6">
       <!-- Hero Section -->
       <div class="w-full">
-        <div class="mb-8">
+        <div class="">
           <h1 class="main-text text-4xl mb-4 font-light tracking-tight">
             About My UI Library
           </h1>

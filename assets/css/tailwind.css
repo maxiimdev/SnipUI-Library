@@ -33,6 +33,13 @@ button {
 }
 
 @layer base {
+  .bg-footer {
+    @apply bg-[#fafafa]
+  }
+
+  .dark-mode .bg-footer {
+    @apply bg-[#151515]
+  }
   .hover-obr {
     @apply hover:text-[var(--text)];
   }

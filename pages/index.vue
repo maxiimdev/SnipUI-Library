@@ -52,7 +52,7 @@ const codeExample = `<template>
 <template>
   <div class="min-h-screen">
     <!-- Hero Section -->
-    <section class="relative px-6 py-20 lg:py-32 overflow-hidden">
+    <section class="relative px-6 py-20 lg:py-32 overflow-hidden h-screen">
       <div class="relative max-w-6xl mx-auto text-center">
         <div class="mb-8">
           <div
@@ -60,7 +60,7 @@ const codeExample = `<template>
           >
             <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
             <span class="text-sm main-text opacity-70"
-              >Ready to use • No installation required</span
+              >Snip UI • Ready to use • No installation required</span
             >
           </div>
         </div>
@@ -173,17 +173,13 @@ const codeExample = `<template>
           <div class="order-1 lg:order-2">
             <div class="main-div rounded-xl shadow-2xl p-8 active-component">
               <h3 class="main-text text-xl font-medium mb-4">
-                Welcome to My UI Library
+                Welcome to Snip UI
               </h3>
               <p class="text-p opacity-80 mb-6">
                 Modern Vue 3 components ready to use
               </p>
               <div class="flex items-center gap-4">
-                <div
-                  class="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center text-white font-bold"
-                >
-                  UI
-                </div>
+                <Icon name="arcticons:nequi-colombia" size="50" />
                 <div>
                   <div class="main-text font-medium">Component Library</div>
                   <div class="text-p text-sm">
@@ -197,47 +193,8 @@ const codeExample = `<template>
       </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="px-6 py-20">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-          <h2
-            class="main-text text-3xl lg:text-4xl font-light tracking-tight mb-4"
-          >
-            Why choose My UI Library?
-          </h2>
-          <p class="text-p text-lg opacity-70 max-w-2xl mx-auto">
-            Built with modern web standards and best practices, designed for
-            developers who value quality and efficiency.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div
-            v-for="(feature, index) in features"
-            :key="index"
-            class="group main-div rounded-xl p-6 transition-all duration-300 hover:shadow-xl hover:scale-105"
-          >
-            <div
-              class="text-4xl mb-4 transition-transform duration-300 group-hover:scale-110"
-            >
-              {{ feature.icon }}
-            </div>
-            <h3 class="main-text text-lg font-medium mb-3">
-              {{ feature.title }}
-            </h3>
-            <p class="text-p opacity-80 leading-relaxed">
-              {{ feature.description }}
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- CTA Section -->
-    <section
-      class="px-6 py-20 main-div"
-    >
+    <section class="px-6 py-20 main-div">
       <div class="max-w-4xl mx-auto text-center">
         <h2 class="text-3xl lg:text-4xl font-light tracking-tight mb-4">
           Ready to build something amazing?
@@ -331,7 +288,7 @@ const codeExample = `<template>
       <div class="max-w-6xl mx-auto">
         <div class="grid md:grid-cols-4 gap-8">
           <div class="md:col-span-2">
-            <h3 class="main-text text-lg font-medium mb-4">My UI Library</h3>
+            <h3 class="main-text text-lg font-medium mb-4">Snip UI</h3>
             <p class="text-p opacity-70 mb-4 max-w-md">
               Modern Vue 3 components for building beautiful interfaces. Copy,
               paste, and customize to fit your needs.
@@ -385,13 +342,6 @@ const codeExample = `<template>
               </RouterLink>
             </div>
           </div>
-        </div>
-
-        <div class="mt-12 pt-8 border-t border-gray-200 text-center">
-          <p class="text-p opacity-60">
-            © 2025 My UI Library. Built with Vue 3, TypeScript, and Tailwind
-            CSS.
-          </p>
         </div>
       </div>
     </footer>

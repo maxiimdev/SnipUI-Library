@@ -2,37 +2,10 @@
 definePageMeta({
   layout: 'sidebar',
 })
-
-useState('sidebar-text').value = 'Documentation'
-
-useState('sidebar-items').value = [
-  {
-    text: 'Get Started',
-    items: [
-      { name: 'About', path: '/docs/started/about' },
-      { name: 'Quick Start', path: '/docs/started/quickStart' },
-      { name: 'Configuration', path: '/docs/started/configuration' },
-    ],
-  },
-  {
-    text: 'Usage',
-    items: [
-      { name: 'Examples', path: '/docs/usage/examples' },
-      { name: 'How It Works', path: '/docs/usage/howItWorks' },
-    ],
-  },
-  {
-    text: 'Support',
-    items: [
-      { name: 'FAQ', path: '/docs/support/faq' },
-      { name: 'Troubleshooting', path: '/docs/support/troubleshooting' },
-    ],
-  },
-]
 </script>
 
 <template>
-  <div class="w-3/4">
+  <div class="w-3/4 lg:pl-20 2xl:pl-0">
     <h1 class="main-text text-4xl mb-4 font-light tracking-tight">
       Documentation
     </h1>
