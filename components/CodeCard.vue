@@ -146,7 +146,7 @@ const restartAnimation = () => {
           <span
             v-else
             :class="card.content?.props?.class"
-            class="h-full flex items-center justify-center text-p text-sm sm:text-base"
+            class="h-full flex items-center justify-center text-p text-2xl sm:text-6xl"
           >
             {{ card.content?.children }}
           </span>
@@ -175,7 +175,9 @@ const restartAnimation = () => {
                 :name="copied ? 'mdi:check' : 'mdi:content-copy'"
                 size="16"
               />
-              <span class="hidden sm:inline">{{ copied ? 'Copied!' : 'Copy' }}</span>
+              <span class="hidden sm:inline">{{
+                copied ? 'Copied!' : 'Copy'
+              }}</span>
             </button>
           </div>
           <div class="flex h-full overflow-auto code-bg rounded-b-xl">
