@@ -52,13 +52,17 @@ const codeExample = `<template>
 <template>
   <div class="min-h-screen">
     <!-- Hero Section -->
-    <section class="relative px-4 sm:px-6 py-12 sm:py-20 lg:py-32 overflow-hidden h-auto sm:h-screen">
+    <section
+      class="relative px-4 sm:px-6 py-12 sm:py-20 lg:py-32 overflow-hidden h-auto sm:h-screen"
+    >
       <div class="relative max-w-5xl sm:max-w-6xl mx-auto text-center">
         <div class="mb-6 sm:mb-8">
           <div
             class="inline-flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 active-component rounded-full shadow-lg mb-6 sm:mb-8"
           >
-            <div class="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-green-500 rounded-full animate-pulse"></div>
+            <div
+              class="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-green-500 rounded-full animate-pulse"
+            ></div>
             <span class="text-xs sm:text-sm main-text opacity-70"
               >Snip UI • Ready to use • No installation required</span
             >
@@ -128,19 +132,23 @@ const codeExample = `<template>
         </div>
 
         <!-- Stats -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 max-w-lg sm:max-w-2xl mx-auto">
+        <div
+          class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 max-w-lg sm:max-w-2xl mx-auto"
+        >
           <div v-for="stat in stats" :key="stat.label" class="text-center">
             <div class="main-text text-xl sm:text-3xl font-light mb-1 sm:mb-2">
               {{ stat.number }}
             </div>
-            <div class="text-p text-xs sm:text-sm opacity-60">{{ stat.label }}</div>
+            <div class="text-p text-xs sm:text-sm opacity-60">
+              {{ stat.label }}
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Code Preview Section -->
-    <section class="px-4 sm:px-6 py-12 sm:py-20 main-div">
+    <section class="sm:px-6 py-12 sm:py-20 main-div">
       <div class="max-w-5xl sm:max-w-6xl mx-auto">
         <div class="text-center mb-8 sm:mb-16">
           <h2
@@ -155,12 +163,21 @@ const codeExample = `<template>
 
         <div class="grid lg:grid-cols-2 gap-6 sm:gap-12 items-center">
           <div class="order-2 lg:order-1">
-            <div class="main-div rounded-xl shadow-2xl p-4 sm:p-8 active-component">
+            <div
+              class="main-div rounded-xl shadow-2xl p-4 sm:p-8 active-component"
+            >
               <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-                <div class="w-2 sm:w-3 h-2 sm:h-3 bg-red-500 rounded-full"></div>
-                <div class="w-2 sm:w-3 h-2 sm:h-3 bg-yellow-500 rounded-full"></div>
-                <div class="w-2 sm:w-3 h-2 sm:h-3 bg-green-500 rounded-full"></div>
-                <span class="main-text text-xs sm:text-sm opacity-50 ml-2 sm:ml-4"
+                <div
+                  class="w-2 sm:w-3 h-2 sm:h-3 bg-red-500 rounded-full"
+                ></div>
+                <div
+                  class="w-2 sm:w-3 h-2 sm:h-3 bg-yellow-500 rounded-full"
+                ></div>
+                <div
+                  class="w-2 sm:w-3 h-2 sm:h-3 bg-green-500 rounded-full"
+                ></div>
+                <span
+                  class="main-text text-xs sm:text-sm opacity-50 ml-2 sm:ml-4"
                   >Component.vue</span
                 >
               </div>
@@ -170,8 +187,10 @@ const codeExample = `<template>
             </div>
           </div>
 
-          <div class="order-1 lg:order-2">
-            <div class="main-div rounded-xl shadow-2xl p-4 sm:p-8 active-component">
+          <div class="order-1 lg:order-2 px-5">
+            <div
+              class="main-div rounded-xl shadow-2xl p-4 sm:p-8 active-component"
+            >
               <h3 class="main-text text-lg sm:text-xl font-medium mb-3 sm:mb-4">
                 Welcome to Snip UI
               </h3>
@@ -181,7 +200,9 @@ const codeExample = `<template>
               <div class="flex items-center gap-3 sm:gap-4">
                 <Icon name="arcticons:nequi-colombia" size="40" sm:size="50" />
                 <div>
-                  <div class="main-text font-medium text-sm sm:text-base">Component Library</div>
+                  <div class="main-text font-medium text-sm sm:text-base">
+                    Component Library
+                  </div>
                   <div class="text-p text-xs sm:text-sm">
                     Vue 3 + TypeScript + Tailwind
                   </div>
@@ -196,7 +217,9 @@ const codeExample = `<template>
     <!-- CTA Section -->
     <section class="px-4 sm:px-6 py-12 sm:py-20 main-div">
       <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-light tracking-tight mb-3 sm:mb-4">
+        <h2
+          class="text-2xl sm:text-3xl lg:text-4xl font-light tracking-tight mb-3 sm:mb-4"
+        >
           Ready to build something amazing?
         </h2>
         <p class="text-base sm:text-xl opacity-90 mb-6 sm:mb-8 leading-relaxed">
@@ -248,9 +271,15 @@ const codeExample = `<template>
           </RouterLink>
         </div>
 
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-xs sm:text-sm opacity-70">
+        <div
+          class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-xs sm:text-sm opacity-70"
+        >
           <div class="flex items-center gap-2">
-            <svg class="w-3 sm:w-4 h-3 sm:h-4" fill="currentColor" viewBox="0 0 20 20">
+            <svg
+              class="w-3 sm:w-4 h-3 sm:h-4"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
               <path
                 fill-rule="evenodd"
                 d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -260,7 +289,11 @@ const codeExample = `<template>
             <span>No installation required</span>
           </div>
           <div class="flex items-center gap-2">
-            <svg class="w-3 sm:w-4 h-3 sm:h-4" fill="currentColor" viewBox="0 0 20 20">
+            <svg
+              class="w-3 sm:w-4 h-3 sm:h-4"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
               <path
                 fill-rule="evenodd"
                 d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -270,7 +303,11 @@ const codeExample = `<template>
             <span>100% Free</span>
           </div>
           <div class="flex items-center gap-2">
-            <svg class="w-3 sm:w-4 h-3 sm:h-4" fill="currentColor" viewBox="0 0 20 20">
+            <svg
+              class="w-3 sm:w-4 h-3 sm:h-4"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
               <path
                 fill-rule="evenodd"
                 d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -288,7 +325,9 @@ const codeExample = `<template>
       <div class="max-w-5xl sm:max-w-6xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 sm:gap-8">
           <div class="md:col-span-2">
-            <h3 class="main-text text-base sm:text-lg font-medium mb-3 sm:mb-4">Snip UI</h3>
+            <h3 class="main-text text-base sm:text-lg font-medium mb-3 sm:mb-4">
+              Snip UI
+            </h3>
             <p class="text-p text-sm sm:text-base opacity-70 mb-4 max-w-md">
               Modern Vue 3 components for building beautiful interfaces. Copy,
               paste, and customize to fit your needs.
@@ -296,7 +335,9 @@ const codeExample = `<template>
           </div>
 
           <div>
-            <h4 class="main-text text-sm sm:text-base font-medium mb-3 sm:mb-4">Quick Links</h4>
+            <h4 class="main-text text-sm sm:text-base font-medium mb-3 sm:mb-4">
+              Quick Links
+            </h4>
             <div class="space-y-2">
               <RouterLink
                 to="/components"
@@ -320,7 +361,9 @@ const codeExample = `<template>
           </div>
 
           <div>
-            <h4 class="main-text text-sm sm:text-base font-medium mb-3 sm:mb-4">Support</h4>
+            <h4 class="main-text text-sm sm:text-base font-medium mb-3 sm:mb-4">
+              Support
+            </h4>
             <div class="space-y-2">
               <RouterLink
                 to="/docs/support/faq"
