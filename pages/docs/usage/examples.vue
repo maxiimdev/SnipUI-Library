@@ -78,9 +78,9 @@ const codeCards = [
 
       <!-- Text Components -->
       <div id="text-components" class="group">
-        <div class="flex items-center gap-4 mb-6">
+        <div class="flex items-center gap-4 mb-6 w-1/2 justify-center">
           <div
-            class="w-8 h-px bg-gray-300 transition-all duration-500 group-hover:bg-gray-500"
+            class="w-8 h-px bg-gray-300 transition-all duration-500 group-hover:bg-gray-500 hidden sm:block"
           ></div>
           <h2 class="main-text text-2xl font-medium tracking-wide">
             Text Components
@@ -99,11 +99,11 @@ const codeCards = [
 
       <!-- Button Components -->
       <div id="button-components" class="group">
-        <div class="flex items-center gap-4 mb-6">
+        <div class="flex items-center gap-4 mb-6 w-1/2 justify-center">
           <div
-            class="w-8 h-px bg-gray-300 transition-all duration-500 group-hover:bg-gray-500"
+            class="w-8 h-px bg-gray-300 transition-all duration-500 group-hover:bg-gray-500 hidden sm:block"
           ></div>
-          <h2 class="main-text text-2xl font-medium tracking-wide">
+          <h2 class="main-text text-2xl font-medium tracking-wide ">
             Button Components
           </h2>
         </div>
@@ -119,9 +119,9 @@ const codeCards = [
 
       <!-- Card Components -->
       <div id="card-components" class="group">
-        <div class="flex items-center gap-4 mb-6">
+        <div class="flex items-center gap-4 mb-6 w-1/2 justify-center">
           <div
-            class="w-8 h-px bg-gray-300 transition-all duration-500 group-hover:bg-gray-500"
+            class="w-8 h-px bg-gray-300 transition-all duration-500 group-hover:bg-gray-500 hidden sm:block"
           ></div>
           <h2 class="main-text text-2xl font-medium tracking-wide">
             Card Components
@@ -139,9 +139,9 @@ const codeCards = [
 
       <!-- Form Components -->
       <div id="form-components" class="group">
-        <div class="flex items-center gap-4 mb-6">
+        <div class="flex items-center gap-4 mb-6 w-1/2 justify-center">
           <div
-            class="w-8 h-px bg-gray-300 transition-all duration-500 group-hover:bg-gray-500"
+            class="w-8 h-px bg-gray-300 transition-all duration-500 group-hover:bg-gray-500 hidden sm:block"
           ></div>
           <h2 class="main-text text-2xl font-medium tracking-wide">
             Form Components
@@ -159,9 +159,9 @@ const codeCards = [
 
       <!-- Modal Components -->
       <div id="modal-components" class="group">
-        <div class="flex items-center gap-4 mb-6">
+        <div class="flex items-center gap-4 mb-6 w-1/2 justify-center">
           <div
-            class="w-8 h-px bg-gray-300 transition-all duration-500 group-hover:bg-gray-500"
+            class="w-8 h-px bg-gray-300 transition-all duration-500 group-hover:bg-gray-500 hidden sm:block"
           ></div>
           <h2 class="main-text text-2xl font-medium tracking-wide">
             Modal Components
