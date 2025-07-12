@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="toggleTheme" class="">
-      <Icon name="material-symbols-light:partly-cloudy-day-outline-rounded" size="28" />
+      <Icon name="material-symbols-light:partly-cloudy-day-outline-rounded" class="text-2xl lg:text-3xl" />
     </button>
   </div>
 </template>

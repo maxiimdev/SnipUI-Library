@@ -104,7 +104,7 @@ watch(() => router.currentRoute.value.fullPath, initializeSidebar)
     class="flex sticky top-0 z-100 flex-col gap-3 px-8 pt-5 h-screen overflow-y-auto text-[14px] main-bg"
   >
     <p class="text-p border main-border rounded-xl p-3 text-center mb-2">
-      {{ props.text }}
+    On This Page
     </p>
 
     <div class="flex flex-col gap-5">

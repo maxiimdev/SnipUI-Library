@@ -1,12 +1,10 @@
 <script lang="ts" setup>
-import { createCode } from '~/assets/code-examples/docs'
 import { cyclingTypingCode } from '~/assets/code-examples/text/typing-codes'
 
 definePageMeta({
   layout: 'sidebar',
 })
 
-useState('sidebar-text').value = 'Documentation'
 useState('right-sidebar-text').value = 'On This Page'
 useState('right-sidebar-items').value = [
   {

@@ -1,16 +1,8 @@
 <script lang="ts" setup>
 import {
-  animationCode,
   commonCode,
-  cssCode,
-  eventCode,
-  findModuleCode,
-  propsCode,
   reactiveCode,
-  responsCode,
-  stylesCode,
   tailwindCode,
-  templateCode,
   tsCode,
 } from '~/assets/code-examples/docs/trouble'
 
@@ -18,7 +10,6 @@ definePageMeta({
   layout: 'sidebar',
 })
 
-useState('sidebar-text').value = 'Documentation'
 useState('right-sidebar-text').value = 'On This Page'
 useState('right-sidebar-items').value = [
   {
@@ -288,9 +279,7 @@ const expensiveValue = computed(() => {
                 <div class="w-2 h-2 bg-indigo-500 rounded-full"></div>
                 <span class="text-p">
                   Browse the
-                  <RouterLink
-                    to="/components"
-                    class="tag-class hover:underline"
+                  <RouterLink to="/components" class="tag-class hover:underline"
                     >components page</RouterLink
                   >
                   for detailed code examples

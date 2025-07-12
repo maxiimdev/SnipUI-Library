@@ -3,7 +3,6 @@ definePageMeta({
   layout: 'sidebar',
 });
 
-useState('sidebar-text').value = 'Documentation';
 useState('right-sidebar-text').value = 'On This Page';
 useState('right-sidebar-items').value = [
   {

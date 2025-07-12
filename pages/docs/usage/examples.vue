@@ -4,18 +4,17 @@ import { dropdownBtnCode } from '~/assets/code-examples/action/buttons-codes'
 import { hoverExpandCardCodes } from '~/assets/code-examples/cards/card-codes'
 import { slideInModalCodes } from '~/assets/code-examples/dialog/modal-codes'
 import { formWithValidationCodes } from '~/assets/code-examples/form/input-codes'
-import { cyclingTypingCode, simpleTypingCode } from '~/assets/code-examples/text/typing-codes'
+import { cyclingTypingCode } from '~/assets/code-examples/text/typing-codes'
 import DropdownBtn from '~/components/action/buttons/DropdownBtn.vue'
 import HoverCard from '~/components/cards/interactive/HoverCard.vue'
 import SlideInModal from '~/components/dialog/modal/SlideInModal.vue'
 import CycleTypewriter from '~/components/text/typing/CycleTypewriter.vue'
-import Typewriter from '~/components/text/typing/Typewriter.vue'
+
 
 definePageMeta({
   layout: 'sidebar',
 })
 
-useState('sidebar-text').value = 'Documentation'
 useState('right-sidebar-text').value = 'On This Page'
 useState('right-sidebar-items').value = [
   {

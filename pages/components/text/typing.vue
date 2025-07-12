@@ -35,7 +35,7 @@ const simpleTyping: Card = {
     props: {
       class: 'text-3xl font-mono main-text w-96',
     },
-    children: 'Hi, this is a print animation on Vue 3!',
+    children: '',
   },
 }
 
@@ -49,7 +49,7 @@ const blinkingCursorTyping: Card = {
     props: {
       class: 'text-3xl font-mono main-text',
     },
-    children: 'Создаем UI с анимацией!',
+    children: '',
   },
 }
 
@@ -63,7 +63,7 @@ const cycleTyping: Card = {
     props: {
       class: 'text-3xl font-mono main-text',
     },
-    children: 'Циклическая печать текста',
+    children: '',
   },
 }
 </script>
