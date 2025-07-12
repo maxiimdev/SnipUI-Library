@@ -20,7 +20,7 @@ const handleKeydown = (event: KeyboardEvent) => {
   const isMacOS = isMac.value
   const isCommandOrCtrl = isMacOS ? event.metaKey : event.ctrlKey
   const isK = event.key === 'k' || event.key === 'K'
-  
+
   if (isCommandOrCtrl && isK) {
     event.preventDefault() // Предотвращаем стандартное поведение браузера
     isSearchModalOpen.value = true // Открываем модалку
@@ -80,7 +80,7 @@ const closeMobileMenu = () => {
       <!-- Mobile menu -->
       <div class="flex items-center gap-3 lg:hidden">
         <button @click="openMobileMenu">
-          <ActionButtonsBurgerBtn :val="isMobileMenuOpen"/>
+          <ActionButtonsBurgerBtn :val="isMobileMenuOpen" />
         </button>
         <h3 class="text-2xl font-light tracking-tight">Menu</h3>
       </div>
@@ -120,7 +120,7 @@ const closeMobileMenu = () => {
 
     <!-- Модалка поиска -->
     <ModalSearch v-if="isSearchModalOpen" @close="closeSearchModal" />
-    
+
     <!-- Мобильное меню -->
     <MobileMenu v-if="isMobileMenuOpen" @close="closeMobileMenu" />
   </header>

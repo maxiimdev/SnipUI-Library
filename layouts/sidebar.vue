@@ -45,7 +45,9 @@ const gridClass = computed(() => {
       </div>
 
       <!-- Основной контент -->
-      <main class="flex justify-center p-8">
+      <main
+        class="flex justify-center md:p-8 p-4 md:w-full w-[22rem]"
+      >
         <div class="w-full max-w-7xl">
           <slot />
         </div>

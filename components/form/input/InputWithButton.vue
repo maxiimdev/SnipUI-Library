@@ -12,13 +12,13 @@ const handleSubmit = (): void => {
 <template>
   <ClientOnly>
     <div class="relative w-[40rem] h-[31rem] flex justify-center items-center">
-      <div class="main-div rounded-lg shadow-xl w-full max-w-sm p-4">
-        <div class="flex items-center gap-3">
+      <div class="main-div rounded-lg shadow-xl  max-w-sm p-4 w-[15rem] md:w-full">
+        <div class="flex items-center gap-3 ">
           <input
             v-model="inputValue"
             type="text"
             placeholder="Enter text..."
-            class="flex-1 px-3 py-2 rounded-md border focus:outline-none text-p"
+            class="flex-1 px-3 py-2 rounded-md border focus:outline-none text-p w-[5rem] md:w-full"
             :class="{
               'border-component': isFocused || inputValue,
               'main-border': !isFocused && !inputValue,

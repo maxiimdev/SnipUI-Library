@@ -64,7 +64,6 @@ const animateStats = (): void => {
       const increment = stat.targetValue / steps
       let currentValue = 0
 
-      // Очищаем предыдущий интервал, если он есть
       if (stat.animationInterval) {
         clearInterval(stat.animationInterval)
       }
@@ -80,7 +79,6 @@ const animateStats = (): void => {
           }
         }
 
-        // Форматируем значение в зависимости от типа метрики
         if (stat.label === 'Users') {
           stat.animatedValue =
             currentValue >= 1000
@@ -126,7 +124,6 @@ const resetStats = (): void => {
           }
         }
 
-        // Форматируем значение аналогично анимации
         if (stat.label === 'Users') {
           stat.animatedValue = '0'
         } else if (stat.label === 'Sales') {
@@ -144,36 +141,36 @@ const resetStats = (): void => {
 
 <template>
   <ClientOnly>
-    <div class="relative w-[40rem] h-[31rem] flex justify-center items-center">
+    <div class="relative w-full max-w-[24rem] sm:max-w-[40rem] min-h-[20rem] sm:h-[31rem] flex justify-center items-center px-4 sm:px-0">
       <div
-        class="main-div rounded-lg shadow-xl w-full max-w-sm transition-all duration-500 cursor-pointer"
+        class="main-div rounded-lg shadow-xl w-full max-w-[20rem] sm:max-w-sm transition-all duration-500 cursor-pointer"
         @click="transform"
       >
-        <div class="p-4">
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-lg font-semibold main-text">{{ stats.title }}</h3>
+        <div class="p-3 sm:p-4">
+          <div class="flex items-center justify-between mb-3 sm:mb-4">
+            <h3 class="text-base sm:text-lg font-semibold main-text">{{ stats.title }}</h3>
             <div
-              class="w-10 h-10 rounded-full flex items-center justify-center active-component"
+              class="w-8 sm:w-10 h-8 sm:h-10 rounded-full flex items-center justify-center active-component"
             >
-              <span class="text-xl">{{ isTransformed ? '📊' : '📈' }}</span>
+              <span class="text-lg sm:text-xl">{{ isTransformed ? '📊' : '📈' }}</span>
             </div>
           </div>
-          <div class="grid grid-cols-2 gap-4 mb-4">
+          <div class="grid grid-cols-2 gap-2 sm:gap-4 mb-3 sm:mb-4">
             <div
               v-for="(stat, index) in stats.data"
               :key="stat.label"
-              class="text-center p-4 rounded-lg transition-all duration-500 active-component"
+              class="text-center p-3 sm:p-4 rounded-lg transition-all duration-500 active-component"
               :style="{ transitionDelay: `${index * 100}ms` }"
             >
-              <div class="text-lg font-semibold main-text mb-1">
+              <div class="text-base sm:text-lg font-semibold main-text mb-1 sm:mb-1">
                 {{ isTransformed ? stat.animatedValue : stat.value }}
               </div>
-              <div class="text-sm text-p">{{ stat.label }}</div>
+              <div class="text-xs sm:text-sm text-p">{{ stat.label }}</div>
             </div>
           </div>
           <div class="text-center">
             <button
-              class="px-3 py-1 main-text active-component rounded-md transition-all duration-300 text-sm"
+              class="px-2 sm:px-3 py-1 sm:py-1.5 main-text active-component rounded-md transition-all duration-300 text-xs sm:text-sm"
               :class="{ 'bg-indigo-700 text-white': isTransformed }"
               @click.stop="transform"
             >

@@ -5,7 +5,7 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="w-3/4 lg:pl-20 2xl:pl-0">
+  <div class="w-3/4">
     <h1 class="main-text text-4xl mb-4 font-light tracking-tight">
       Components
     </h1>

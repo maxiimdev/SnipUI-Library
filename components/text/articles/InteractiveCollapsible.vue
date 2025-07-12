@@ -7,7 +7,7 @@ const isExpanded = ref(false)
 <template>
   <ClientOnly>
     <div
-      class="relative max-w-2xl mx-auto my-6 p-4 active-component rounded-lg shadow-sm border main-border hover:shadow-md transition-all duration-300 ease-in-out"
+      class="relative w-[15rem] md:w-2xl mx-auto my-6 p-4 active-component rounded-lg shadow-sm border main-border hover:shadow-md transition-all duration-300 ease-in-out"
     >
       <span class="text-lg main-text">Inspiration</span>
       <div

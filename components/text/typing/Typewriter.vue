@@ -24,8 +24,8 @@ onMounted(() => {
 
 <template>
   <ClientOnly>
-  <span class="text-3xl font-mono main-text w-96">{{
-    displayedText
-  }}</span>
+    <span class="text-center text-xl md:text-3xl font-mono main-text w-full">{{
+      displayedText
+    }}</span>
   </ClientOnly>
 </template>

@@ -29,7 +29,7 @@ onUnmounted(() => {
 <template>
   <ClientOnly>
   <div
-    class="relative max-w-2xl mx-auto my-6 p-4 active-component rounded-lg shadow-sm border main-border hover:shadow-md transition-all duration-300"
+    class="relative w-[15rem] md:w-2xl h-[14rem] mx-auto my-6 p-4 active-component rounded-lg shadow-sm border main-border hover:shadow-md transition-all duration-300"
   >
     <span class="text-lg main-text">Annotated Text</span>
     <p class="text-p text-base">
@@ -65,10 +65,16 @@ onUnmounted(() => {
           </button>
         </span>
       </span>
-      shift in technology is remarkable. Lorem ipsum dolor sit amet consectetur
+     <span class="hidden md:block">
+       shift in technology is remarkable. Lorem ipsum dolor sit amet consectetur
       adipisicing elit. Excepturi ipsam ullam dolor dolores porro saepe eum
       laborum tenetur mollitia, blanditiis earum ad. Obcaecati nihil delectus
       nesciunt. Amet a officiis aliquam?
+     </span>
+      <span class="md:hidden">
+       shift in technology is remarkable. Lorem ipsum dolor sit amet consectetur
+      adipisicing elit.
+     </span>
     </p>
   </div>
   </ClientOnly>

@@ -31,7 +31,7 @@ watch(username, () => {
 
 <template>
   <ClientOnly>
-    <div class="relative w-[40rem] h-[31rem] flex justify-center items-center">
+    <div class="relative md:w-[40rem] h-[31rem] flex justify-center items-center w-[15rem]">
       <div class="main-div rounded-lg shadow-xl w-full max-w-sm p-4">
         <form @submit.prevent="handleSubmit">
           <div class="mb-4">

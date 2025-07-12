@@ -28,7 +28,9 @@ const addToCart = (): void => {
 
 <template>
   <ClientOnly>
-    <div class="relative w-[40rem] h-[31rem] flex justify-center items-center">
+    <div
+      class="relative w-full max-w-[40rem] h-auto sm:h-[31rem] flex justify-center items-center px-2 sm:px-0"
+    >
       <div
         class="main-div rounded-lg shadow-xl w-full max-w-sm transition-all duration-300 active-component-hover"
         @mouseenter="isHovered = true"
@@ -38,31 +40,35 @@ const addToCart = (): void => {
           <img
             :src="product.image"
             :alt="product.name"
-            class="w-full h-48 object-cover rounded-t-lg transition-transform duration-300"
+            class="w-full h-32 sm:h-48 object-cover rounded-t-lg transition-transform duration-300"
             :class="{ 'scale-110': isHovered }"
           />
         </div>
-        <div class="p-4">
-          <h3 class="text-lg font-semibold main-text mb-2">
+        <div class="p-3 sm:p-4">
+          <h3 class="text-base sm:text-lg font-semibold main-text mb-1 sm:mb-2">
             {{ product.name }}
           </h3>
-          <p class="text-p mb-4 text-sm">{{ product.description }}</p>
-          <div class="flex items-center justify-between mb-4">
-            <div class="flex items-center gap-2">
-              <span class="text-lg font-bold main-text"
+          <p class="text-p mb-3 sm:mb-4 text-xs sm:text-sm">
+            {{ product.description }}
+          </p>
+          <div class="flex items-center justify-between mb-3 sm:mb-4">
+            <div class="flex items-center gap-1 sm:gap-2">
+              <span class="text-base sm:text-lg font-bold main-text"
                 >${{ product.price }}</span
               >
-              <span class="text-sm text-p line-through"
+              <span class="text-xs sm:text-sm text-p line-through"
                 >${{ product.originalPrice }}</span
               >
             </div>
-            <div class="flex items-center gap-1">
-              <span class="text-yellow-400">★</span>
-              <span class="text-sm text-p">{{ product.rating }}</span>
+            <div class="flex items-center gap-1 sm:gap-1">
+              <span class="text-yellow-400 text-sm sm:text-base">★</span>
+              <span class="text-xs sm:text-sm text-p">{{
+                product.rating
+              }}</span>
             </div>
           </div>
           <button
-            class="w-full px-3 py-1 main-text active-component rounded-md transition-all duration-300 text-sm"
+            class="w-full px-2 sm:px-3 py-1 sm:py-1 main-text active-component rounded-md transition-all duration-300 text-xs sm:text-sm"
             :class="{ 'bg-indigo-700': isHovered }"
             @click="addToCart"
           >

@@ -42,7 +42,7 @@ onMounted(() => {
 
 <template>
   <ClientOnly>
-  <span class="text-3xl font-mono main-text"
+  <span class="text-xl md:text-3xl font-mono main-text"
     >{{ displayedText }}<span class="blinking-cursor">|</span></span
   >
   </ClientOnly>

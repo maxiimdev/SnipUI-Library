@@ -26,15 +26,14 @@ const copySelectedText = () => {
   <ClientOnly>
   <div
     @mouseup="handleTextSelection"
-    class="relative max-w-2xl mx-auto my-6 p-4 active-component rounded-lg shadow-sm border main-border hover:shadow-md transition-shadow duration-200"
+    class="relative w-[15rem] md:w-2xl h-[14rem] mx-auto my-6 p-4 active-component rounded-lg shadow-sm border main-border hover:shadow-md transition-shadow duration-200"
   >
     <span class="text-lg main-text">Key Insight</span>
 
     <p class="text-p text-base leading-relaxed">
       Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio animi
       cum nisi odit perspiciatis sit laboriosam voluptatibus illum corporis
-      quidem. Iste natus error aliquam! Aliquam, autem. Assumenda culpa veniam
-      alias.
+      quidem.
     </p>
 
     <button

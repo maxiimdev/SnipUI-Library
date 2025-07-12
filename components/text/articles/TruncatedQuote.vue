@@ -1,6 +1,6 @@
 <template>
   <figure
-    class="relative max-w-2xl mx-auto my-8 p-6 active-component rounded-lg shadow-md border-l-4 border-indigo-500"
+    class="relative w-[15rem] md:w-2xl mx-auto my-8 p-6 active-component rounded-lg shadow-md border-l-4 border-indigo-500"
   >
     <svg
       class="absolute top-4 left-4 h-8 w-8 text-indigo-300 opacity-50"
