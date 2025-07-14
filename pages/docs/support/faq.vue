@@ -22,9 +22,9 @@ const faqSections = [
     title: 'General Questions',
     questions: [
       {
-        question: 'What is My UI Library?',
+        question: 'What is Snip UI?',
         answer:
-          'My UI Library is a modern collection of Vue 3 components and code snippets built with TypeScript and Tailwind CSS. It provides ready-to-use UI components that you can copy and integrate into your projects.',
+          'My Library is a modern collection of Vue 3 components and code snippets built with TypeScript and Tailwind CSS. It provides ready-to-use UI components that you can copy and integrate into your projects.',
       },
       {
         question: 'Is this library free to use?',

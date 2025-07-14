@@ -23,7 +23,7 @@ useState('right-sidebar-items').value = [
       <div class="w-full">
         <div class="">
           <h1 class="main-text text-4xl mb-4 font-light tracking-tight">
-            About My UI Library
+            About Snip UI
           </h1>
           <p class="text-p text-lg leading-relaxed opacity-80">
             A modern collection of Vue 3 components and snippets designed for
@@ -39,7 +39,7 @@ useState('right-sidebar-items').value = [
             class="w-8 h-px bg-gray-300 transition-all duration-500 group-hover:bg-gray-500"
           ></div>
           <h2 class="main-text text-2xl font-medium tracking-wide">
-            What is My UI Library?
+            What is Snip UI Library?
           </h2>
         </div>
 
@@ -48,10 +48,10 @@ useState('right-sidebar-items').value = [
         >
           <div class="space-y-4">
             <p class="text-p leading-relaxed">
-              My UI Library is a carefully curated collection of reusable Vue 3
-              components and code snippets built with modern web technologies.
-              Each component is designed to be lightweight, accessible, and easy
-              to integrate into your projects.
+              Is a carefully curated collection of reusable Vue 3 components and
+              code snippets built with modern web technologies. Each component
+              is designed to be lightweight, accessible, and easy to integrate
+              into your projects.
             </p>
             <p class="text-p leading-relaxed">
               Whether you're building a simple landing page or a complex web
@@ -231,7 +231,7 @@ useState('right-sidebar-items').value = [
             class="w-8 h-px bg-gray-300 transition-all duration-500 group-hover:bg-gray-500"
           ></div>
           <h2 class="main-text text-2xl font-medium tracking-wide">
-            Why Choose My UI Library?
+            Why Choose Snip Ui?
           </h2>
         </div>
 
@@ -267,6 +267,21 @@ useState('right-sidebar-items').value = [
                 <p class="text-p leading-relaxed">
                   All components are tested and optimized for production use
                   with proper error handling and accessibility.
+                </p>
+              </div>
+            </div>
+            <hr />
+            <div class="flex items-start gap-4">
+              <div>
+                <h3 class="main-text font-medium mb-2">Open Source Project</h3>
+                <p class="text-p leading-relaxed">
+                  The entire source code is completely open and available on
+                  <a
+                    href="https://github.com/maxiimdev/SnipUI-Library"
+                    target="_blank"
+                    class="font-bold hover:underline"
+                    >github</a
+                  >.
                 </p>
               </div>
             </div>

@@ -105,7 +105,7 @@ const closeMobileMenu = () => {
         </div>
         <div class="w-px active-component h-6 hidden md:block"></div>
         <div class="rounded-xl flex items-center justify-center pt-2">
-          <a href="">
+          <a href="https://github.com/maxiimdev/SnipUI-Library" target="_blank">
             <Icon name="mdi:github" class="text-2xl lg:text-3xl" />
           </a>
         </div>
