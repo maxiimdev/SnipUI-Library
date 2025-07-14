@@ -1,1 +1,305 @@
-Snip UISnip UI Library is an open-source collection of reusable UI components and comprehensive documentation, built with Nuxt 3, Vue 3, and Tailwind CSS. Inspired by shadcn/ui, this project offers a modern, minimalist design with a responsive header, an interactive search modal, and customizable components for developers building sleek web applications.FeaturesResponsive Header: A sticky navigation bar with a burger menu for mobile, featuring smooth hover effects (text-indigo-600, #f5f5f5).Interactive Search Modal: Fast search across docs and components (Ctrl+K or ⌘+K) with a polished UI.Customizable Components: Reusable components (e.g., Typing, HoverExpandCard) with code previews via CodeCard.Minimalist Design: Custom styles (main-text #333, text-p #929292, active-component-hover #f5f5f5).Documentation: Structured guides under /docs (Getting Started, Usage, FAQs).Open Source: Licensed under MIT, free to use and modify.DemoExplore the live demo at https://ui-components-nuxt3.vercel.app/InstallationClone the repository:git clone https://github.com/maxiimdev/SnipUI-Librarycd my-nuxt-uiInstall dependencies:npm installRun the development server:npm run devOpen http://localhost:3000 in your browser.UsageNavigation: Use the header to access /docs (guides) or /components (UI components).Search: Press Ctrl+K or ⌘+K to search documentation and components.Components: Explore components like Typing (/components/text/typing) or HoverExpandCard (/components/cards/interactive). Copy and customize them.Styling: Modify styles in assets/css/main.css:main-text: #333text-p: #929292text-indigo-600: Hover accentactive-component-hover: #f5f5f5main-bg: #fffCreating ComponentsOverviewComponents are displayed using CodeCard.vue, which shows a preview or code block for each component. Components are organized in components/ and showcased in pages/components/\[category\]/\[component\].vue. Code examples are stored in assets/code-examples/\[category\]/\[component-codes\].ts.StructureComponents: Stored in components/\[category\]/\[ComponentName\].vue (e.g., components/cards/interactive/HoverExpandCard.vue).Pages: Component demos live in pages/components/\[category\]/\[component\].vue (e.g., pages/components/cards/interactive.vue).Code Examples: Stored in assets/code-examples/\[category\]/\[component-codes\].ts (e.g., assets/code-examples/cards/card-codes.ts).CodeCard: Renders a component preview (isCodePreview=true) or code block with copy functionality, using Shiki for syntax highlighting.How It WorksCreate a Component:Add your component to components/\[category\]/\[ComponentName\].vue.Example: components/custom/CustomComponent.vue (a card that expands on hover):lang</em>="ts" <em class="slate-italic">setup</em>>import { ref, reactive } from &#x27;vue&#x27;interface Service { title: string shortDescription: string features: string\[\]}const isExpanded = ref<boolean>(false)const service = reactive<Service>({ title: &#x27;Web Development&#x27;, shortDescription: &#x27;Building modern web applications.&#x27;, features: \[&#x27;Vue.js & React&#x27;, &#x27;TypeScript&#x27;, &#x27;Responsive design&#x27;\],})const startService = (): void => { alert(&#x27;Starting the project!&#x27;)}Add Code Example:Create a file in assets/code-examples/\[category\]/\[component-codes\].ts.Example: assets/code-examples/custom/custom-codes.ts:export const customComponentCodes = \`lang</em>="ts" <em class="slate-italic">setup</em>>import { ref, reactive } from &#x27;vue&#x27;interface Service { title: string shortDescription: string features: string\[\]}const isExpanded = ref<boolean>(false)const service = reactive<Service>({ title: &#x27;Web Development&#x27;, shortDescription: &#x27;Building modern web applications.&#x27;, features: \[&#x27;Vue.js & React&#x27;, &#x27;TypeScript&#x27;, &#x27;Responsive design&#x27;\],})const startService = (): void => { alert(&#x27;Starting the project!&#x27;)}\`Create a Page:Add a page in pages/components/\[category\]/\[component\].vue to showcase the component.Example: pages/components/custom/component.vue:lang</em>="ts" <em class="slate-italic">setup</em>>import type { Card } from &#x27;~/types&#x27;import CustomComponent from &#x27;~/components/custom/CustomComponent.vue&#x27;import { customComponentCodes } from &#x27;~/assets/code-examples/custom/custom-codes&#x27;definePageMeta({ layout: &#x27;sidebar&#x27; })useState(&#x27;right-sidebar-text&#x27;).value = &#x27;On This Page&#x27;useState(&#x27;right-sidebar-items&#x27;).value = \[ { items: \[{ name: &#x27;Custom Component&#x27;, path: &#x27;#custom-component&#x27; }\] }\]const CustomComponentCard: Card = { title: &#x27;Custom Component&#x27;, text: &#x27;A card that expands on hover to show features.&#x27;, codeTitle: &#x27;CustomComponent.vue&#x27;, code: customComponentCodes, content: { type: &#x27;text&#x27;, props: { class: &#x27;&#x27; }, children: &#x27;&#x27; },}Update Sidebar:Add the new component to plugins/sidebar.client.ts for navigation.Example:export default defineNuxtPlugin(() => { return { provide: { sidebarConfig: \[ { title: 'Components', items: \[ { name: 'Custom', path: '/components/custom/component' }, // Other components \], }, \], }, }})Component WorkflowCreate a component in components/\[category\]/\[ComponentName\].vue.Add its code example in assets/code-examples/\[category\]/\[component-codes\].ts.Create a page in pages/components/\[category\]/\[component\].vue using CodeCard to display the component and its code.Update plugins/sidebar.client.ts to include the new component in navigation.Run npm run dev to test the component at http://localhost:3000/components/\[category\]/\[component\].Project Structuremy-nuxt-ui/├── assets/│ └── code-examples/│ ├── cards/│ │ └── card-codes.ts # Code for card components│ └── custom/│ └── custom-codes.ts # Code for custom components├── components/│ ├── cards/│ │ └── interactive/│ │ ├── HoverExpandCard.vue│ │ └── FlipCard.vue│ ├── custom/│ │ └── CustomComponent.vue # Custom components│ ├── CodeCard.vue # Component for previews and code│ ├── Header.vue # Responsive header│ ├── ModalSearch.vue # Search modal│ └── ThemeToggle.vue # Theme switcher├── pages/│ ├── docs/│ │ ├── started/│ │ │ └── about.vue│ │ ├── usage/│ │ │ └── examples.vue│ │ └── support/│ │ └── faq.vue│ ├── components/│ │ ├── cards/│ │ │ └── interactive.vue # Card component demos│ │ ├── custom/│ │ │ └── component.vue # Custom component demos│ │ └── text/│ │ └── typing.vue├── plugins/│ └── sidebar.client.ts # Sidebar navigation config├── public/│ ├── favicon.ico # Favicon│ └── og-image.jpg # Social media preview├── nuxt.config.ts # Nuxt configuration├── README.md # Project overview├── LICENSE # MIT License├── .gitignore # Ignored files└── package.json # DependenciesConfigurationPrerequisitesNode.js (v18 or higher)npm (v9 or higher)Dependenciesnuxt: Framework for the application.vue: Core library for components.@tailwindcss: Styling.@iconify/vue: Icons.shiki: Code highlighting for CodeCard.Install:npm install nuxt vue @tailwindcss @iconify/vue shikiCustomizationStyles: Edit assets/css/main.css for colors (#333, #929292, #f5f5f5).Components: Add new components to components/\[category\]/.Sidebar: Update plugins/sidebar.client.ts for navigation.DeploymentVercelInstall Vercel CLI:npm i -g vercelGenerate static files:npm run generateDeploy:vercel deploy --prodGitHub PagesGenerate static files:npm run generateDeploy to gh-pages:npm i -D gh-pagesnpx gh-pages -d .output/publicUpdate nuxt.config.ts:export default defineNuxtConfig({ ssr: false, app: { baseURL: '/my-nuxt-ui/' }})ContributingThis project is in beta. Open issues or submit pull requests to contribute. See CONTRIBUTING.md for details.LicenseMITAcknowledgmentsInspired by shadcn/ui.Thanks to Nuxt, Vue, Tailwind CSS, and Shiki communities.ContactQuestions? Open an issue or reach out on TG: @maxiimdev
+# Snip UI Library
+
+<div align="center">
+  <img src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D" alt="Vue.js">
+  <img src="https://img.shields.io/badge/Nuxt-00DC82?style=for-the-badge&logo=nuxtdotjs&logoColor=white" alt="Nuxt">
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS">
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/MIT-License-green?style=for-the-badge" alt="MIT License">
+</div>
+
+<div align="center">
+  <h3>🎨 Modern, Minimalist UI Components for Vue 3 & Nuxt 3</h3>
+  <p>An open-source collection of reusable UI components and comprehensive documentation, inspired by shadcn/ui</p>
+</div>
+
+---
+
+## 🚀 Demo
+
+**[Live Demo](https://ui-components-nuxt3.vercel.app/)** - Explore the interactive component library
+
+## ✨ Features
+
+- **🎯 Responsive Header** - Sticky navigation with burger menu and smooth hover effects
+- **🔍 Interactive Search Modal** - Fast search across docs and components (`Ctrl+K` or `⌘+K`)
+- **🧩 Customizable Components** - Reusable components with live code previews via CodeCard
+- **🎨 Minimalist Design** - Clean, modern aesthetics with custom color palette
+- **📚 Comprehensive Documentation** - Structured guides under `/docs`
+- **🆓 Open Source** - MIT licensed, free to use and modify
+
+## 🛠️ Installation
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- npm (v9 or higher)
+
+### Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/maxiimdev/SnipUI-Library
+cd my-nuxt-ui
+
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Open in browser
+# http://localhost:3000
+```
+
+## 🎯 Usage
+
+### Navigation
+- Use the header to access `/docs` (guides) or `/components` (UI components)
+- Press `Ctrl+K` or `⌘+K` to open the search modal
+
+### Exploring Components
+- Browse components like `Typing` (`/components/text/typing`) 
+- Check out `HoverExpandCard` (`/components/cards/interactive`)
+- Copy and customize components for your projects
+
+### Customizing Styles
+
+Edit `assets/css/main.css` to modify the color palette:
+
+```css
+/* Custom CSS Variables */
+main-text: #333;           /* Primary text color */
+text-p: #929292;           /* Secondary text color */
+text-indigo-600: #4F46E5;  /* Hover accent color */
+active-component-hover: #f5f5f5;  /* Component hover state */
+main-bg: #fff;             /* Main background */
+```
+
+## 🔧 Creating Components
+
+### Component Structure
+
+```
+components/[category]/[ComponentName].vue
+pages/components/[category]/[component].vue
+assets/code-examples/[category]/[component-codes].ts
+```
+
+### Step-by-Step Guide
+
+#### 1. Create Component
+```vue
+<!-- components/custom/CustomComponent.vue -->
+<script lang="ts" setup>
+import { ref, reactive } from 'vue'
+
+interface Service {
+  title: string
+  shortDescription: string
+  features: string[]
+}
+
+const isExpanded = ref<boolean>(false)
+const service = reactive<Service>({
+  title: 'Web Development',
+  shortDescription: 'Building modern web applications.',
+  features: ['Vue.js & React', 'TypeScript', 'Responsive design'],
+})
+
+const startService = (): void => {
+  alert('Starting the project!')
+}
+</script>
+
+<template>
+  <div class="main-div rounded-lg shadow-xl w-full max-w-sm transition-all duration-500">
+    <div class="p-4 h-full flex flex-col">
+      <h3 class="text-lg font-semibold main-text">{{ service.title }}</h3>
+      <p class="text-p text-sm">{{ service.shortDescription }}</p>
+      <div :class="{ 'max-h-0 opacity-0': !isExpanded, 'max-h-40 opacity-100': isExpanded }">
+        <ul class="space-y-2">
+          <li v-for="feature in service.features" class="text-sm text-p">✓ {{ feature }}</li>
+        </ul>
+      </div>
+      <button class="w-full py-1 main-text active-component rounded-md text-sm" @click="startService">
+        Start Now
+      </button>
+    </div>
+  </div>
+</template>
+```
+
+#### 2. Add Code Example
+```typescript
+// assets/code-examples/custom/custom-codes.ts
+export const customComponentCodes = `<script lang="ts" setup>
+// Component code here...
+</script>
+
+<template>
+  <!-- Template here... -->
+</template>`
+```
+
+#### 3. Create Demo Page
+```vue
+<!-- pages/components/custom/component.vue -->
+<script lang="ts" setup>
+import type { Card } from '~/types'
+import CustomComponent from '~/components/custom/CustomComponent.vue'
+import { customComponentCodes } from '~/assets/code-examples/custom/custom-codes'
+
+definePageMeta({ layout: 'sidebar' })
+
+const CustomComponentCard: Card = {
+  title: 'Custom Component',
+  text: 'A card that expands on hover to show features.',
+  codeTitle: 'CustomComponent.vue',
+  code: customComponentCodes,
+  content: { type: 'text', props: { class: '' }, children: '' },
+}
+</script>
+
+<template>
+  <div class="flex flex-col gap-20">
+    <div id="custom-component">
+      <CodeCard :card="CustomComponentCard" :component="CustomComponent" :is-code-preview="true" />
+    </div>
+  </div>
+</template>
+```
+
+#### 4. Update Sidebar Navigation
+```typescript
+// plugins/sidebar.client.ts
+export default defineNuxtPlugin(() => {
+  return {
+    provide: {
+      sidebarConfig: [
+        {
+          title: 'Components',
+          items: [
+            { name: 'Custom', path: '/components/custom/component' },
+            // Other components...
+          ],
+        },
+      ],
+    },
+  }
+})
+```
+
+## 📁 Project Structure
+
+```
+my-nuxt-ui/
+├── assets/
+│   └── code-examples/          # Code examples for components
+│       ├── cards/
+│       └── custom/
+├── components/
+│   ├── cards/
+│   │   └── interactive/        # Interactive card components
+│   ├── custom/                 # Custom components
+│   ├── CodeCard.vue           # Component preview renderer
+│   ├── Header.vue             # Responsive header
+│   ├── ModalSearch.vue        # Search modal
+│   └── ThemeToggle.vue        # Theme switcher
+├── pages/
+│   ├── docs/                  # Documentation pages
+│   │   ├── started/
+│   │   ├── usage/
+│   │   └── support/
+│   └── components/            # Component demo pages
+│       ├── cards/
+│       ├── custom/
+│       └── text/
+├── plugins/
+│   └── sidebar.client.ts      # Sidebar configuration
+├── public/
+│   ├── favicon.ico
+│   └── og-image.jpg
+├── nuxt.config.ts
+└── package.json
+```
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Generate static files
+npm run generate
+
+# Deploy
+vercel deploy --prod
+```
+
+### GitHub Pages
+
+```bash
+# Generate static files
+npm run generate
+
+# Install gh-pages
+npm i -D gh-pages
+
+# Deploy
+npx gh-pages -d .output/public
+```
+
+Update `nuxt.config.ts` for GitHub Pages:
+```typescript
+export default defineNuxtConfig({
+  ssr: false,
+  app: { baseURL: '/my-nuxt-ui/' }
+})
+```
+
+## 🧰 Tech Stack
+
+- **[Nuxt 3](https://nuxt.com/)** - Full-stack framework
+- **[Vue 3](https://vuejs.org/)** - Progressive JavaScript framework
+- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
+- **[TypeScript](https://www.typescriptlang.org/)** - Type-safe JavaScript
+- **[Shiki](https://shiki.matsu.io/)** - Syntax highlighting
+- **[Iconify](https://iconify.design/)** - Icon framework
+
+## 🤝 Contributing
+
+This project is in beta and we welcome contributions! 
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+See `CONTRIBUTING.md` for detailed guidelines.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Inspired by [shadcn/ui](https://ui.shadcn.com/)
+- Thanks to the amazing [Nuxt](https://nuxt.com/), [Vue](https://vuejs.org/), [Tailwind CSS](https://tailwindcss.com/), and [Shiki](https://shiki.matsu.io/) communities
+
+## 💬 Contact
+
+Have questions or suggestions? 
+
+- 🐛 [Open an issue](https://github.com/maxiimdev/SnipUI-Library/issues)
+- 💬 Reach out on Telegram: [@maxiimdev](https://t.me/maxiimdev)
+
+---
+
+<div align="center">
+  <p>Made with ❤️ by <a href="https://github.com/maxiimdev">@maxiimdev</a></p>
+  <p>⭐ Star this repository if you find it helpful!</p>
+</div>
