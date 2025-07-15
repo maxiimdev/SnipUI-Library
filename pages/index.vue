@@ -3,33 +3,6 @@ definePageMeta({
   layout: 'default',
 })
 
-const features = [
-  {
-    title: 'Modern Stack',
-    description:
-      'Built with Vue 3, TypeScript, and Tailwind CSS for optimal performance and developer experience.',
-    icon: '⚡',
-  },
-  {
-    title: 'Copy & Paste',
-    description:
-      'No installation required. Simply copy the component code and integrate it into your project.',
-    icon: '📋',
-  },
-  {
-    title: 'Fully Customizable',
-    description:
-      'Every component is designed to be easily customizable and extendable for your specific needs.',
-    icon: '🎨',
-  },
-  {
-    title: 'TypeScript Ready',
-    description:
-      'Full TypeScript support with proper type definitions and interfaces for better development.',
-    icon: '🔧',
-  },
-]
-
 const stats = [
   { number: '50+', label: 'Components' },
   { number: '100%', label: 'Free' },
